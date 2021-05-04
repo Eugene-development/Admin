@@ -1,0 +1,32 @@
+<template>
+  <div v-if="countProduct > 0">
+    <NuxtLink
+      v-for="index of numberOfPage " :key="index"
+      v-show="index > currentPage - 2  && index < currentPage + 3"
+      :class="{ 'bg-teal-50' : currentPage === index }"
+      @click.native="handleCurrentChange(index)"
+      to="/data/product" class="-ml-px relative inline-flex items-center px-4 py-2 border border-gray-300 bg-white text-sm leading-5 font-medium text-gray-700 hover:text-gray-500 focus:z-10 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-100 active:text-gray-700 transition ease-in-out duration-150">
+      {{index}}
+    </NuxtLink>
+  </div>
+</template>
+
+<script>
+import {mapActions, mapGetters} from "vuex";
+
+export default {
+  methods: {
+    ...mapActions({
+      'handleCurrentChange': 'data/product/handleCurrentChange',
+    })
+  },
+
+  computed: {
+    ...mapGetters({
+      numberOfPage: 'data/product/numberOfPage',
+      currentPage: 'data/product/currentPage',
+      countProduct: 'data/product/countProduct',
+    }),
+  },
+}
+</script>
