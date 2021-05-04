@@ -22,6 +22,8 @@
   animation: 1s appear;
 }
 
+
+
 @keyframes appear {
   0% {
     opacity: 0;

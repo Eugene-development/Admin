@@ -1,6 +1,12 @@
 
 export default {
   mode: 'universal',
+  server: {
+    port: 7000,
+    // host: '0.0.0.0'
+  },
+
+
   /*
   ** Headers of the page
   */
@@ -28,11 +34,15 @@ export default {
   ** Plugins to load before mounting the App
   */
   plugins: [
+    '~/plugins/vue-lodash',
+    '~/plugins/axios'
   ],
   /*
   ** Nuxt.js dev-modules
   */
   buildModules: [
+    '@nuxtjs/tailwindcss',
+    '@nuxtjs/auth',
   ],
   /*
   ** Nuxt.js modules
@@ -53,10 +63,47 @@ export default {
   ** Build configuration
   */
   build: {
+    babel:{
+      plugins: [
+        ['@babel/plugin-proposal-private-methods', { loose: true }]
+      ]
+    },
+
     /*
     ** You can extend webpack config here
     */
     extend (config, ctx) {
     }
-  }
+  },
+
+  auth: {
+    strategies: {
+      local: {
+        endpoints: {
+          login: {
+            url: 'http://localhost:8888/api/login', method: 'post', propertyName: 'meta.token'
+          },
+          user: {
+            url: 'http://localhost:8888/api/me', method: 'get', propertyName: 'data'
+          },
+          logout: {
+            url: 'http://localhost:8888/api/logout', method: 'post'
+          }
+        }
+      }
+    },
+    //
+    //
+    //
+    //
+    //
+    //
+    //
+    //
+    //   // redirect: {
+    //   //   login: '/auth/signin',
+    //   //   home: '/'
+    //   // }
+  },
+
 }
