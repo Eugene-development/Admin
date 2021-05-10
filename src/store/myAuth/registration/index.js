@@ -105,7 +105,7 @@ export const actions = {
 
     if (state.ruleForm.name && state.ruleForm.email && state.ruleForm.password && state.ruleForm.password === state.ruleForm.confirm_password) {
 
-      await this.$axios.post('http://localhost:8888/api/register', state.ruleForm);
+      await this.$axios.post('https://adminexpo.com:8888/api/register', state.ruleForm);
 
 
       //TODO А надо ли логинить после регистрации? Может отправлять на логин и там уже проверять роль???
@@ -116,7 +116,7 @@ export const actions = {
         }
       });
 
-
+//TODO убрать???
       const ruleForm = {};
       commit('RULE_FORM', ruleForm)
 

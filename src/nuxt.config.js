@@ -24,7 +24,7 @@ export default {
   /*
   ** Customize the progress-bar color
   */
-  loading: { color: '#fff' },
+  loading: { color: 'red' },
   /*
   ** Global CSS
   */
@@ -81,13 +81,13 @@ export default {
       local: {
         endpoints: {
           login: {
-            url: 'http://localhost:8888/api/login', method: 'post', propertyName: 'meta.token'
+            url: 'https://adminexpo.com:8888/api/login', method: 'post', propertyName: 'meta.token'
           },
           user: {
-            url: 'http://localhost:8888/api/me', method: 'get', propertyName: 'data'
+            url: 'https://adminexpo.com:8888/api/me', method: 'get', propertyName: 'data'
           },
           logout: {
-            url: 'http://localhost:8888/api/logout', method: 'post'
+            url: 'https://adminexpo.com:8888/api/logout', method: 'post'
           }
         }
       }

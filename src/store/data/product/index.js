@@ -13,7 +13,10 @@ export const state = () => ({
       value: ''
     },
   currentProduct_create: {
-      name: ''
+    name: '',
+    price: '',
+    unit: '',
+    description: ''
     },
   currentProduct_read: [],
   currentProduct_update: [],
@@ -41,10 +44,39 @@ export const actions = {
     commit('DIALOG_CREATE', dialogCreate);
   },
 
-  currentProductForm_create( {commit, state}, e ) {
-
+  currentProductForm_createName( {commit, state}, e ) {
     const currentProduct_create = {
-      name: e.target.value
+      name: e.target.value,
+      price: state.currentProduct_create.price,
+      unit: state.currentProduct_create.unit,
+      description: state.currentProduct_create.description
+    };
+    commit('CURRENT_PRODUCT_CREATE', currentProduct_create)
+  },
+  currentProductForm_createPrice( {commit, state}, e ) {
+    const currentProduct_create = {
+      name: state.currentProduct_create.name,
+      price: e.target.value,
+      unit: state.currentProduct_create.unit,
+      description: state.currentProduct_create.description
+    };
+    commit('CURRENT_PRODUCT_CREATE', currentProduct_create)
+  },
+  currentProductForm_createUnit( {commit, state}, e ) {
+    const currentProduct_create = {
+      name: state.currentProduct_create.name,
+      price: state.currentProduct_create.price,
+      unit: e.target.value,
+      description: state.currentProduct_create.description
+    };
+    commit('CURRENT_PRODUCT_CREATE', currentProduct_create)
+  },
+  currentProductForm_createDescription( {commit, state}, e ) {
+    const currentProduct_create = {
+      name: state.currentProduct_create.name,
+      price: state.currentProduct_create.price,
+      unit: state.currentProduct_create.unit,
+      description: e.target.value
     };
     commit('CURRENT_PRODUCT_CREATE', currentProduct_create)
   },

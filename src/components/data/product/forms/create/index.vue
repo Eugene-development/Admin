@@ -47,13 +47,49 @@
               <div class="mt-6 ">
                 <div class="mx-2 sm:col-span-3 ">
                   <label for="first_name" class="block text-sm font-medium leading-5 text-gray-100">
-                    Добавьте значение
+                    Наименование
                   </label>
                   <div class="mt-1 rounded-md shadow-sm">
                     <input
                       :value="currentProduct_create.name"
-                      @input="currentProductForm_create"
+                      @input="currentProductForm_createName"
                       id="first_name"
+                      class="rounded-md pl-2 form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-8">
+                  </div>
+
+
+
+
+
+
+                  <label for="first_name" class="block text-sm font-medium leading-5 text-gray-100">
+                    Цена
+                  </label>
+                  <div class="mt-1 rounded-md shadow-sm">
+                    <input
+                      :value="currentProduct_create.price"
+                      @input="currentProductForm_createPrice"
+                      id="price"
+                      class="rounded-md pl-2 form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-8">
+                  </div>
+                  <label for="first_name" class="block text-sm font-medium leading-5 text-gray-100">
+                    Единица измерения
+                  </label>
+                  <div class="mt-1 rounded-md shadow-sm">
+                    <input
+                      :value="currentProduct_create.unit"
+                      @input="currentProductForm_createUnit"
+                      id="unit"
+                      class="rounded-md pl-2 form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-8">
+                  </div>
+                  <label for="first_name" class="block text-sm font-medium leading-5 text-gray-100">
+                    Описание
+                  </label>
+                  <div class="mt-1 rounded-md shadow-sm">
+                    <input
+                      :value="currentProduct_create.description"
+                      @input="currentProductForm_createDescription"
+                      id="description"
                       class="rounded-md pl-2 form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-8">
                   </div>
                 </div>
@@ -101,7 +137,10 @@ export default {
     ...mapActions({
       createProduct:'data/product/createProduct',
       dialogCreateClose:'data/product/dialogCreateClose',
-      currentProductForm_create: 'data/product/currentProductForm_create',
+      currentProductForm_createName: 'data/product/currentProductForm_createName',
+      currentProductForm_createPrice: 'data/product/currentProductForm_createPrice',
+      currentProductForm_createUnit: 'data/product/currentProductForm_createUnit',
+      currentProductForm_createDescription: 'data/product/currentProductForm_createDescription',
     })
   }
 }
