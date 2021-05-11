@@ -30,7 +30,7 @@
           To: "opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
       -->
       <div
-        class="inline-block align-bottom bg-gray-700 rounded-lg px-4 pt-5 pb-4 text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-2xl sm:w-full sm:p-6" role="dialog" aria-modal="true" aria-labelledby="modal-headline">
+        class="inline-block align-bottom bg-gray-900 rounded-lg px-4 pt-5 pb-4 text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-2xl sm:w-full sm:p-6" role="dialog" aria-modal="true" aria-labelledby="modal-headline">
         <form >
           <div>
             <div>
@@ -105,7 +105,18 @@
                           <li v-for="(category, idx) of allCategory" :key="category.id"
                             class="text-gray-900 cursor-pointer select-none relative py-2 pl-3 pr-9 hover:bg-gray-100" id="listbox-option-0" role="option">
                             <!-- Selected: "font-semibold", Not Selected: "font-normal" -->
-                            <span class="font-normal block truncate">{{ category.name }}</span>
+
+
+
+                            <button
+                              @click="setCurrentCategoryFormCreate (category.name)"
+                              type="button">
+                              <span class="font-normal block truncate">{{ category.name }}</span>
+                            </button>
+
+
+
+
 
                             <!--
                               Checkmark, only display for selected option.
@@ -181,12 +192,12 @@
           <button
             @click.prevent="createProduct"
             type="submit"
-            class="mt-10 inline-flex justify-center w-full py-2 px-4 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-green-600 hover:bg-indigo-500 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700 transition duration-150 ease-in-out">
+            class="mt-10 inline-flex justify-center w-full py-2 px-4 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-green-800 hover:bg-green-700 focus:outline-none focus:border-green-700 focus:shadow-outline-indigo active:bg-green-700 transition duration-150 ease-in-out">
             Добавить
           </button>
           <button
             @click="dialogCreateClose"
-            type="button" class="mt-2 inline-flex justify-center w-full rounded-md border border-transparent px-4 py-2 bg-indigo-600 text-base leading-6 font-medium text-white shadow-sm hover:bg-indigo-500 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo transition ease-in-out duration-150 sm:text-sm sm:leading-5">
+            type="button" class="mt-2 inline-flex justify-center w-full rounded-md border border-transparent px-4 py-2 bg-indigo-800 text-base leading-6 font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo transition ease-in-out duration-150 sm:text-sm sm:leading-5">
             Закрыть
           </button>
         </span>
@@ -220,6 +231,7 @@ export default {
       currentProductForm_createUnit: 'data/product/currentProductForm_createUnit',
       currentProductForm_createDescription: 'data/product/currentProductForm_createDescription',
       changeVisibleCategoryFormCreate: 'data/product/changeVisibleCategoryFormCreate',
+      setCurrentCategoryFormCreate: 'data/product/setCurrentCategoryFormCreate',
     })
   }
 }

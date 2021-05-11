@@ -23,6 +23,9 @@ export const state = () => ({
   currentProduct_update: [],
   currentProduct_delete: [],
 
+  currentCategoryFormCreate: '---',
+
+
   dialogCreate: false,
   dialogRead: false,
   dialogUpdate: false,
@@ -281,6 +284,14 @@ export const actions = {
     commit('VISIBLE_CATEGORY_FORM_CREATE', visibleCategoryFormCreate);
   },
 
+  setCurrentCategoryFormCreate ({commit, state}, payload) {
+    commit('CURRENT_CATEGORY_FORM_CREATE', payload);
+
+    const visibleCategoryFormCreate = !state.visibleCategoryFormCreate;
+    commit('VISIBLE_CATEGORY_FORM_CREATE', visibleCategoryFormCreate);
+
+  },
+
 
 
 
@@ -319,6 +330,7 @@ export const mutations = {
   DIALOG_UPDATE: (state, dialogUpdate) => state.dialogUpdate = dialogUpdate,
   DIALOG_DELETE: (state, dialogDelete) => state.dialogDelete = dialogDelete,
   VISIBLE_CATEGORY_FORM_CREATE: (state, visibleCategoryFormCreate) => state.visibleCategoryFormCreate = visibleCategoryFormCreate,
+  CURRENT_CATEGORY_FORM_CREATE: (state, currentCategoryFormCreate) => state.currentCategoryFormCreate = currentCategoryFormCreate,
 };
 
 export const getters = {
@@ -328,15 +340,21 @@ export const getters = {
   currentPage: state => state.currentPage,
 
   countProduct: state => state.allProduct.length,
+
   currentProduct_create: state => state.currentProduct_create,
   currentProduct_read: state => state.currentProduct_read,
   currentProduct_update: state => state.currentProduct_update,
   currentProduct_delete: state => state.currentProduct_delete,
+
   currentSearch: state => state.currentSearch,
+  currentCategoryFormCreate: state => state.currentCategoryFormCreate,
+
+
   dialogCreate: state => state.dialogCreate,
   dialogRead: state => state.dialogRead,
   dialogUpdate: state => state.dialogUpdate,
   dialogDelete: state => state.dialogDelete,
+
   visiblePagination: state => state.visiblePagination,
   visibleCategoryFormCreate: state => state.visibleCategoryFormCreate,
 };

@@ -241,15 +241,21 @@ export const mutations = {
 
 export const getters = {
   allCategory: state => state.allCategory,
+
   paginateCategory: state => state.paginateCategory,
   numberOfPage: state => state.numberOfPage,
   currentPage: state => state.currentPage,
 
   countCategory: state => state.allCategory.length,
+
   currentCategory_create: state => state.currentCategory_create,
   currentCategory_read: state => state.currentCategory_read,
   currentCategory_update: state => state.currentCategory_update,
   currentCategory_delete: state => state.currentCategory_delete,
+
+
+
+
   dialogCreate: state => state.dialogCreate,
   dialogRead: state => state.dialogRead,
   dialogUpdate: state => state.dialogUpdate,
