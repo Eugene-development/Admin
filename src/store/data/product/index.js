@@ -4,6 +4,7 @@ export const state = () => ({
   paginateProduct: [],
 
   visiblePagination: true,
+  visibleCategoryFormCreate: false,
 
   sizePage: 20,
   currentPage: 1,
@@ -264,13 +265,20 @@ export const actions = {
     commit('CURRENT_SEARCH', currentSearch);
 
     const visiblePagination = false;
-    commit('VISIBLE_PAGINATION', visiblePagination);
+    commit('VISIBLE_PAGINATION', visiblePagination);//TODO I can't to see VISIBLE_PAGINATION in mutation
 
   },
   searchFromTable({ commit, state }) {
     const search = (text) => state.allProduct.filter(({ name }) => name.includes(text));
     const result = search(state.currentSearch.value);
     commit('PAGINATE_PRODUCT', result);
+  },
+
+
+
+  changeVisibleCategoryFormCreate ({commit, state}) {
+    const visibleCategoryFormCreate = !state.visibleCategoryFormCreate;
+    commit('VISIBLE_CATEGORY_FORM_CREATE', visibleCategoryFormCreate);
   },
 
 
@@ -310,6 +318,7 @@ export const mutations = {
   DIALOG_READ: (state, dialogRead) => state.dialogRead = dialogRead,
   DIALOG_UPDATE: (state, dialogUpdate) => state.dialogUpdate = dialogUpdate,
   DIALOG_DELETE: (state, dialogDelete) => state.dialogDelete = dialogDelete,
+  VISIBLE_CATEGORY_FORM_CREATE: (state, visibleCategoryFormCreate) => state.visibleCategoryFormCreate = visibleCategoryFormCreate,
 };
 
 export const getters = {
@@ -329,4 +338,5 @@ export const getters = {
   dialogUpdate: state => state.dialogUpdate,
   dialogDelete: state => state.dialogDelete,
   visiblePagination: state => state.visiblePagination,
+  visibleCategoryFormCreate: state => state.visibleCategoryFormCreate,
 };

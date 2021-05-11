@@ -4,7 +4,7 @@
     <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
       <div class="py-1 align-middle inline-block min-w-full sm:px-6 lg:px-8">
         <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
-          <table v-if="paginateHead.length" class="min-w-full divide-y divide-gray-200">
+          <table v-if="paginateCategory.length" class="min-w-full divide-y divide-gray-200">
             <thead>
             <tr>
               <th class="px-6 py-3 bg-gray-100 text-center text-xs leading-4 font-medium text-gray-900 uppercase tracking-wider">
@@ -26,7 +26,7 @@
             </tr>
             </thead>
             <tbody class="bg-white divide-y divide-gray-200">
-            <tr v-for="(category, idx) of paginateHead" :key="category.id">
+            <tr v-for="(category, idx) of paginateCategory" :key="category.id">
               <td class="px-6 py-3 whitespace-no-wrap text-sm leading-5 font-medium text-gray-900 text-center">
                 {{ category.id }}
               </td>
@@ -57,7 +57,7 @@
         </div>
       </div>
     </div>
-    <HeadPagination/>
+    <CategoryPagination/>
   </div>
 
 </template>
@@ -65,7 +65,7 @@
 <script>
 import {mapActions, mapGetters} from 'vuex'
 
-import HeadPagination from '../pagination'
+import CategoryPagination from '../pagination'
 
 import Toggle from './buttons/toggle'
 import CreateButton from './buttons/create'
@@ -75,14 +75,14 @@ import DeleteButton from './buttons/delete'
 
 
 export default {
-  // props: ['paginateHead'],
+  // props: ['paginateCategory'],
   components: {
     Toggle,
     CreateButton,
     ReadButton,
     UpdateButton,
     DeleteButton,
-    HeadPagination
+    CategoryPagination
   },
   methods: {
     ...mapActions({
@@ -93,7 +93,7 @@ export default {
   },
   computed: {
     ...mapGetters({
-      paginateHead: 'data/navigation/catalog/category/paginateCategory',
+      paginateCategory: 'data/navigation/catalog/category/paginateCategory',
     }),
   },
 }
