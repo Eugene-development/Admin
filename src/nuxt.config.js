@@ -35,7 +35,8 @@ export default {
   */
   plugins: [
     '~/plugins/vue-lodash',
-    '~/plugins/axios'
+    '~/plugins/axios',
+    '~/plugins/vue-cropperjs'
   ],
   /*
   ** Nuxt.js dev-modules
