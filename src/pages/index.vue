@@ -40,15 +40,20 @@
         </main>
       </div>
     </div>
-
+<!--    <vue-cropper-->
+<!--      ref="cropper"-->
+<!--      :src="~/static/src/logo2.png"-->
+<!--      alt="Source Image"-->
+<!--    >-->
+<!--    </vue-cropper>-->
   </div>
 
 </template>
 
 <script>
 import Logo from '~/components/Logo.vue';
-import breadcrumbs from "@/mixins/breadcrumbs";
-import tabs from "@/mixins/tabs";
+import breadcrumbs from "~/mixins/breadcrumbs";
+import tabs from "~/mixins/tabs";
 import {mapActions, mapGetters} from "vuex";
 
 export default {
