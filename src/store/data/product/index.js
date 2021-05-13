@@ -26,6 +26,9 @@ export const state = () => ({
   currentCategoryFormCreate: '---',
 
 
+
+
+
   dialogCreate: false,
   dialogRead: false,
   dialogUpdate: false,
@@ -118,6 +121,23 @@ export const actions = {
       commit('DIALOG_CREATE', dialogCreate)
     }
   },
+
+  // async getImage (e) {
+  //   console.log(e.target.files)
+  //
+  // },
+  //
+  // async uploadImage (e) {
+  //   await this.$axios.$post('/upload-image')
+  // },
+
+
+
+
+
+
+
+
 
   //READ
   async handleView ({ commit, state }, id) {
