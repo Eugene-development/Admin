@@ -7,11 +7,19 @@
     <CreateProductModal/>
     <UpdateProductModal/>
     <DeleteProductModal/>
+
+    <ImageCropper src="/src/logo2.png"/>
+
   </div>
 </template>
 
+
+
+
+
 <script>
 import { mapActions } from 'vuex'
+import { ImageCropper } from '~/components'
 
 import Cards from './cards'
 import Table from './table'
@@ -29,6 +37,7 @@ export default {
     CreateProductModal,
     UpdateProductModal,
     DeleteProductModal,
+    ImageCropper
   },
   methods: {
     ...mapActions({

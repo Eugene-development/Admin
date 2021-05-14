@@ -208,6 +208,10 @@
 
 
 
+
+
+
+
 <!--                  <vue-cropper-->
 <!--                    ref="image"-->
 <!--                    src="/src/logo.png"-->
@@ -291,6 +295,12 @@
         </div>
       </div>
     </div>
+
+
+<!--    <ImageCropper src="/src/logo2.png"/>-->
+
+
+
   </div>
 
 </template>
@@ -298,11 +308,20 @@
 <script>
 import axios from '@nuxtjs/axios'
 
+
+// import { ImageCropper } from '~/components'
+
+
 import { mapGetters, mapActions } from 'vuex'
 import  VueCropper  from 'vue-cropperjs';
 import "cropperjs/dist/cropper.css";
 
 export default {
+
+  // components : {
+  //   ImageCropper
+  // },
+
 
   data () {
     return {
