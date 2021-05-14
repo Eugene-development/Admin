@@ -192,7 +192,7 @@
                         <div class="flex text-sm text-gray-600">
                           <label for="file-upload" class="p-2 mx-1 relative cursor-pointer bg-white rounded-md font-medium text-blue-900 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500">
                             <span>Добавьте фото</span>
-                            <input id="file-upload" name="file-upload" type="file" class="sr-only" @change="onFileSelected">
+                            <input id="file-upload" name="image" type="file" class="sr-only" @change="onFileSelected">
                             <img :src="selectedFile" alt="">
                           </label>
 <!--                          <p class="pl-1">или обрежьте</p>-->
@@ -336,17 +336,24 @@ export default {
 
 
 
-    onFileSelected(e) {
+    onFileSelected(event) {
       // console.log(event.target.files[0]);
-      let image = e.target.files[0];
-      let reader = new FileReader();
-      reader.readAsDataURL(image);
-      reader.onload = e => {
-        this.selectedFile = e.target.result;
-      }
+      // let image = e.target.files[0];
+      // let reader = new FileReader();
+      // reader.readAsDataURL(image);
+      // reader.onload = e => {
+      //   this.selectedFile = e.target.result;
+      // }
+      this.selectedFile = event.target.files[0]
     },
     upload(){
-      this.$axios.$post('http://localhost:7701/upload-image', {'image': this.selectedFile});
+      const fd = new FormData;
+      fd.append('image', this.selectedFile, this.selectedFile.name)
+      this.$axios.$post('http://localhost:7701/upload-image', fd)
+      .then(res => {
+        console.log(res)
+      });
+      // this.$axios.$post('http://localhost:7701/upload-image', {'image': this.selectedFile});
     }
 
 
