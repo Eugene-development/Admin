@@ -27,6 +27,9 @@ export const state = () => ({
 
 
 
+  // cropper : {},
+  // destination: {},
+  image: {},
 
 
   dialogCreate: false,
@@ -36,6 +39,10 @@ export const state = () => ({
 
   apiCRUD: {
     baseURL: process.env.API_CRUD
+  },
+
+  apiCROPPER: {
+    baseURL: process.env.API_CROPPER
   }
 
   //Connect MAMP (socket)
@@ -88,11 +95,22 @@ export const actions = {
     commit('CURRENT_PRODUCT_CREATE', currentProduct_create)
   },
 
+
+
+  onFileSelected ({commit, state}, e) {
+    const image = e.target.files[0];
+    console.log(image)
+    commit('IMAGE', image);
+  },
+
   async createProduct ({ commit, state }) {
     try {
       //Вариант работы с прокси накст
       // const response = await this.$axios.$post('/add-product/', state.currentProduct_create);
       const response = await this.$axios.$post('add-product', state.currentProduct_create, state.apiCRUD);
+
+
+      await this.$axios.$post('/upload-image', state.image ,state.apiCROPPER)
 
       const data = await state.allProduct.concat(response);
 
@@ -123,7 +141,7 @@ export const actions = {
   },
 
   // async getImage (e) {
-  //   console.log(e.target.files)
+  //   console.log(e.target.files[0])
   //
   // },
   //
@@ -351,6 +369,7 @@ export const mutations = {
   DIALOG_DELETE: (state, dialogDelete) => state.dialogDelete = dialogDelete,
   VISIBLE_CATEGORY_FORM_CREATE: (state, visibleCategoryFormCreate) => state.visibleCategoryFormCreate = visibleCategoryFormCreate,
   CURRENT_CATEGORY_FORM_CREATE: (state, currentCategoryFormCreate) => state.currentCategoryFormCreate = currentCategoryFormCreate,
+  IMAGE: (state, image) => state.image = image,
 };
 
 export const getters = {

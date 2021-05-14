@@ -183,25 +183,28 @@
                     Изображение
                   </label>
 
-<!--                  <div class="m-2 sm:col-span-6">-->
-<!--                    <div class="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">-->
-<!--                      <div class="space-y-1 text-center">-->
-<!--                        <svg class="mx-auto h-12 w-12 text-gray-400" stroke="currentColor" fill="none" viewBox="0 0 48 48" aria-hidden="true">-->
-<!--                          <path d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />-->
-<!--                        </svg>-->
-<!--                        <div class="flex text-sm text-gray-600">-->
-<!--                          <label for="file-upload" class="px-2 mx-1 relative cursor-pointer bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500">-->
-<!--                            <span>Загрузите</span>-->
-<!--                            <input id="file-upload" name="file-upload" type="file" >-->
-<!--                          </label>-->
+                  <div class="m-2 sm:col-span-6">
+                    <div class="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
+                      <div class="space-y-1 text-center">
+                        <svg class="mx-auto h-12 w-12 text-gray-400" stroke="currentColor" fill="none" viewBox="0 0 48 48" aria-hidden="true">
+                          <path d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                        <div class="flex text-sm text-gray-600">
+                          <label for="file-upload" class="p-2 mx-1 relative cursor-pointer bg-white rounded-md font-medium text-blue-900 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500">
+                            <span>Добавьте фото</span>
+                            <input id="file-upload" name="file-upload" type="file" class="sr-only" @change="onFileSelected">
+                            <img :src="selectedFile" alt="">
+                          </label>
 <!--                          <p class="pl-1">или обрежьте</p>-->
-<!--                        </div>-->
-<!--                        <p class="text-xs text-gray-500">-->
-<!--                          PNG, JPG, GIF до 10MB-->
-<!--                        </p>-->
-<!--                      </div>-->
-<!--                    </div>-->
-<!--                  </div>-->
+                        </div>
+                        <p class="text-xs text-gray-500">
+                          PNG, JPG, GIF до 10MB
+                        </p>
+                        <button @click.prevent="upload" class="text-white">Загрузить</button>
+
+                      </div>
+                    </div>
+                  </div>
 
 
 
@@ -215,46 +218,46 @@
 
 
 
-                  <div>
-                    <h2 style="margin: 0;">Vue-CropperJS</h2>
-                    <hr>
-                    <input
-                      type="file"
-                      name="image"
-                      accept="image/*"
-                      style="font-size: 1.2em; padding: 10px 0;"
-                      @change="setImage"
-                    >
-                    <br>
-                    <div style="width: 400px; height:300px; border: 1px solid gray; display: inline-block;">
-                      <VueCropper
-                        ref="cropper"
-                        :guides="true"
-                        :view-mode="2"
-                        drag-mode="crop"
-                        :auto-crop-area="0.5"
-                        :min-container-width="250"
-                        :min-container-height="180"
-                        :background="true"
-                        :rotatable="false"
-                        :src="imgSrc"
-                        alt="Source Image"
-                        :img-style="{ 'width': '400px', 'height': '300px' }"
-                        :aspect-ratio="1"
-                      ></VueCropper>
-                    </div>
-                    <img :src="cropImg" alt="Cropped Image">
-                    <!-- <img
-                      :src="cropImg"
-                      style="width: 200px; height: 150px; border: 1px solid gray"
-                      alt="Cropped Image"
-                    >-->
-                    <br>
-                    <br>
+<!--                  <div>-->
+<!--                    <h2 style="margin: 0;">Vue-CropperJS</h2>-->
+<!--                    <hr>-->
+<!--                    <input-->
+<!--                      type="file"-->
+<!--                      name="image"-->
+<!--                      accept="image/*"-->
+<!--                      style="font-size: 1.2em; padding: 10px 0;"-->
+<!--                      @change="setImage"-->
+<!--                    >-->
+<!--                    <br>-->
+<!--                    <div style="width: 400px; height:300px; border: 1px solid gray; display: inline-block;">-->
+<!--                      <VueCropper-->
+<!--                        ref="cropper"-->
+<!--                        :guides="true"-->
+<!--                        :view-mode="2"-->
+<!--                        drag-mode="crop"-->
+<!--                        :auto-crop-area="0.5"-->
+<!--                        :min-container-width="250"-->
+<!--                        :min-container-height="180"-->
+<!--                        :background="true"-->
+<!--                        :rotatable="false"-->
+<!--                        :src="imgSrc"-->
+<!--                        alt="Source Image"-->
+<!--                        :img-style="{ 'width': '400px', 'height': '300px' }"-->
+<!--                        :aspect-ratio="1"-->
+<!--                      ></VueCropper>-->
+<!--                    </div>-->
+<!--                    <img :src="cropImg" alt="Cropped Image">-->
+<!--                    &lt;!&ndash; <img-->
+<!--                      :src="cropImg"-->
+<!--                      style="width: 200px; height: 150px; border: 1px solid gray"-->
+<!--                      alt="Cropped Image"-->
+<!--                    >&ndash;&gt;-->
+<!--                    <br>-->
+<!--                    <br>-->
 
-                    <button @click="cropImage" v-if="imgSrc != ''" style="margin-right: 40px;">Crop</button>
-                    <button @click="rotate" v-if="imgSrc != ''">Rotate</button>
-                  </div>
+<!--                    <button @click="cropImage" v-if="imgSrc != ''" style="margin-right: 40px;">Crop</button>-->
+<!--                    <button @click="rotate" v-if="imgSrc != ''">Rotate</button>-->
+<!--                  </div>-->
 
 
 
@@ -293,12 +296,20 @@
 </template>
 
 <script>
+import axios from '@nuxtjs/axios'
 
 import { mapGetters, mapActions } from 'vuex'
 import  VueCropper  from 'vue-cropperjs';
 import "cropperjs/dist/cropper.css";
 
 export default {
+
+  data () {
+    return {
+      selectedFile: null
+    }
+  },
+
   computed: {
     ...mapGetters({
       dialogCreate: 'data/product/dialogCreate',
@@ -325,44 +336,60 @@ export default {
 
 
 
-    setImage(e) {
-      const file = e.target.files[0];
-      if (!file.type.includes("image/")) {
-        alert("Please select an image file");
-        return;
-      }
-      if (typeof FileReader === "function") {
-        const reader = new FileReader();
-        reader.onload = event => {
-          this.imgSrc = event.target.result;
-          // rebuild cropperjs with the updated source
-          this.$refs.cropper.replace(event.target.result);
-        };
-        reader.readAsDataURL(file);
-      } else {
-        alert("Sorry, FileReader API not supported");
+    onFileSelected(e) {
+      // console.log(event.target.files[0]);
+      let image = e.target.files[0];
+      let reader = new FileReader();
+      reader.readAsDataURL(image);
+      reader.onload = e => {
+        this.selectedFile = e.target.result;
       }
     },
-    cropImage() {
-      // get image data for post processing, e.g. upload or setting image src
-      this.cropImg = this.$refs.cropper.getCroppedCanvas().toDataURL();
-    },
-    rotate() {
-      // guess what this does :)
-      this.$refs.cropper.rotate(90);
+    upload(){
+      this.$axios.$post('http://localhost:7701/upload-image', {'image': this.selectedFile});
     }
 
+
+
+
+    // setImage(e) {
+    //   const file = e.target.files[0];
+    //   if (!file.type.includes("image/")) {
+    //     alert("Please select an image file");
+    //     return;
+    //   }
+    //   if (typeof FileReader === "function") {
+    //     const reader = new FileReader();
+    //     reader.onload = event => {
+    //       this.imgSrc = event.target.result;
+    //       // rebuild cropperjs with the updated source
+    //       this.$refs.cropper.replace(event.target.result);
+    //     };
+    //     reader.readAsDataURL(file);
+    //   } else {
+    //     alert("Sorry, FileReader API not supported");
+    //   }
+    // },
+    // cropImage() {
+    //   // get image data for post processing, e.g. upload or setting image src
+    //   this.cropImg = this.$refs.cropper.getCroppedCanvas().toDataURL();
+    // },
+    // rotate() {
+    //   // guess what this does :)
+    //   this.$refs.cropper.rotate(90);
+    // }
+
   },
 
-  components: {
-    VueCropper
-  },
-  data() {
-    return {
-      imgSrc: "",
-      cropImg: ""
-    };
-  },
+  // components: {
+  //   VueCropper
+  // },
+  // data() {
+  //   return {
+  //     imgSrc: "",
+  //     cropImg: ""
+  //   };
+  // },
   // props : {
   //   src: String
   // },
@@ -380,6 +407,20 @@ export default {
   //     scalable: false,
   //     aspectRatio: 1,
   //   })
-  // }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
 </script>
