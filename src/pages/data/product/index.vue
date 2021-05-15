@@ -6,9 +6,9 @@
 
 <script>
 
-import {Product} from '~/components';
-import breadcrumbs from "@/mixins/breadcrumbs";
-import tabs from "@/mixins/tabs";
+import { Product } from '~/components';
+import breadcrumbs from "~/mixins/breadcrumbs";
+import tabs from "~/mixins/tabs";
 
 export default {
   components: {

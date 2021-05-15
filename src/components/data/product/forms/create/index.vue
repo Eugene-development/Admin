@@ -193,7 +193,8 @@
                           <label for="file-upload" class="p-2 mx-1 relative cursor-pointer bg-white rounded-md font-medium text-blue-900 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500">
                             <span>Добавьте фото</span>
                             <input id="file-upload" name="image" type="file" class="sr-only" @change="onFileSelected">
-                            <img :src="selectedFile" alt="">
+<!--                            <img :src="selectedFile" alt="">-->
+
                           </label>
 <!--                          <p class="pl-1">или обрежьте</p>-->
                         </div>
@@ -202,12 +203,23 @@
                         </p>
                         <button @click.prevent="upload" class="text-white">Загрузить</button>
 
+                        <hr>
+
+<!--                        <ImageCropper :src="selectedFile"/>-->
+                        <ImageCropper src="/test/5adf1b97742a65d0a3c98299c545570b.jpg"/>
+
                       </div>
+
+
                     </div>
+
+
+
                   </div>
 
 
 
+<!--                  <VueImageCropper src="/test/5adf1b97742a65d0a3c98299c545570b.jpg"/>-->
 
 
 
@@ -297,7 +309,6 @@
     </div>
 
 
-<!--    <ImageCropper src="/src/logo2.png"/>-->
 
 
 
@@ -309,18 +320,20 @@
 import axios from '@nuxtjs/axios'
 
 
-// import { ImageCropper } from '~/components'
+import ImageCropper from './ImageCropper'
+// import VueImageCropper from './VueImageCropper'
 
 
 import { mapGetters, mapActions } from 'vuex'
-import  VueCropper  from 'vue-cropperjs';
+// import  VueCropper  from 'vue-cropperjs';
 import "cropperjs/dist/cropper.css";
 
 export default {
 
-  // components : {
-  //   ImageCropper
-  // },
+  components : {
+    ImageCropper,
+    // VueImageCropper,
+  },
 
 
   data () {
