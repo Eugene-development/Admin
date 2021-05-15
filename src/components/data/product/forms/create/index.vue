@@ -193,7 +193,7 @@
                           <label for="file-upload" class="p-2 mx-1 relative cursor-pointer bg-white rounded-md font-medium text-blue-900 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500">
                             <span>Добавьте фото</span>
                             <input id="file-upload" name="image" type="file" class="sr-only" @change="onFileSelected">
-                            <img :src="selectedFile" alt="">
+<!--                            <img :src="selectedFile" alt="">-->
 
                           </label>
 <!--                          <p class="pl-1">или обрежьте</p>-->
@@ -205,8 +205,8 @@
 
                         <hr>
 
-<!--                        <ImageCropper :src="selectedFile"/>-->
-                        <ImageCropper src="/test/5adf1b97742a65d0a3c98299c545570b.jpg"/>
+                        <ImageCropper :src="selectedFile"/>
+<!--                        <ImageCropper src="/test/5adf1b97742a65d0a3c98299c545570b.jpg"/>-->
 
                       </div>
 
@@ -319,20 +319,15 @@
 <script>
 import axios from '@nuxtjs/axios'
 
+import { mapGetters, mapActions } from 'vuex'
 
 import ImageCropper from './ImageCropper'
-// import VueImageCropper from './VueImageCropper'
-
-
-import { mapGetters, mapActions } from 'vuex'
-// import  VueCropper  from 'vue-cropperjs';
 import "cropperjs/dist/cropper.css";
 
 export default {
 
   components : {
     ImageCropper,
-    // VueImageCropper,
   },
 
 
@@ -370,13 +365,28 @@ export default {
 
     onFileSelected(event) {
       // console.log(event.target.files[0]);
+      // let image = event.target.files[0];
+      // let reader = new FileReader();
+      // reader.readAsDataURL(image);
+      // reader.onload = event => {
+      //   this.selectedFile = event.target.result;
+      // }
+      // this.selectedFile = event.target.files[0];
+
       let image = event.target.files[0];
       let reader = new FileReader();
       reader.readAsDataURL(image);
       reader.onload = event => {
         this.selectedFile = event.target.result;
       }
-      this.selectedFile = event.target.files[0]
+
+
+
+
+
+
+
+
     },
     upload(){
       const fd = new FormData;
