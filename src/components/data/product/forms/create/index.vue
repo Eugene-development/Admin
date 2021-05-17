@@ -217,23 +217,6 @@
 
                   </div>
 
-
-
-<!--                  <VueImageCropper src="/test/5adf1b97742a65d0a3c98299c545570b.jpg"/>-->
-
-
-
-
-<!--                  <vue-cropper-->
-<!--                    ref="image"-->
-<!--                    src="/src/logo.png"-->
-<!--                    alt="Source Image"-->
-<!--                  ></vue-cropper>-->
-
-
-
-
-
 <!--                  <div>-->
 <!--                    <h2 style="margin: 0;">Vue-CropperJS</h2>-->
 <!--                    <hr>-->
