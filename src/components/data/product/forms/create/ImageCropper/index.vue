@@ -6,7 +6,6 @@
     </div>
     <button class="text-white" type="button" @click="crop">Обрезать</button>
     <button @click.prevent="upload" class="text-white">Загрузить</button>
-
   </div>
 </template>
 <script>
@@ -19,6 +18,7 @@ export default {
   },
   data: () => ({
     cropper: null,
+    cropImg: ""
   }),
   mounted() {
     this.cropper = new Cropper(this.$refs.image, {
@@ -27,15 +27,17 @@ export default {
   },
   methods: {
     crop() {
-      this.cropper.replace(this.cropper.getCroppedCanvas().toDataURL('image/jpeg'))
+      this.cropImg = this.cropper.replace(this.cropper.getCroppedCanvas().toDataURL('image/jpeg'))
     },
     upload() {
-      const fd = new FormData;
-      fd.append('image', this.selectedFile, 'test')
-      this.$axios.$post('http://localhost:7701/upload-image', fd)
-        .then(res => {
-          console.log(res)
-        });
+      this.cropper.getCroppedCanvas().toBlob((blob) => {
+        const formData = new FormData();
+        formData.append('image', blob, 'example.png' );
+        this.$axios.$post('http://localhost:7701/upload-image', formData)
+          .then(res => {
+            console.log(res)
+          });
+      }, 'image/jpeg' );
     }
   },
 }
