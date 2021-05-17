@@ -201,7 +201,7 @@
                         <p class="text-xs text-gray-500">
                           PNG, JPG, GIF до 10MB
                         </p>
-                        <button @click.prevent="upload" class="text-white">Загрузить</button>
+<!--                        <button @click.prevent="upload" class="text-white">Загрузить</button>-->
 
                         <hr>
 
@@ -388,15 +388,15 @@ export default {
 
 
     },
-    upload(){
-      const fd = new FormData;
-      fd.append('image', this.selectedFile, this.selectedFile.name)
-      this.$axios.$post('http://localhost:7701/upload-image', fd)
-      .then(res => {
-        console.log(res)
-      });
-      // this.$axios.$post('http://localhost:7701/upload-image', {'image': this.selectedFile});
-    }
+    // upload(){
+    //   const fd = new FormData;
+    //   fd.append('image', this.selectedFile, this.selectedFile.name)
+    //   this.$axios.$post('http://localhost:7701/upload-image', fd)
+    //   .then(res => {
+    //     console.log(res)
+    //   });
+    //   // this.$axios.$post('http://localhost:7701/upload-image', {'image': this.selectedFile});
+    // }
 
 
 
