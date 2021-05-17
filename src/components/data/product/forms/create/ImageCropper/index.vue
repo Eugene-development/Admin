@@ -23,6 +23,9 @@ export default {
   mounted() {
     this.cropper = new Cropper(this.$refs.image, {
       autoCrop: false,
+      zoomable: false,
+      scalable: false,
+      aspectRatio: 457 / 320,
     })
   },
   methods: {

@@ -347,29 +347,12 @@ export default {
 
 
     onFileSelected(event) {
-      // console.log(event.target.files[0]);
-      // let image = event.target.files[0];
-      // let reader = new FileReader();
-      // reader.readAsDataURL(image);
-      // reader.onload = event => {
-      //   this.selectedFile = event.target.result;
-      // }
-      // this.selectedFile = event.target.files[0];
-
       let image = event.target.files[0];
       let reader = new FileReader();
       reader.readAsDataURL(image);
       reader.onload = event => {
         this.selectedFile = event.target.result;
       }
-
-
-
-
-
-
-
-
     },
     // upload(){
     //   const fd = new FormData;
