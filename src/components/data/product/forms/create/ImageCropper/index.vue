@@ -11,7 +11,7 @@
 <script>
 import 'cropperjs/dist/cropper.css'
 import Cropper from 'cropperjs'
-
+import { mapGetters, mapActions } from 'vuex'
 export default {
   props: {
     src: String
@@ -28,6 +28,14 @@ export default {
       aspectRatio: 457 / 320,
     })
   },
+
+
+  computed: {
+    ...mapGetters({
+      createProductId: 'data/product/createProductId',
+    }),
+  },
+
   methods: {
     crop() {
       this.cropImg = this.cropper.replace(this.cropper.getCroppedCanvas().toDataURL('image/jpeg'))
@@ -35,7 +43,7 @@ export default {
     upload() {
       this.cropper.getCroppedCanvas().toBlob((blob) => {
         const formData = new FormData();
-        formData.append('image', blob, 'example.png' );
+        formData.append('image', blob, this.createProductId );
         this.$axios.$post('http://localhost:7701/upload-image', formData)
           .then(res => {
             console.log(res)

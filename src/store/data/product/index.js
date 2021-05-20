@@ -26,6 +26,7 @@ export const state = () => ({
   currentCategoryFormCreate: '---',
 
 
+  createProductId: "",
 
   // cropper : {},
   // destination: {},
@@ -97,11 +98,11 @@ export const actions = {
 
 
 
-  onFileSelected ({commit, state}, e) {
-    const image = e.target.files[0];
-    console.log(image)
-    commit('IMAGE', image);
-  },
+  // onFileSelected ({commit, state}, e) {
+  //   const image = e.target.files[0];
+  //   console.log(image)
+  //   commit('IMAGE', image);
+  // },
 
   async createProduct ({ commit, state }) {
     try {
@@ -110,7 +111,10 @@ export const actions = {
       const response = await this.$axios.$post('add-product', state.currentProduct_create, state.apiCRUD);
 
 
-      await this.$axios.$post('/upload-image', state.image ,state.apiCROPPER)
+      commit('CREATE_PRODUCT_ID', response.id);
+
+
+      // await this.$axios.$post('/upload-image', state.image ,state.apiCROPPER)
 
       const data = await state.allProduct.concat(response);
 
@@ -135,8 +139,8 @@ export const actions = {
     } finally {
 
 
-      const dialogCreate = false;
-      commit('DIALOG_CREATE', dialogCreate)
+      // const dialogCreate = false;
+      // commit('DIALOG_CREATE', dialogCreate)
     }
   },
 
@@ -369,6 +373,7 @@ export const mutations = {
   DIALOG_DELETE: (state, dialogDelete) => state.dialogDelete = dialogDelete,
   VISIBLE_CATEGORY_FORM_CREATE: (state, visibleCategoryFormCreate) => state.visibleCategoryFormCreate = visibleCategoryFormCreate,
   CURRENT_CATEGORY_FORM_CREATE: (state, currentCategoryFormCreate) => state.currentCategoryFormCreate = currentCategoryFormCreate,
+  CREATE_PRODUCT_ID: (state, createProductId) => state.createProductId = createProductId,
   IMAGE: (state, image) => state.image = image,
 };
 
@@ -396,4 +401,5 @@ export const getters = {
 
   visiblePagination: state => state.visiblePagination,
   visibleCategoryFormCreate: state => state.visibleCategoryFormCreate,
+  createProductId: state => state.createProductId,
 };
