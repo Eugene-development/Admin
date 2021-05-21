@@ -1,11 +1,10 @@
 <template>
   <div>
     <div>
-      <!--      <img ref="image" src="/test/5adf1b97742a65d0a3c98299c545570b.jpg">-->
       <img ref="image" :src="src">
     </div>
-    <button class="text-white" type="button" @click="crop">Обрезать</button>
-    <button @click.prevent="upload" class="text-white">Загрузить</button>
+    <button class="mx-auto p-2 mx-1 relative cursor-pointer bg-white rounded-md font-medium text-blue-900 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500" type="button" @click="crop">Обрезать</button>
+    <button @click.prevent="upload" class="mx-auto p-2 mx-1 relative cursor-pointer bg-white rounded-md font-medium text-blue-900 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500">Отправить</button>
   </div>
 </template>
 <script>
