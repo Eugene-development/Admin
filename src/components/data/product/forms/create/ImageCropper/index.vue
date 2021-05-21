@@ -31,6 +31,7 @@ export default {
   computed: {
     ...mapGetters({
       createProductId: 'data/product/createProductId',
+
     }),
   },
 

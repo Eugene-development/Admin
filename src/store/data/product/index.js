@@ -5,6 +5,7 @@ export const state = () => ({
 
   visiblePagination: true,
   visibleCategoryFormCreate: false,
+  visibleCreateProduct: false,
 
   sizePage: 20,
   currentPage: 1,
@@ -138,9 +139,11 @@ export const actions = {
       //Вариант работы с прокси накст
       // const response = await this.$axios.$post('/add-product/', state.currentProduct_create);
       const response = await this.$axios.$post('add-product', state.currentProduct_create, state.apiCRUD);
-
-
       commit('CREATE_PRODUCT_ID', response.id);
+
+
+      const visibleCreateProduct = !state.visibleCreateProduct;
+      commit('VISIBLE_CREATE_PRODUCT', visibleCreateProduct);
 
 
       // await this.$axios.$post('/upload-image', state.image ,state.apiCROPPER)
@@ -394,6 +397,7 @@ export const mutations = {
   DIALOG_UPDATE: (state, dialogUpdate) => state.dialogUpdate = dialogUpdate,
   DIALOG_DELETE: (state, dialogDelete) => state.dialogDelete = dialogDelete,
   VISIBLE_CATEGORY_FORM_CREATE: (state, visibleCategoryFormCreate) => state.visibleCategoryFormCreate = visibleCategoryFormCreate,
+  VISIBLE_CREATE_PRODUCT: (state, visibleCreateProduct) => state.visibleCreateProduct = visibleCreateProduct,
   CURRENT_CATEGORY_FORM_CREATE: (state, currentCategoryFormCreate) => state.currentCategoryFormCreate = currentCategoryFormCreate,
   CREATE_PRODUCT_ID: (state, createProductId) => state.createProductId = createProductId,
   IMAGE: (state, image) => state.image = image,
@@ -423,5 +427,7 @@ export const getters = {
 
   visiblePagination: state => state.visiblePagination,
   visibleCategoryFormCreate: state => state.visibleCategoryFormCreate,
-  createProductId: state => state.createProductId,
+  visibleCreateProduct: state => state.visibleCreateProduct,
+
+  createProductId: state => state.createProductId, //TODO удалить?
 };
