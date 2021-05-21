@@ -109,7 +109,7 @@
 
 
                             <button
-                              @click="setCurrentCategoryFormCreate (category.name)"
+                              @click="setCurrentCategoryFormCreate (category)"
                               type="button">
                               <span class="font-normal block truncate">{{ category.name }}</span>
                             </button>
@@ -135,14 +135,6 @@
                       </div>
                     </div>
                   </div>
-
-
-
-
-
-
-
-
 
                   <label for="first_name" class="block text-sm font-medium leading-5 text-gray-100">
                     Цена
@@ -194,84 +186,22 @@
                             <span>Добавьте фото</span>
                             <input id="file-upload" name="image" type="file" class="sr-only" @change="onFileSelected">
 <!--                            <img :src="selectedFile" alt="">-->
-
                           </label>
 <!--                          <p class="pl-1">или обрежьте</p>-->
                         </div>
                         <p class="text-xs text-gray-500">
                           PNG, JPG, GIF до 10MB
                         </p>
-<!--                        <button @click.prevent="upload" class="text-white">Загрузить</button>-->
-
                         <hr>
-
                         <ImageCropper :src="selectedFile"/>
-<!--                        <ImageCropper src="/test/5adf1b97742a65d0a3c98299c545570b.jpg"/>-->
-
                       </div>
-
-
                     </div>
-
-
-
                   </div>
-
-<!--                  <div>-->
-<!--                    <h2 style="margin: 0;">Vue-CropperJS</h2>-->
-<!--                    <hr>-->
-<!--                    <input-->
-<!--                      type="file"-->
-<!--                      name="image"-->
-<!--                      accept="image/*"-->
-<!--                      style="font-size: 1.2em; padding: 10px 0;"-->
-<!--                      @change="setImage"-->
-<!--                    >-->
-<!--                    <br>-->
-<!--                    <div style="width: 400px; height:300px; border: 1px solid gray; display: inline-block;">-->
-<!--                      <VueCropper-->
-<!--                        ref="cropper"-->
-<!--                        :guides="true"-->
-<!--                        :view-mode="2"-->
-<!--                        drag-mode="crop"-->
-<!--                        :auto-crop-area="0.5"-->
-<!--                        :min-container-width="250"-->
-<!--                        :min-container-height="180"-->
-<!--                        :background="true"-->
-<!--                        :rotatable="false"-->
-<!--                        :src="imgSrc"-->
-<!--                        alt="Source Image"-->
-<!--                        :img-style="{ 'width': '400px', 'height': '300px' }"-->
-<!--                        :aspect-ratio="1"-->
-<!--                      ></VueCropper>-->
-<!--                    </div>-->
-<!--                    <img :src="cropImg" alt="Cropped Image">-->
-<!--                    &lt;!&ndash; <img-->
-<!--                      :src="cropImg"-->
-<!--                      style="width: 200px; height: 150px; border: 1px solid gray"-->
-<!--                      alt="Cropped Image"-->
-<!--                    >&ndash;&gt;-->
-<!--                    <br>-->
-<!--                    <br>-->
-
-<!--                    <button @click="cropImage" v-if="imgSrc != ''" style="margin-right: 40px;">Crop</button>-->
-<!--                    <button @click="rotate" v-if="imgSrc != ''">Rotate</button>-->
-<!--                  </div>-->
-
-
-
-
-
-
-
                 </div>
-
               </div>
             </div>
           </div>
         </form>
-
-
 
         <div class="mt-5 sm:mt-6">
         <span class="w-full rounded-md shadow-sm">
@@ -295,8 +225,6 @@
 </template>
 
 <script>
-import axios from '@nuxtjs/axios'
-
 import { mapGetters, mapActions } from 'vuex'
 
 import ImageCropper from './ImageCropper'
