@@ -3,21 +3,35 @@
     <div>
       <img ref="image" :src="src">
     </div>
-    <button class="mx-auto p-2 mx-1 relative cursor-pointer bg-white rounded-md font-medium text-blue-900 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500" type="button" @click="crop">Обрезать</button>
-    <button @click.prevent="upload" class="mx-auto p-2 mx-1 relative cursor-pointer bg-white rounded-md font-medium text-blue-900 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500">Отправить</button>
+    <button
+      @click="crop"
+      class="mx-auto p-2 mx-1 relative cursor-pointer bg-white rounded-md font-medium text-blue-900 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500"
+      type="button">
+      Обрезать
+    </button>
+    <button v-if="visibleSendImage"
+      @click.prevent.once="upload"
+      class="mx-auto p-2 mx-1 relative cursor-pointer bg-white rounded-md font-medium text-blue-900 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500">
+      Отправить
+    </button>
+    <p v-else
+      class="mx-auto p-2 mx-1 relative cursor-pointer bg-white rounded-md font-medium text-blue-900 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500">
+      Изображение отправлено
+    </p>
   </div>
 </template>
 <script>
 import 'cropperjs/dist/cropper.css'
 import Cropper from 'cropperjs'
-import { mapGetters, mapActions } from 'vuex'
+import { mapGetters, mapMutations } from 'vuex'
 export default {
   props: {
     src: String
   },
   data: () => ({
     cropper: null,
-    cropImg: ""
+    cropImg: "",
+    visibleSendImage: true
   }),
   mounted() {
     this.cropper = new Cropper(this.$refs.image, {
@@ -31,7 +45,6 @@ export default {
   computed: {
     ...mapGetters({
       createProductId: 'data/product/createProductId',
-
     }),
   },
 
@@ -48,6 +61,7 @@ export default {
             console.log(res)
           });
       }, 'image/jpeg' );
+      this.visibleSendImage = false
     }
   },
 }

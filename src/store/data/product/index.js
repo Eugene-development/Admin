@@ -145,6 +145,15 @@ export const actions = {
       const visibleCreateProduct = !state.visibleCreateProduct;
       commit('VISIBLE_CREATE_PRODUCT', visibleCreateProduct);
 
+      const currentProduct_create = {
+        category_id: '---',
+        name: '',
+        price: '',
+        unit: '',
+        description: ''
+      };
+      commit('CURRENT_PRODUCT_CREATE', currentProduct_create)
+
 
       // await this.$axios.$post('/upload-image', state.image ,state.apiCROPPER)
 
