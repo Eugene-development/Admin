@@ -44,8 +44,8 @@ export const state = () => ({
     baseURL: process.env.API_CRUD
   },
 
-  apiCROPPER: {
-    baseURL: process.env.API_CROPPER
+  apiIMAGE: {
+    baseURL: process.env.API_IMAGE
   }
 
   //Connect MAMP (socket)
@@ -112,7 +112,6 @@ export const actions = {
       description: state.currentProduct_create.description
     };
 
-    console.log(currentProduct_create);
     commit('CURRENT_PRODUCT_CREATE', currentProduct_create)
 
 
@@ -313,7 +312,9 @@ export const actions = {
 
   async deleteProduct ({ commit, state } ){
     try {
+      await this.$axios.$delete('delete-image/' + state.currentProduct_delete[0].id, state.apiIMAGE);
       await this.$axios.$delete('delete-product/' + state.currentProduct_delete[0].id, state.apiCRUD);
+
       // await this.$axios.$get('delete-product/' + state.currentProduct_delete[0].id, state.apiCRUD);
       // const index = await state.allProduct.findIndex(item => item.id === state.currentProduct_delete[0].id);
       // const  data  = await state.allProduct.splice(index, 1);
