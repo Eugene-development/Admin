@@ -3,8 +3,8 @@ export default function ({redirect, $auth} ) {
     console.log('Нет доступа!');
     return redirect('/admin/login')
   }
-  // if ($auth.user.role !== 1) {
-  //   console.log('Нет прав!');
-  //   return redirect('/admin/login')
-  // }
+  if ($auth.user.role_id !== 1) {
+    console.log('Нет прав!');
+    return redirect('/admin/login')
+  }
 }
