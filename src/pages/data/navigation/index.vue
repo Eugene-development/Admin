@@ -11,16 +11,16 @@
 <script>
 
 import { Test, Menu, HeadCatalog, RubricCatalog, CategoryCatalog } from '~/components';
-import breadcrumbs from "@/mixins/breadcrumbs";
-import tabs from "@/mixins/tabs";
-import {mapGetters} from "vuex";
+import breadcrumbs from "~/mixins/breadcrumbs";
+import tabs from "~/mixins/tabs";
+// import {mapGetters} from "vuex";
 
 export default {
-  computed: {
-    ...mapGetters({
-      paginateMenu: 'data/navigation/menu/paginateMenu',
-    }),
-  },
+  // computed: {
+  //   ...mapGetters({
+  //     paginateMenu: 'data/navigation/menu/paginateMenu',
+  //   }),
+  // },
 
   components: {
     Test,
@@ -33,6 +33,9 @@ export default {
 
   async asyncData({store}) {
     await store.dispatch('data/navigation/menu/fetch')
+    await store.dispatch('data/navigation/catalog/head/fetch')
+    await store.dispatch('data/navigation/catalog/rubric/fetch')
+    await store.dispatch('data/navigation/catalog/category/fetch')
   },
 
 

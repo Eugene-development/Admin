@@ -20,6 +20,7 @@
 <!--                    Ваш статус - Владелец <br>-->
                     Ваш логин - {{$auth.user.email}} <br>
                     Статус - {{$auth.user.role_id}}
+                    Проект - {{$auth.user.project_id}}
                   </p>
                   <div class="mt-10 max-w-sm mx-auto sm:max-w-none sm:flex sm:justify-center">
                     <div class="space-y-4 sm:space-y-0 sm:mx-auto sm:inline-grid sm:grid-cols-2 sm:gap-5">

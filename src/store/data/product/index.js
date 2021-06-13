@@ -184,21 +184,6 @@ export const actions = {
     }
   },
 
-  // async getImage (e) {
-  //   console.log(e.target.files[0])
-  //
-  // },
-  //
-  // async uploadImage (e) {
-  //   await this.$axios.$post('/upload-image')
-  // },
-
-
-
-
-
-
-
 
 
   //READ
@@ -210,8 +195,8 @@ export const actions = {
     commit('CURRENT_PRODUCT_READ', currentProduct_read)
   },
 
-  // async fetch ({ commit, state}, { $config: { baseRL } }) {
-  //   const { data } = await this.$axios.$get(`${baseRL}/navigation-product`);
+  // async fetch ({ commit, state}, { $config: { baseURL } }) {
+  //   const { data } = await this.$axios.$get(`${baseURL}/navigation-product`);
   //   commit('SET_PRODUCT', data);
   // },
   async handleSizeChange({ commit, state }, sizePage) {
