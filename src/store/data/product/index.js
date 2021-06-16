@@ -144,6 +144,8 @@ export const actions = {
       const visibleCreateProduct = !state.visibleCreateProduct;
       commit('VISIBLE_CREATE_PRODUCT', visibleCreateProduct);
 
+
+      //TODO сомневаюсь надо ли
       const currentProduct_create = {
         category_id: '---',
         name: '',
@@ -243,20 +245,60 @@ export const actions = {
     commit('CURRENT_PRODUCT_UPDATE', currentProduct_update)
   },
 
-  currentProductForm_updateName( {commit, state}, e ) {
+  currentProductForm_updateCategory( {commit, state}, e ) {
     const currentProduct_update = {
       id: state.currentProduct_update.id,
-      name: e.target.value,
-      price: state.currentProduct_update.price
+      category_id: e.target.value,
+      name: state.currentProduct_update.name,
+      price: state.currentProduct_update.price,
+      unit: state.currentProduct_update.unit,
+      description: state.currentProduct_update.description,
     };
     commit('CURRENT_PRODUCT_UPDATE', currentProduct_update)
   },
 
+  currentProductForm_updateName( {commit, state}, e ) {
+    const currentProduct_update = {
+      id: state.currentProduct_update.id,
+      category_id: state.currentProduct_update.category_id,
+      name: e.target.value,
+      price: state.currentProduct_update.price,
+      unit: state.currentProduct_update.unit,
+      description: state.currentProduct_update.description,
+    };
+    commit('CURRENT_PRODUCT_UPDATE', currentProduct_update)
+  },
   currentProductForm_updatePrice( {commit, state}, e ) {
     const currentProduct_update = {
       id: state.currentProduct_update.id,
+      category_id: state.currentProduct_update.category_id,
       name: state.currentProduct_update.name,
-      price: e.target.value
+      price: e.target.value,
+      unit: state.currentProduct_update.unit,
+      description: state.currentProduct_update.description,
+    };
+    commit('CURRENT_PRODUCT_UPDATE', currentProduct_update)
+  },
+  currentProductForm_updateUnit( {commit, state}, e ) {
+    const currentProduct_update = {
+      id: state.currentProduct_update.id,
+      category_id: state.currentProduct_update.category_id,
+      name: state.currentProduct_update.name,
+      price: state.currentProduct_update.price,
+      unit: e.target.value,
+      description: state.currentProduct_update.description,
+    };
+    commit('CURRENT_PRODUCT_UPDATE', currentProduct_update)
+  },
+
+  currentProductForm_updateDescription( {commit, state}, e ) {
+    const currentProduct_update = {
+      id: state.currentProduct_update.id,
+      category_id: state.currentProduct_update.category_id,
+      name: state.currentProduct_update.name,
+      price: state.currentProduct_update.price,
+      unit: state.currentProduct_update.unit,
+      description: e.target.value,
     };
     commit('CURRENT_PRODUCT_UPDATE', currentProduct_update)
   },
@@ -266,9 +308,15 @@ export const actions = {
 
       await this.$axios.$put('update-product', {
         id: state.currentProduct_update.id,
+        category_id: state.currentProduct_update.category_id,
         name: state.currentProduct_update.name,
-        price: state.currentProduct_update.price
+        price: state.currentProduct_update.price,
+        unit: state.currentProduct_update.unit,
+        description: state.currentProduct_update.description,
       }, state.apiCRUD);
+
+
+
       const { data } = await this.$axios.$get('get-all-product', state.apiCRUD);
       commit('ALL_PRODUCT', data);
 

@@ -7,7 +7,7 @@ export default function ({redirect, $auth} ) {
     console.log('Нет прав!');
     return redirect('/admin/login')
   }
-  if ($auth.user.project_id !== 2) {
+  if ($auth.user.project_id !== 1) {
     console.log('Не ваш проект!');
     return redirect('/admin/login')
   }

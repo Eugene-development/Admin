@@ -2,7 +2,7 @@ export const state = () => ({
   ruleForm: {},
   alertDanger: {},
   placeholder: {},
-  token: '222777'
+  // token: '222777'
 });
 
 export const actions = {
@@ -52,6 +52,7 @@ export const actions = {
 
     //Выполнение метода при успешной валидации
 
+    this.$axios.setToken(false);
     if (state.ruleForm.email && state.ruleForm.password) {
       const {data} = await this.$auth.login({
         data: {
@@ -61,9 +62,9 @@ export const actions = {
       });
 
 
-      const token = 'hjhjhjhjhjhj';
-
-      commit('TOKEN', token);
+      // const token = 'hjhjhjhjhjhj';
+      //
+      // commit('TOKEN', token);
 
       // console.log(token);
 
