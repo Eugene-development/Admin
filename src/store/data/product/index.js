@@ -5,6 +5,7 @@ export const state = () => ({
 
   visiblePagination: true,
   visibleCategoryFormCreate: false,
+  visibleCategoryFormUpdate: false,
   visibleCreateProduct: false,
 
   sizePage: 20,
@@ -14,18 +15,13 @@ export const state = () => ({
   currentSearch: {
       value: ''
     },
-  currentProduct_create: {
-    category_id: '',
-    name: '',
-    price: '',
-    unit: '',
-    description: ''
-    },
+  currentProduct_create: [],
   currentProduct_read: [],
   currentProduct_update: [],
   currentProduct_delete: [],
 
   currentCategoryFormCreate: '---',
+  currentCategoryFormUpdate: '---',
 
 
   createProductId: "",
@@ -113,15 +109,26 @@ export const actions = {
     };
 
     commit('CURRENT_PRODUCT_CREATE', currentProduct_create)
-
-
-
-
     commit('CURRENT_CATEGORY_FORM_CREATE', payload.name);
 
     const visibleCategoryFormCreate = !state.visibleCategoryFormCreate;
     commit('VISIBLE_CATEGORY_FORM_CREATE', visibleCategoryFormCreate);
+  },
 
+  setCurrentCategoryFormUpdate ({commit, state}, payload) {
+    const currentProduct_update = {
+      category_id: payload.id,
+      name: state.currentProduct_update.name,
+      price: state.currentProduct_update.price,
+      unit: state.currentProduct_update.unit,
+      description: state.currentProduct_update.description
+    };
+
+    commit('CURRENT_PRODUCT_UPDATE', currentProduct_update)
+    commit('CURRENT_CATEGORY_FORM_CREATE', payload.name);
+
+    const visibleCategoryFormUpdate = !state.visibleCategoryFormUpdate;
+    commit('VISIBLE_CATEGORY_FORM_UPDATE', visibleCategoryFormUpdate);
   },
 
 
@@ -401,6 +408,11 @@ export const actions = {
     commit('VISIBLE_CATEGORY_FORM_CREATE', visibleCategoryFormCreate);
   },
 
+  changeVisibleCategoryFormUpdate ({commit, state}) {
+    const visibleCategoryFormUpdate = !state.visibleCategoryFormUpdate;
+    commit('VISIBLE_CATEGORY_FORM_UPDATE', visibleCategoryFormUpdate);
+  },
+
 
 
 
@@ -440,10 +452,10 @@ export const mutations = {
   DIALOG_UPDATE: (state, dialogUpdate) => state.dialogUpdate = dialogUpdate,
   DIALOG_DELETE: (state, dialogDelete) => state.dialogDelete = dialogDelete,
   VISIBLE_CATEGORY_FORM_CREATE: (state, visibleCategoryFormCreate) => state.visibleCategoryFormCreate = visibleCategoryFormCreate,
+  VISIBLE_CATEGORY_FORM_UPDATE: (state, visibleCategoryFormUpdate) => state.visibleCategoryFormUpdate = visibleCategoryFormUpdate,
   VISIBLE_CREATE_PRODUCT: (state, visibleCreateProduct) => state.visibleCreateProduct = visibleCreateProduct,
   CURRENT_CATEGORY_FORM_CREATE: (state, currentCategoryFormCreate) => state.currentCategoryFormCreate = currentCategoryFormCreate,
   CREATE_PRODUCT_ID: (state, createProductId) => state.createProductId = createProductId,
-  IMAGE: (state, image) => state.image = image,
 };
 
 export const getters = {
@@ -470,6 +482,7 @@ export const getters = {
 
   visiblePagination: state => state.visiblePagination,
   visibleCategoryFormCreate: state => state.visibleCategoryFormCreate,
+  visibleCategoryFormUpdate: state => state.visibleCategoryFormUpdate,
   visibleCreateProduct: state => state.visibleCreateProduct,
 
   createProductId: state => state.createProductId, //TODO удалить?
