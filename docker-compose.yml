@@ -5,22 +5,30 @@ services:
     build:
       context: .
       dockerfile: ./docker/node/Dockerfile
-    container_name: admin_app
+    container_name: "${COMPOSE_PROJECT_NAME}_NUXT"
     restart: always
     ports:
       - "7000:7000"
     command:
       "npm run start"
+    networks:
+      - admin-network
 
 
 
   nginx:
     image: nginx:1.13
-    container_name: admin_nginx
+    container_name: "${COMPOSE_PROJECT_NAME}_NGINX"
     ports:
-      - "7005:80"
+      - "4129:80"
     volumes:
       - ./:/var/www
       - ./docker/nginx/conf.d/:/etc/nginx/conf.d/
     depends_on:
       - nuxt
+    networks:
+      - admin-network
+#Docker Networks
+networks:
+  admin-network:
+    driver: bridge
