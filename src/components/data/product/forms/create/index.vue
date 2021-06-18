@@ -252,14 +252,14 @@ export default {
     ...mapActions({
       createProduct:'data/product/createProduct',
       dialogCreateClose:'data/product/dialogCreateClose',
+
       currentProductForm_createName: 'data/product/currentProductForm_createName',
       currentProductForm_createPrice: 'data/product/currentProductForm_createPrice',
       currentProductForm_createUnit: 'data/product/currentProductForm_createUnit',
       currentProductForm_createDescription: 'data/product/currentProductForm_createDescription',
+
       changeVisibleCategoryFormCreate: 'data/product/changeVisibleCategoryFormCreate',
       setCurrentCategoryFormCreate: 'data/product/setCurrentCategoryFormCreate',
-      // getImage: 'data/product/getImage',
-      // uploadImage: 'data/product/uploadImage',
     }),
 
 
