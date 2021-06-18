@@ -51,7 +51,7 @@
                     <input
                       id="first_name"
                       :value="currentProduct_update.name"
-                      class="rounded-md pl-2 form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-8"
+                      class="m-2 rounded-md pl-2 form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-8"
                       @input="currentProductForm_updateName">
                   </div>
 
@@ -129,7 +129,7 @@
                   <label class="mt-2 block text-sm font-medium leading-5 text-gray-100" for="first_name">
                     Цена
                   </label>
-                  <div class="rounded-md shadow-sm">
+                  <div class="m-2 rounded-md shadow-sm">
                     <input
                       id="price"
                       :value="currentProduct_update.price"
