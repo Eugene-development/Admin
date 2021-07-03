@@ -1,7 +1,7 @@
 import { mixinActions } from "~/mixins/store/test";
 
 export const state = () => ({
-  url: 'get-all-menu',
+  url: 'get-all-menu', //it is for mixin
   allMenu: [],
   paginateMenu: [],
 
@@ -184,6 +184,8 @@ export const actions = {
       const paginateMenu = chunk(data, state.sizePage)[state.currentPage - 1];
       commit('PAGINATE_MENU', paginateMenu);
       commit('ALL_MENU', data);
+
+
 
       // const chunk = (data, size) =>
       //   Array.from({ length: Math.ceil(data.length / size) }, (v, i) =>
