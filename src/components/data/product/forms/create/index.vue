@@ -165,12 +165,15 @@
                   </div>
                   <div class="mb-6 ">
                        <span class="w-full rounded-md shadow-sm">
-                          <button v-if="!visibleCreateProduct"
-                                  @click.prevent="createProduct"
-                                  type="submit"
-                                  class="mt-6 inline-flex justify-center w-full py-2 px-4 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-teal-900 hover:bg-teal-700 focus:outline-none focus:border-teal-700 focus:shadow-outline-indigo active:bg-green-700 transition duration-150 ease-in-out">
-                            Добавить фото
-                          </button>
+
+
+
+<!--                          <button v-if="!visibleCreateProduct"-->
+<!--                                  @click.prevent="createProduct"-->
+<!--                                  type="submit"-->
+<!--                                  class="mt-6 inline-flex justify-center w-full py-2 px-4 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-teal-900 hover:bg-teal-700 focus:outline-none focus:border-teal-700 focus:shadow-outline-indigo active:bg-green-700 transition duration-150 ease-in-out">-->
+<!--                            Добавить товар-->
+<!--                          </button>-->
                          <!--                          <p v-else-->
                          <!--                            class="mt-6 inline-flex justify-center w-full py-2 px-4 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-teal-900 hover:bg-teal-700 focus:outline-none focus:border-teal-700 focus:shadow-outline-indigo active:bg-green-700 transition duration-150 ease-in-out">-->
                          <!--                            Товар добавлен-->
@@ -179,7 +182,7 @@
                   </div>
 
 
-                  <div v-if="visibleCreateProduct">
+                  <div >
                     <label for="first_name" class="block text-sm font-medium leading-5 text-gray-100">
                       Изображение
                     </label>
@@ -195,7 +198,8 @@
                           </svg>
                           <div class="flex text-sm text-gray-600">
                             <label for="file-upload"
-                                   class="mx-auto p-2 mx-1 relative cursor-pointer bg-white rounded-md font-medium text-blue-900 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500">
+                                   class="mt-6 inline-flex justify-center w-full py-2 px-4 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-teal-900 hover:bg-teal-700 focus:outline-none focus:border-teal-700 focus:shadow-outline-indigo active:bg-green-700 transition duration-150 ease-in-out"
+                            >
                               <span>Загрузить фото</span>
                               <input id="file-upload" name="image" type="file" class="sr-only" @change="onFileSelected">
                               <!--                            <img :src="selectedFile" alt="">-->
