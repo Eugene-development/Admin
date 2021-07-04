@@ -32,7 +32,6 @@
       <div
         class="inline-block align-bottom bg-gray-900 rounded-lg px-4 pt-5 pb-4 text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-2xl sm:w-full sm:p-6"
         role="dialog" aria-modal="true" aria-labelledby="modal-headline">
-        <form>
           <div>
             <div>
               <div>
@@ -214,6 +213,17 @@
                             <div>
                               <img ref="image" :src="selectedFile">
                             </div>
+
+
+
+                            <button
+                              @click="test"
+                              class="mt-6 inline-flex justify-center w-full py-2 px-4 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-teal-900 hover:bg-teal-700 focus:outline-none focus:border-teal-700 focus:shadow-outline-indigo active:bg-green-700 transition duration-150 ease-in-out">
+                              test
+                            </button>
+
+
+
                             <button v-if="visibleSendImage"
                                     @click="crop"
                                     class="mt-6 inline-flex justify-center w-full py-2 px-4 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-teal-900 hover:bg-teal-700 focus:outline-none focus:border-teal-700 focus:shadow-outline-indigo active:bg-green-700 transition duration-150 ease-in-out"      type="button">
@@ -244,17 +254,11 @@
               </div>
             </div>
           </div>
-        </form>
 
         <div class="mt-5 sm:mt-6">
             <span class="w-full rounded-md shadow-sm">
 
 
-              <button
-                @click="test"
-                class="mt-6 inline-flex justify-center w-full py-2 px-4 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-teal-900 hover:bg-teal-700 focus:outline-none focus:border-teal-700 focus:shadow-outline-indigo active:bg-green-700 transition duration-150 ease-in-out">
-                test
-              </button>
               <button
                 @click="onFormReset"
                 class="mt-6 inline-flex justify-center w-full py-2 px-4 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-teal-900 hover:bg-teal-700 focus:outline-none focus:border-teal-700 focus:shadow-outline-indigo active:bg-green-700 transition duration-150 ease-in-out">
