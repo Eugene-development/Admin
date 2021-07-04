@@ -201,7 +201,7 @@
                                    class="mt-6 inline-flex justify-center w-full py-2 px-4 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-teal-900 hover:bg-teal-700 focus:outline-none focus:border-teal-700 focus:shadow-outline-indigo active:bg-green-700 transition duration-150 ease-in-out"
                             >
                               <span>Загрузить фото</span>
-                              <input id="file-upload" name="image" type="file" class="sr-only" @change="onFileSelected">
+                              <input id="file-upload" name="image" type="file" class="sr-only" @change="onFileSelected" @input="createProduct">
                               <!--                            <img :src="selectedFile" alt="">-->
                             </label>
                             <!--                          <p class="pl-1">или обрежьте</p>-->
@@ -234,7 +234,9 @@
                               Обрезать
                             </button>
                             <button v-if="visibleSendImage"
-                                    @click.prevent.once="upload"
+
+                                    @click="upload"
+
                                     class="mt-6 inline-flex justify-center w-full py-2 px-4 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-teal-900 hover:bg-teal-700 focus:outline-none focus:border-teal-700 focus:shadow-outline-indigo active:bg-green-700 transition duration-150 ease-in-out"    >
                               Отправить
                             </button>
@@ -335,6 +337,15 @@ export default {
 
 
   methods: {
+
+    // sendProduct() {
+    //   this.createProduct();
+    //
+    //   this.test()
+    // },
+
+
+
     ...mapActions({
       createProduct: 'data/product/createProduct',
       dialogCreateClose: 'data/product/dialogCreateClose',
@@ -368,11 +379,6 @@ export default {
       reader.onload = event => {
         this.selectedFile = event.target.result;
       }
-
-
-
-
-
     },
 
 
@@ -384,7 +390,6 @@ export default {
         scalable: false,
         // aspectRatio: 457 / 320,
       })
-
     },
 
 
