@@ -178,7 +178,6 @@
                     <label for="first_name" class="block text-sm font-medium leading-5 text-gray-100">
                       Изображение
                     </label>
-
                     <div class="m-2 sm:col-span-6">
                       <div class="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
                         <div class="space-y-1 text-center">
@@ -198,11 +197,10 @@
                             PNG, JPG, GIF до 10MB
                           </p>
                           <hr>
-                          <ImageCropper :src="selectedFile"/>
+                          <ImageCropper v-show="selectedFile" id="image" ref="image" :src="selectedFile"/>
                         </div>
                       </div>
                     </div>
-
                   </div>
 
 
