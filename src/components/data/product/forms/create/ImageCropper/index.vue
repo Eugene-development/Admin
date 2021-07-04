@@ -17,6 +17,8 @@
        class="mt-6 inline-flex justify-center w-full py-2 px-4 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-teal-900 hover:bg-teal-700 focus:outline-none focus:border-teal-700 focus:shadow-outline-indigo active:bg-green-700 transition duration-150 ease-in-out"    >
       Изображение отправлено
     </p>
+
+
   </div>
 </template>
 <script>
@@ -32,6 +34,8 @@ export default {
     cropImg: "",
     visibleSendImage: true
   }),
+
+  //TODO Вывести в 1 компонент и поменять mounted на методы
   mounted() {
     this.cropper = new Cropper(this.$refs.image, {
       autoCrop: false,
@@ -48,6 +52,7 @@ export default {
   },
 
   methods: {
+
     crop() {
       this.cropImg = this.cropper.replace(this.cropper.getCroppedCanvas().toDataURL('image/jpeg'))
     },

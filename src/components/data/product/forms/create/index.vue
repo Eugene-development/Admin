@@ -30,8 +30,9 @@
           To: "opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
       -->
       <div
-        class="inline-block align-bottom bg-gray-900 rounded-lg px-4 pt-5 pb-4 text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-2xl sm:w-full sm:p-6" role="dialog" aria-modal="true" aria-labelledby="modal-headline">
-        <form >
+        class="inline-block align-bottom bg-gray-900 rounded-lg px-4 pt-5 pb-4 text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-2xl sm:w-full sm:p-6"
+        role="dialog" aria-modal="true" aria-labelledby="modal-headline">
+        <form>
           <div>
             <div>
               <div>
@@ -43,7 +44,7 @@
                 </p>
               </div>
             </div>
-<!--            TODO to clean form after send changes-->
+            <!--            TODO to clean form after send changes-->
             <div class="mt-8 border-t border-gray-400 pt-8">
               <div class="mt-1 ">
                 <div class="mx-2 sm:col-span-3 ">
@@ -74,8 +75,11 @@
                           <span class="block truncate">{{ currentCategoryFormCreate }}</span>
                           <span class="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
                         <!-- Heroicon name: solid/selector -->
-                            <svg class="h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                              <path fill-rule="evenodd" d="M10 3a1 1 0 01.707.293l3 3a1 1 0 01-1.414 1.414L10 5.414 7.707 7.707a1 1 0 01-1.414-1.414l3-3A1 1 0 0110 3zm-3.707 9.293a1 1 0 011.414 0L10 14.586l2.293-2.293a1 1 0 011.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd" />
+                            <svg class="h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
+                                 fill="currentColor" aria-hidden="true">
+                              <path fill-rule="evenodd"
+                                    d="M10 3a1 1 0 01.707.293l3 3a1 1 0 01-1.414 1.414L10 5.414 7.707 7.707a1 1 0 01-1.414-1.414l3-3A1 1 0 0110 3zm-3.707 9.293a1 1 0 011.414 0L10 14.586l2.293-2.293a1 1 0 011.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z"
+                                    clip-rule="evenodd"/>
                             </svg>
                           </span>
                         </button>
@@ -90,14 +94,18 @@
                             From: "opacity-100"
                             To: "opacity-0"
                         -->
-                        <ul v-if="visibleCategoryFormCreate" class="absolute z-10 mt-1 w-full bg-white shadow-lg max-h-60 rounded-md py-1 text-base ring-1 ring-black ring-opacity-5 overflow-auto focus:outline-none sm:text-sm" tabindex="-1" role="listbox" aria-labelledby="listbox-label" aria-activedescendant="listbox-option-3">
+                        <ul v-if="visibleCategoryFormCreate"
+                            class="absolute z-10 mt-1 w-full bg-white shadow-lg max-h-60 rounded-md py-1 text-base ring-1 ring-black ring-opacity-5 overflow-auto focus:outline-none sm:text-sm"
+                            tabindex="-1" role="listbox" aria-labelledby="listbox-label"
+                            aria-activedescendant="listbox-option-3">
                           <!--
                             Select option, manage highlight styles based on mouseenter/mouseleave and keyboard navigation.
 
                             Highlighted: "text-white bg-indigo-600", Not Highlighted: "text-gray-900"
                           -->
                           <li v-for="(category, idx) of allCategory" :key="category.id"
-                            class="text-gray-900 cursor-pointer select-none relative py-2 pl-3 pr-9 hover:bg-gray-100" id="listbox-option-0" role="option">
+                              class="text-gray-900 cursor-pointer select-none relative py-2 pl-3 pr-9 hover:bg-gray-100"
+                              id="listbox-option-0" role="option">
                             <!-- Selected: "font-semibold", Not Selected: "font-normal" -->
                             <button
                               @click="setCurrentCategoryFormCreate (category)"
@@ -109,12 +117,12 @@
 
                               Highlighted: "text-white", Not Highlighted: "text-indigo-600"
                             -->
-<!--                            <span class="text-indigo-600 absolute inset-y-0 right-0 flex items-center pr-4">-->
-                          <!-- Heroicon name: solid/check -->
-<!--                              <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">-->
-<!--                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />-->
-<!--                              </svg>-->
-<!--                            </span>-->
+                            <!--                            <span class="text-indigo-600 absolute inset-y-0 right-0 flex items-center pr-4">-->
+                            <!-- Heroicon name: solid/check -->
+                            <!--                              <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">-->
+                            <!--                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />-->
+                            <!--                              </svg>-->
+                            <!--                            </span>-->
                           </li>
 
                         </ul>
@@ -159,19 +167,17 @@
                   <div class="mb-6 ">
                        <span class="w-full rounded-md shadow-sm">
                           <button v-if="!visibleCreateProduct"
-                            @click.prevent="createProduct"
-                            type="submit"
-                            class="mt-6 inline-flex justify-center w-full py-2 px-4 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-teal-900 hover:bg-teal-700 focus:outline-none focus:border-teal-700 focus:shadow-outline-indigo active:bg-green-700 transition duration-150 ease-in-out">
+                                  @click.prevent="createProduct"
+                                  type="submit"
+                                  class="mt-6 inline-flex justify-center w-full py-2 px-4 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-teal-900 hover:bg-teal-700 focus:outline-none focus:border-teal-700 focus:shadow-outline-indigo active:bg-green-700 transition duration-150 ease-in-out">
                             Добавить фото
                           </button>
-<!--                          <p v-else-->
-<!--                            class="mt-6 inline-flex justify-center w-full py-2 px-4 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-teal-900 hover:bg-teal-700 focus:outline-none focus:border-teal-700 focus:shadow-outline-indigo active:bg-green-700 transition duration-150 ease-in-out">-->
-<!--                            Товар добавлен-->
-<!--                          </p>-->
+                         <!--                          <p v-else-->
+                         <!--                            class="mt-6 inline-flex justify-center w-full py-2 px-4 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-teal-900 hover:bg-teal-700 focus:outline-none focus:border-teal-700 focus:shadow-outline-indigo active:bg-green-700 transition duration-150 ease-in-out">-->
+                         <!--                            Товар добавлен-->
+                         <!--                          </p>-->
                         </span>
                   </div>
-
-
 
 
                   <div v-if="visibleCreateProduct">
@@ -179,10 +185,14 @@
                       Изображение
                     </label>
                     <div class="m-2 sm:col-span-6">
-                      <div class="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
+                      <div
+                        class="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
                         <div class="space-y-1 text-center">
-                          <svg class="mx-auto h-12 w-12 text-gray-400" stroke="currentColor" fill="none" viewBox="0 0 48 48" aria-hidden="true">
-                            <path d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                          <svg class="mx-auto h-12 w-12 text-gray-400" stroke="currentColor" fill="none"
+                               viewBox="0 0 48 48" aria-hidden="true">
+                            <path
+                              d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02"
+                              stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                           </svg>
                           <div class="flex text-sm text-gray-600">
                             <label for="file-upload"
@@ -204,10 +214,6 @@
                   </div>
 
 
-
-
-
-
                 </div>
               </div>
             </div>
@@ -216,9 +222,18 @@
 
         <div class="mt-5 sm:mt-6">
             <span class="w-full rounded-md shadow-sm">
+
+
+              <button
+                @click="onFormReset"
+                class="mt-6 inline-flex justify-center w-full py-2 px-4 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-teal-900 hover:bg-teal-700 focus:outline-none focus:border-teal-700 focus:shadow-outline-indigo active:bg-green-700 transition duration-150 ease-in-out">
+                Очистить
+              </button>
+
               <button
                 @click="dialogCreateClose"
-                type="button" class="mt-2 inline-flex justify-center w-full rounded-md border border-transparent px-4 py-2 bg-blue-900 text-base leading-6 font-medium text-white shadow-sm hover:bg-blue-700 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo transition ease-in-out duration-150 sm:text-sm sm:leading-5">
+                type="button"
+                class="mt-2 inline-flex justify-center w-full rounded-md border border-transparent px-4 py-2 bg-blue-900 text-base leading-6 font-medium text-white shadow-sm hover:bg-blue-700 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo transition ease-in-out duration-150 sm:text-sm sm:leading-5">
                 Закрыть
               </button>
         </span>
@@ -230,19 +245,19 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex'
+import {mapGetters, mapActions} from 'vuex'
 
 import ImageCropper from './ImageCropper'
 import "cropperjs/dist/cropper.css";
 
 export default {
 
-  components : {
+  components: {
     ImageCropper,
   },
 
 
-  data () {
+  data() {
     return {
       selectedFile: null
     }
@@ -260,8 +275,8 @@ export default {
   },
   methods: {
     ...mapActions({
-      createProduct:'data/product/createProduct',
-      dialogCreateClose:'data/product/dialogCreateClose',
+      createProduct: 'data/product/createProduct',
+      dialogCreateClose: 'data/product/dialogCreateClose',
 
       currentProductForm_createName: 'data/product/currentProductForm_createName',
       currentProductForm_createPrice: 'data/product/currentProductForm_createPrice',
@@ -273,6 +288,16 @@ export default {
     }),
 
 
+    onFormReset() {
+      if (this.cropper) {
+        this.cropper.destroy()
+        this.cropper = null
+      }
+
+      this.selectedFile = null
+
+      // this.$refs.form.reset()
+    },
 
 
     onFileSelected(event) {
@@ -292,8 +317,6 @@ export default {
     //   });
     //   // this.$axios.$post('http://localhost:7701/upload-image', {'image': this.selectedFile});
     // }
-
-
 
 
     // setImage(e) {
