@@ -207,7 +207,33 @@
                             PNG, JPG, GIF до 10MB
                           </p>
                           <hr>
-                          <ImageCropper v-show="selectedFile" id="image" ref="image" :src="selectedFile"/>
+
+
+
+                          <div>
+                            <div>
+                              <img ref="image" :src="selectedFile">
+                            </div>
+                            <button v-if="visibleSendImage"
+                                    @click="crop"
+                                    class="mt-6 inline-flex justify-center w-full py-2 px-4 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-teal-900 hover:bg-teal-700 focus:outline-none focus:border-teal-700 focus:shadow-outline-indigo active:bg-green-700 transition duration-150 ease-in-out"      type="button">
+                              Обрезать
+                            </button>
+                            <button v-if="visibleSendImage"
+                                    @click.prevent.once="upload"
+                                    class="mt-6 inline-flex justify-center w-full py-2 px-4 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-teal-900 hover:bg-teal-700 focus:outline-none focus:border-teal-700 focus:shadow-outline-indigo active:bg-green-700 transition duration-150 ease-in-out"    >
+                              Отправить
+                            </button>
+                            <p v-else
+                               class="mt-6 inline-flex justify-center w-full py-2 px-4 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-teal-900 hover:bg-teal-700 focus:outline-none focus:border-teal-700 focus:shadow-outline-indigo active:bg-green-700 transition duration-150 ease-in-out"    >
+                              Изображение отправлено
+                            </p>
+
+
+                          </div>
+
+
+                          <!--                          <ImageCropper v-show="selectedFile" id="image" ref="image" :src="selectedFile"/>-->
                         </div>
                       </div>
                     </div>
@@ -224,6 +250,11 @@
             <span class="w-full rounded-md shadow-sm">
 
 
+              <button
+                @click="test"
+                class="mt-6 inline-flex justify-center w-full py-2 px-4 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-teal-900 hover:bg-teal-700 focus:outline-none focus:border-teal-700 focus:shadow-outline-indigo active:bg-green-700 transition duration-150 ease-in-out">
+                test
+              </button>
               <button
                 @click="onFormReset"
                 class="mt-6 inline-flex justify-center w-full py-2 px-4 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-teal-900 hover:bg-teal-700 focus:outline-none focus:border-teal-700 focus:shadow-outline-indigo active:bg-green-700 transition duration-150 ease-in-out">
@@ -247,6 +278,10 @@
 <script>
 import {mapGetters, mapActions} from 'vuex'
 
+
+import 'cropperjs/dist/cropper.css'
+import Cropper from 'cropperjs'
+
 import ImageCropper from './ImageCropper'
 import "cropperjs/dist/cropper.css";
 
@@ -259,7 +294,11 @@ export default {
 
   data() {
     return {
-      selectedFile: null
+      selectedFile: null,
+      cropper: null,
+      cropImg: "",
+      visibleSendImage: true
+
     }
   },
 
@@ -270,9 +309,23 @@ export default {
       allCategory: 'data/navigation/catalog/category/allCategory',
       visibleCategoryFormCreate: 'data/product/visibleCategoryFormCreate',
       currentCategoryFormCreate: 'data/product/currentCategoryFormCreate',
-      visibleCreateProduct: 'data/product/visibleCreateProduct'
+      visibleCreateProduct: 'data/product/visibleCreateProduct',
+      createProductId: 'data/product/createProductId',
+
     }),
   },
+
+
+  // mounted() {
+  //   this.cropper = new Cropper(this.$refs.image, {
+  //     autoCrop: false,
+  //     zoomable: false,
+  //     scalable: false,
+  //     // aspectRatio: 457 / 320,
+  //   })
+  // },
+
+
   methods: {
     ...mapActions({
       createProduct: 'data/product/createProduct',
@@ -307,7 +360,42 @@ export default {
       reader.onload = event => {
         this.selectedFile = event.target.result;
       }
+
+
+
+
+
     },
+
+
+
+    test() {
+      this.cropper = new Cropper(this.$refs.image, {
+        autoCrop: false,
+        zoomable: false,
+        scalable: false,
+        // aspectRatio: 457 / 320,
+      })
+
+    },
+
+
+
+    crop() {
+      this.cropImg = this.cropper.replace(this.cropper.getCroppedCanvas().toDataURL('image/jpeg'))
+    },
+    upload() {
+      this.cropper.getCroppedCanvas().toBlob((blob) => {
+        const formData = new FormData();
+        formData.append('image', blob, this.createProductId );
+        this.$axios.$post('https://lubamebel.adminexpo.com:7741/upload-image', formData)
+          .then(res => {
+            console.log(res)
+          });
+      }, 'image/jpeg' );
+      this.visibleSendImage = false
+    }
+
     // upload(){
     //   const fd = new FormData;
     //   fd.append('image', this.selectedFile, this.selectedFile.name)

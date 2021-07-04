@@ -22,51 +22,23 @@
   </div>
 </template>
 <script>
-import 'cropperjs/dist/cropper.css'
-import Cropper from 'cropperjs'
 import { mapGetters, mapMutations } from 'vuex'
 export default {
   props: {
     src: String
   },
   data: () => ({
-    cropper: null,
-    cropImg: "",
-    visibleSendImage: true
   }),
 
   //TODO Вывести в 1 компонент и поменять mounted на методы
-  mounted() {
-    this.cropper = new Cropper(this.$refs.image, {
-      autoCrop: false,
-      zoomable: false,
-      scalable: false,
-      // aspectRatio: 457 / 320,
-    })
-  },
 
   computed: {
     ...mapGetters({
-      createProductId: 'data/product/createProductId',
     }),
   },
 
   methods: {
 
-    crop() {
-      this.cropImg = this.cropper.replace(this.cropper.getCroppedCanvas().toDataURL('image/jpeg'))
-    },
-    upload() {
-      this.cropper.getCroppedCanvas().toBlob((blob) => {
-        const formData = new FormData();
-        formData.append('image', blob, this.createProductId );
-        this.$axios.$post('https://lubamebel.adminexpo.com:7741/upload-image', formData)
-          .then(res => {
-            console.log(res)
-          });
-      }, 'image/jpeg' );
-      this.visibleSendImage = false
-    }
   },
 }
 </script>
