@@ -5,17 +5,16 @@
     </div>
     <button
       @click="crop"
-      class="mx-auto p-2 mx-1 relative cursor-pointer bg-white rounded-md font-medium text-blue-900 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500"
-      type="button">
+      class="mt-6 inline-flex justify-center w-full py-2 px-4 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-teal-900 hover:bg-teal-700 focus:outline-none focus:border-teal-700 focus:shadow-outline-indigo active:bg-green-700 transition duration-150 ease-in-out"      type="button">
       Обрезать
     </button>
     <button v-if="visibleSendImage"
       @click.prevent.once="upload"
-      class="mx-auto p-2 mx-1 relative cursor-pointer bg-white rounded-md font-medium text-blue-900 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500">
+            class="mt-6 inline-flex justify-center w-full py-2 px-4 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-teal-900 hover:bg-teal-700 focus:outline-none focus:border-teal-700 focus:shadow-outline-indigo active:bg-green-700 transition duration-150 ease-in-out"    >
       Отправить
     </button>
     <p v-else
-      class="mx-auto p-2 mx-1 relative cursor-pointer bg-white rounded-md font-medium text-blue-900 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500">
+       class="mt-6 inline-flex justify-center w-full py-2 px-4 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-teal-900 hover:bg-teal-700 focus:outline-none focus:border-teal-700 focus:shadow-outline-indigo active:bg-green-700 transition duration-150 ease-in-out"    >
       Изображение отправлено
     </p>
   </div>
