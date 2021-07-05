@@ -241,14 +241,11 @@
 
         <div class="mt-5 sm:mt-6">
             <span class="w-full rounded-md shadow-sm">
-
-
               <button
                 @click="onFormReset"
                 class="mt-6 inline-flex justify-center w-full py-2 px-4 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-teal-900 hover:bg-teal-700 focus:outline-none focus:border-teal-700 focus:shadow-outline-indigo active:bg-green-700 transition duration-150 ease-in-out">
-                Очистить
+                Очистить форму
               </button>
-
               <button
                 @click="dialogCreateClose"
                 type="button"
