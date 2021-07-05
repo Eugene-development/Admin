@@ -8,6 +8,11 @@ export const state = () => ({
   visibleCategoryFormUpdate: false,
   visibleCreateProduct: false,
 
+  visibleDownloadImage: true,
+  visibleCropImage: false,
+  visibleSendImage: false,
+  visibleSentImage: false,
+
   sizePage: 20,
   currentPage: 1,
   numberOfPage: 1,
@@ -425,7 +430,11 @@ export const actions = {
   //Close Form
   dialogCreateClose ({ commit }) {
     const dialogCreate = false;
-    commit('DIALOG_CREATE', dialogCreate)
+    commit('DIALOG_CREATE', dialogCreate);
+
+    const currentProduct_create = [];
+    console.log(currentProduct_create);
+    commit('CURRENT_PRODUCT_CREATE', currentProduct_create)
   },
   dialogReadClose ({ commit }) {
     const dialogRead = false;
