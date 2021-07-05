@@ -32,47 +32,47 @@
       <div
         class="inline-block align-bottom bg-gray-900 rounded-lg px-4 pt-5 pb-4 text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-2xl sm:w-full sm:p-6"
         role="dialog" aria-modal="true" aria-labelledby="modal-headline">
+        <div>
           <div>
             <div>
-              <div>
-                <h3 class="text-lg leading-6 font-medium text-gray-100">
-                  Добавить значение
-                </h3>
-                <p class="mt-1 text-sm leading-5 text-gray-100">
-                  Таблица "Продукция"
-                </p>
-              </div>
+              <h3 class="text-lg leading-6 font-medium text-gray-100">
+                Добавить значение
+              </h3>
+              <p class="mt-1 text-sm leading-5 text-gray-100">
+                Таблица "Продукция"
+              </p>
             </div>
-            <!--            TODO to clean form after send changes-->
-            <div class="mt-8 border-t border-gray-400 pt-8">
-              <div class="mt-1 ">
-                <div class="mx-2 sm:col-span-3 ">
-                  <label for="first_name" class="block text-sm font-medium leading-5 text-gray-100">
-                    Наименование
-                  </label>
-                  <div class="m-2 rounded-md shadow-sm">
-                    <input
-                      :value="currentProduct_create.name"
-                      @input="currentProductForm_createName"
-                      id="first_name"
-                      class="rounded-md pl-2 form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-8">
-                  </div>
+          </div>
+          <!--            TODO to clean form after send changes-->
+          <div class="mt-8 border-t border-gray-400 pt-8">
+            <div class="mt-1 ">
+              <div class="mx-2 sm:col-span-3 ">
+                <label for="first_name" class="block text-sm font-medium leading-5 text-gray-100">
+                  Наименование
+                </label>
+                <div class="m-2 rounded-md shadow-sm">
+                  <input
+                    :value="currentProduct_create.name"
+                    @input="currentProductForm_createName"
+                    id="first_name"
+                    class="rounded-md pl-2 form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-8">
+                </div>
 
-                  <label for="first_name" class="block text-sm font-medium leading-5 text-gray-100">
-                    Категория
-                  </label>
-                  <div class="m-2 rounded-md shadow-sm">
-                    <div>
-                      <div class="mt-1 relative">
-                        <button
-                          @click="changeVisibleCategoryFormCreate"
-                          type="button"
-                          class="bg-white relative w-full border border-gray-300 rounded-md shadow-sm pl-3 pr-10 py-2 text-left cursor-default focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                          aria-haspopup="listbox"
-                          aria-expanded="true"
-                          aria-labelledby="listbox-label">
-                          <span class="block truncate">{{ currentCategoryFormCreate }}</span>
-                          <span class="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
+                <label for="first_name" class="block text-sm font-medium leading-5 text-gray-100">
+                  Категория
+                </label>
+                <div class="m-2 rounded-md shadow-sm">
+                  <div>
+                    <div class="mt-1 relative">
+                      <button
+                        @click="changeVisibleCategoryFormCreate"
+                        type="button"
+                        class="bg-white relative w-full border border-gray-300 rounded-md shadow-sm pl-3 pr-10 py-2 text-left cursor-default focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                        aria-haspopup="listbox"
+                        aria-expanded="true"
+                        aria-labelledby="listbox-label">
+                        <span class="block truncate">{{ currentCategoryFormCreate }}</span>
+                        <span class="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
                         <!-- Heroicon name: solid/selector -->
                             <svg class="h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
                                  fill="currentColor" aria-hidden="true">
@@ -81,178 +81,181 @@
                                     clip-rule="evenodd"/>
                             </svg>
                           </span>
-                        </button>
+                      </button>
 
+                      <!--
+                        Select popover, show/hide based on select state.
+
+                        Entering: ""
+                          From: ""
+                          To: ""
+                        Leaving: "transition ease-in duration-100"
+                          From: "opacity-100"
+                          To: "opacity-0"
+                      -->
+                      <ul v-if="visibleCategoryFormCreate"
+                          class="absolute z-10 mt-1 w-full bg-white shadow-lg max-h-60 rounded-md py-1 text-base ring-1 ring-black ring-opacity-5 overflow-auto focus:outline-none sm:text-sm"
+                          tabindex="-1" role="listbox" aria-labelledby="listbox-label"
+                          aria-activedescendant="listbox-option-3">
                         <!--
-                          Select popover, show/hide based on select state.
+                          Select option, manage highlight styles based on mouseenter/mouseleave and keyboard navigation.
 
-                          Entering: ""
-                            From: ""
-                            To: ""
-                          Leaving: "transition ease-in duration-100"
-                            From: "opacity-100"
-                            To: "opacity-0"
+                          Highlighted: "text-white bg-indigo-600", Not Highlighted: "text-gray-900"
                         -->
-                        <ul v-if="visibleCategoryFormCreate"
-                            class="absolute z-10 mt-1 w-full bg-white shadow-lg max-h-60 rounded-md py-1 text-base ring-1 ring-black ring-opacity-5 overflow-auto focus:outline-none sm:text-sm"
-                            tabindex="-1" role="listbox" aria-labelledby="listbox-label"
-                            aria-activedescendant="listbox-option-3">
+                        <li v-for="(category, idx) of allCategory" :key="category.id"
+                            class="text-gray-900 cursor-pointer select-none relative py-2 pl-3 pr-9 hover:bg-gray-100"
+                            id="listbox-option-0" role="option">
+                          <!-- Selected: "font-semibold", Not Selected: "font-normal" -->
+                          <button
+                            @click="setCurrentCategoryFormCreate (category)"
+                            type="button">
+                            <span class="font-normal block truncate">{{ category.name }}</span>
+                          </button>
                           <!--
-                            Select option, manage highlight styles based on mouseenter/mouseleave and keyboard navigation.
+                            Checkmark, only display for selected option.
 
-                            Highlighted: "text-white bg-indigo-600", Not Highlighted: "text-gray-900"
+                            Highlighted: "text-white", Not Highlighted: "text-indigo-600"
                           -->
-                          <li v-for="(category, idx) of allCategory" :key="category.id"
-                              class="text-gray-900 cursor-pointer select-none relative py-2 pl-3 pr-9 hover:bg-gray-100"
-                              id="listbox-option-0" role="option">
-                            <!-- Selected: "font-semibold", Not Selected: "font-normal" -->
-                            <button
-                              @click="setCurrentCategoryFormCreate (category)"
-                              type="button">
-                              <span class="font-normal block truncate">{{ category.name }}</span>
-                            </button>
-                            <!--
-                              Checkmark, only display for selected option.
+                          <!--                            <span class="text-indigo-600 absolute inset-y-0 right-0 flex items-center pr-4">-->
+                          <!-- Heroicon name: solid/check -->
+                          <!--                              <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">-->
+                          <!--                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />-->
+                          <!--                              </svg>-->
+                          <!--                            </span>-->
+                        </li>
 
-                              Highlighted: "text-white", Not Highlighted: "text-indigo-600"
-                            -->
-                            <!--                            <span class="text-indigo-600 absolute inset-y-0 right-0 flex items-center pr-4">-->
-                            <!-- Heroicon name: solid/check -->
-                            <!--                              <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">-->
-                            <!--                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />-->
-                            <!--                              </svg>-->
-                            <!--                            </span>-->
-                          </li>
-
-                        </ul>
-                      </div>
+                      </ul>
                     </div>
                   </div>
+                </div>
 
-                  <label for="first_name" class="block text-sm font-medium leading-5 text-gray-100">
-                    Цена
-                  </label>
-                  <div class="m-2 rounded-md shadow-sm">
-                    <input
-                      :value="currentProduct_create.price"
-                      @input="currentProductForm_createPrice"
-                      id="price"
-                      class="rounded-md pl-2 form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-8">
-                  </div>
-                  <label for="first_name" class="block text-sm font-medium leading-5 text-gray-100">
-                    Единица измерения
-                  </label>
-                  <div class="m-2 rounded-md shadow-sm">
-                    <input
-                      :value="currentProduct_create.unit"
-                      @input="currentProductForm_createUnit"
-                      id="unit"
-                      class="rounded-md pl-2 form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-8">
-                  </div>
-                  <label for="first_name" class="block text-sm font-medium leading-5 text-gray-100">
-                    Описание
-                  </label>
+                <label for="first_name" class="block text-sm font-medium leading-5 text-gray-100">
+                  Цена
+                </label>
+                <div class="m-2 rounded-md shadow-sm">
+                  <input
+                    :value="currentProduct_create.price"
+                    @input="currentProductForm_createPrice"
+                    id="price"
+                    class="rounded-md pl-2 form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-8">
+                </div>
+                <label for="first_name" class="block text-sm font-medium leading-5 text-gray-100">
+                  Единица измерения
+                </label>
+                <div class="m-2 rounded-md shadow-sm">
+                  <input
+                    :value="currentProduct_create.unit"
+                    @input="currentProductForm_createUnit"
+                    id="unit"
+                    class="rounded-md pl-2 form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-8">
+                </div>
+                <label for="first_name" class="block text-sm font-medium leading-5 text-gray-100">
+                  Описание
+                </label>
 
-                  <div class="m-2 rounded-md shadow-sm">
-                    <div class="mt-1 sm:mt-0 sm:col-span-2">
+                <div class="m-2 rounded-md shadow-sm">
+                  <div class="mt-1 sm:mt-0 sm:col-span-2">
                       <textarea
                         :value="currentProduct_create.description"
                         @input="currentProductForm_createDescription"
                         id="description"
                         rows="3"
                         class="rounded-md pl-2 form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-8"></textarea>
-                    </div>
                   </div>
-                  <div class="mb-6 ">
+                </div>
+                <div class="mb-6 ">
                        <span class="w-full rounded-md shadow-sm">
 
 
 
 <!--                          <button v-if="!visibleCreateProduct"-->
-<!--                                  @click.prevent="createProduct"-->
-<!--                                  type="submit"-->
-<!--                                  class="mt-6 inline-flex justify-center w-full py-2 px-4 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-teal-900 hover:bg-teal-700 focus:outline-none focus:border-teal-700 focus:shadow-outline-indigo active:bg-green-700 transition duration-150 ease-in-out">-->
-<!--                            Добавить товар-->
-<!--                          </button>-->
+                         <!--                                  @click.prevent="createProduct"-->
+                         <!--                                  type="submit"-->
+                         <!--                                  class="mt-6 inline-flex justify-center w-full py-2 px-4 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-teal-900 hover:bg-teal-700 focus:outline-none focus:border-teal-700 focus:shadow-outline-indigo active:bg-green-700 transition duration-150 ease-in-out">-->
+                         <!--                            Добавить товар-->
+                         <!--                          </button>-->
                          <!--                          <p v-else-->
                          <!--                            class="mt-6 inline-flex justify-center w-full py-2 px-4 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-teal-900 hover:bg-teal-700 focus:outline-none focus:border-teal-700 focus:shadow-outline-indigo active:bg-green-700 transition duration-150 ease-in-out">-->
                          <!--                            Товар добавлен-->
                          <!--                          </p>-->
                         </span>
-                  </div>
+                </div>
 
 
-                  <div >
-                    <label for="first_name" class="block text-sm font-medium leading-5 text-gray-100">
-                      Изображение
-                    </label>
-                    <div class="m-2 sm:col-span-6">
-                      <div
-                        class="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
-                        <div class="space-y-1 text-center">
-                          <svg class="mx-auto h-12 w-12 text-gray-400" stroke="currentColor" fill="none"
-                               viewBox="0 0 48 48" aria-hidden="true">
-                            <path
-                              d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02"
-                              stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                          </svg>
+                <div>
+                  <label for="first_name" class="block text-sm font-medium leading-5 text-gray-100">
+                    Изображение
+                  </label>
+                  <div class="m-2 sm:col-span-6">
+                    <div
+                      class="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
+                      <div class="space-y-1 text-center">
+                        <svg class="mx-auto h-12 w-12 text-gray-400" stroke="currentColor" fill="none"
+                             viewBox="0 0 48 48" aria-hidden="true">
+                          <path
+                            d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
 
-                          <p class="text-xs text-gray-500">
-                            PNG, JPG, GIF до 10MB
-                          </p>
-                          <hr>
-                          <div>
-                              <img ref="image" :src="selectedFile" @click="test">
-                          </div>
-                          <div v-if="visibleDownloadImage" class="flex text-sm text-gray-600">
-                            <label for="file-upload"
-                                   class="mt-6 inline-flex justify-center w-full py-2 px-4 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-teal-900 hover:bg-teal-700 focus:outline-none focus:border-teal-700 focus:shadow-outline-indigo active:bg-green-700 transition duration-150 ease-in-out"
-                            >
-                              <span >Загрузить фото</span>
-                              <input id="file-upload" name="image" type="file" class="sr-only" @change="onFileSelected" @input="createProduct">
-                              <!--                            <img :src="selectedFile" alt="">-->
-                            </label>
-                          </div>
-                          <button v-if="visibleCropImage"
-                                  @click="crop"
-                                  class="mt-6 inline-flex justify-center w-full py-2 px-4 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-teal-900 hover:bg-teal-700 focus:outline-none focus:border-teal-700 focus:shadow-outline-indigo active:bg-green-700 transition duration-150 ease-in-out"      type="button">
-                            Обрезать
-                          </button>
-                          <button v-if="visibleSendImage"
-                                  @click="upload"
-                                  class="mt-6 inline-flex justify-center w-full py-2 px-4 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-teal-900 hover:bg-teal-700 focus:outline-none focus:border-teal-700 focus:shadow-outline-indigo active:bg-green-700 transition duration-150 ease-in-out"    >
-                            Отправить
-                          </button>
-                          <p v-if="visibleSentImage"
-                             class="mt-6 inline-flex justify-center w-full py-2 px-4 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-teal-900 hover:bg-teal-700 focus:outline-none focus:border-teal-700 focus:shadow-outline-indigo active:bg-green-700 transition duration-150 ease-in-out"    >
-                            Изображение отправлено
-                          </p>
-
+                        <p class="text-xs text-gray-500">
+                          PNG, JPG, GIF до 10MB
+                        </p>
+                        <hr>
+                        <div>
+                          <img ref="image" :src="selectedFile" @click="test">
                         </div>
+                        <div v-if="visibleDownloadImage" class="flex text-sm text-gray-600">
+                          <label for="file-upload"
+                                 class="mt-6 inline-flex justify-center w-full py-2 px-4 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-teal-900 hover:bg-teal-700 focus:outline-none focus:border-teal-700 focus:shadow-outline-indigo active:bg-green-700 transition duration-150 ease-in-out"
+                          >
+                            <span>Загрузить фото</span>
+                            <input id="file-upload" name="image" type="file" class="sr-only" @change="onFileSelected"
+                                   @input="createProduct">
+                            <!--                            <img :src="selectedFile" alt="">-->
+                          </label>
+                        </div>
+                        <button v-if="visibleCropImage"
+                                @click="crop"
+                                class="mt-6 inline-flex justify-center w-full py-2 px-4 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-teal-900 hover:bg-teal-700 focus:outline-none focus:border-teal-700 focus:shadow-outline-indigo active:bg-green-700 transition duration-150 ease-in-out"
+                                type="button">
+                          Обрезать
+                        </button>
+
                       </div>
                     </div>
                   </div>
-
-
                 </div>
+
+
               </div>
             </div>
           </div>
+        </div>
 
         <div class="mt-5 sm:mt-6">
-            <span class="w-full rounded-md shadow-sm">
-              <button
-                @click="onFormReset"
-                class="mt-6 inline-flex justify-center w-full py-2 px-4 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-teal-900 hover:bg-teal-700 focus:outline-none focus:border-teal-700 focus:shadow-outline-indigo active:bg-green-700 transition duration-150 ease-in-out">
-                Очистить форму
-              </button>
+          <button v-if="visibleSendImage"
+                  @click="multiFunc"
+                  class="mt-6 inline-flex justify-center w-full py-2 px-4 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-teal-900 hover:bg-teal-700 focus:outline-none focus:border-teal-700 focus:shadow-outline-indigo active:bg-green-700 transition duration-150 ease-in-out"    >
+            Отправить
+          </button>
+          <p v-if="visibleSentImage"
+             class="mt-6 inline-flex justify-center w-full py-2 px-4 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-teal-900 hover:bg-teal-700 focus:outline-none focus:border-teal-700 focus:shadow-outline-indigo active:bg-green-700 transition duration-150 ease-in-out"    >
+            Изображение отправлено
+          </p>
+
+          <span class="w-full rounded-md shadow-sm">
+<!--              <button-->
+<!--                @click="onFormReset"-->
+<!--                class="mt-6 inline-flex justify-center w-full py-2 px-4 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-teal-900 hover:bg-teal-700 focus:outline-none focus:border-teal-700 focus:shadow-outline-indigo active:bg-green-700 transition duration-150 ease-in-out">-->
+<!--                Очистить форму-->
+<!--              </button>-->
               <button
                 @click="dialogCreateClose"
                 type="button"
                 class="mt-2 inline-flex justify-center w-full rounded-md border border-transparent px-4 py-2 bg-blue-900 text-base leading-6 font-medium text-white shadow-sm hover:bg-blue-700 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo transition ease-in-out duration-150 sm:text-sm sm:leading-5">
                 Закрыть
               </button>
-        </span>
+            </span>
         </div>
       </div>
     </div>
@@ -314,12 +317,10 @@ export default {
 
   methods: {
 
-    // sendProduct() {
-    //   this.createProduct();
-    //
-    //   this.test()
-    // },
-
+    multiFunc() {
+      this.upload();
+      this.onFormReset()
+    },
 
 
     ...mapActions({
@@ -342,8 +343,9 @@ export default {
         this.cropper = null
       }
 
-      this.selectedFile = null
-
+      this.selectedFile = null;
+      this.visibleDownloadImage = true;
+      this.visibleSendImage = false;
       // this.$refs.form.reset()
     },
 
@@ -358,7 +360,6 @@ export default {
       this.visibleDownloadImage = false;
       this.visibleCropImage = true;
     },
-
 
 
     test() {
@@ -380,12 +381,12 @@ export default {
     upload() {
       this.cropper.getCroppedCanvas().toBlob((blob) => {
         const formData = new FormData();
-        formData.append('image', blob, this.createProductId );
+        formData.append('image', blob, this.createProductId);
         this.$axios.$post('https://lubamebel.adminexpo.com:7741/upload-image', formData)
           .then(res => {
             console.log(res)
           });
-      }, 'image/jpeg' );
+      }, 'image/jpeg');
       this.visibleSendImage = false;
       this.visibleSentImage = true;
     },
