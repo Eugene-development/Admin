@@ -196,17 +196,24 @@
                               d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02"
                               stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                           </svg>
-                          <div class="flex text-sm text-gray-600">
+
+                          <p class="text-xs text-gray-500">
+                            PNG, JPG, GIF до 10MB
+                          </p>
+                          <hr>
+                          <div>
+                              <img ref="image" :src="selectedFile" @click="test">
+                          </div>
+                          <div v-if="visibleDownloadImage" class="flex text-sm text-gray-600">
                             <label for="file-upload"
                                    class="mt-6 inline-flex justify-center w-full py-2 px-4 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-teal-900 hover:bg-teal-700 focus:outline-none focus:border-teal-700 focus:shadow-outline-indigo active:bg-green-700 transition duration-150 ease-in-out"
                             >
-                              <span>Загрузить фото</span>
+                              <span >Загрузить фото</span>
                               <input id="file-upload" name="image" type="file" class="sr-only" @change="onFileSelected" @input="createProduct">
                               <!--                            <img :src="selectedFile" alt="">-->
                             </label>
                           </div>
-
-                          <button v-if="visibleSendImage"
+                          <button v-if="visibleCropImage"
                                   @click="crop"
                                   class="mt-6 inline-flex justify-center w-full py-2 px-4 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-teal-900 hover:bg-teal-700 focus:outline-none focus:border-teal-700 focus:shadow-outline-indigo active:bg-green-700 transition duration-150 ease-in-out"      type="button">
                             Обрезать
@@ -216,31 +223,11 @@
                                   class="mt-6 inline-flex justify-center w-full py-2 px-4 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-teal-900 hover:bg-teal-700 focus:outline-none focus:border-teal-700 focus:shadow-outline-indigo active:bg-green-700 transition duration-150 ease-in-out"    >
                             Отправить
                           </button>
-                          <p v-if="visibleSendImage"
+                          <p v-if="visibleSentImage"
                              class="mt-6 inline-flex justify-center w-full py-2 px-4 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-teal-900 hover:bg-teal-700 focus:outline-none focus:border-teal-700 focus:shadow-outline-indigo active:bg-green-700 transition duration-150 ease-in-out"    >
                             Изображение отправлено
                           </p>
 
-                          <p class="text-xs text-gray-500">
-                            PNG, JPG, GIF до 10MB
-                          </p>
-                          <hr>
-
-
-
-                          <div>
-                            <div>
-                              <img ref="image" :src="selectedFile" @click="test">
-                            </div>
-
-
-
-
-
-                          </div>
-
-
-                          <!--                          <ImageCropper v-show="selectedFile" id="image" ref="image" :src="selectedFile"/>-->
                         </div>
                       </div>
                     </div>
@@ -298,8 +285,10 @@ export default {
       selectedFile: null,
       cropper: null,
       cropImg: "",
-      visibleSendImage: true
-
+      visibleDownloadImage: true,
+      visibleCropImage: false,
+      visibleSendImage: false,
+      visibleSentImage: false,
     }
   },
 
@@ -312,7 +301,6 @@ export default {
       currentCategoryFormCreate: 'data/product/currentCategoryFormCreate',
       visibleCreateProduct: 'data/product/visibleCreateProduct',
       createProductId: 'data/product/createProductId',
-
     }),
   },
 
@@ -369,7 +357,9 @@ export default {
       reader.readAsDataURL(image);
       reader.onload = event => {
         this.selectedFile = event.target.result;
-      }
+      };
+      this.visibleDownloadImage = false;
+      this.visibleCropImage = true;
     },
 
 
@@ -384,10 +374,12 @@ export default {
     },
 
 
-
     crop() {
-      this.cropImg = this.cropper.replace(this.cropper.getCroppedCanvas().toDataURL('image/jpeg'))
+      this.cropImg = this.cropper.replace(this.cropper.getCroppedCanvas().toDataURL('image/jpeg'));
+      this.visibleCropImage = false;
+      this.visibleSendImage = true;
     },
+
     upload() {
       this.cropper.getCroppedCanvas().toBlob((blob) => {
         const formData = new FormData();
@@ -397,8 +389,10 @@ export default {
             console.log(res)
           });
       }, 'image/jpeg' );
-      this.visibleSendImage = false
-    }
+      this.visibleSendImage = false;
+      this.visibleSentImage = true;
+    },
+
 
     // upload(){
     //   const fd = new FormData;
