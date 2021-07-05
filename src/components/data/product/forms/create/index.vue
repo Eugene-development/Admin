@@ -204,8 +204,23 @@
                               <input id="file-upload" name="image" type="file" class="sr-only" @change="onFileSelected" @input="createProduct">
                               <!--                            <img :src="selectedFile" alt="">-->
                             </label>
-                            <!--                          <p class="pl-1">или обрежьте</p>-->
                           </div>
+
+                          <button v-if="visibleSendImage"
+                                  @click="crop"
+                                  class="mt-6 inline-flex justify-center w-full py-2 px-4 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-teal-900 hover:bg-teal-700 focus:outline-none focus:border-teal-700 focus:shadow-outline-indigo active:bg-green-700 transition duration-150 ease-in-out"      type="button">
+                            Обрезать
+                          </button>
+                          <button v-if="visibleSendImage"
+                                  @click="upload"
+                                  class="mt-6 inline-flex justify-center w-full py-2 px-4 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-teal-900 hover:bg-teal-700 focus:outline-none focus:border-teal-700 focus:shadow-outline-indigo active:bg-green-700 transition duration-150 ease-in-out"    >
+                            Отправить
+                          </button>
+                          <p v-if="visibleSendImage"
+                             class="mt-6 inline-flex justify-center w-full py-2 px-4 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-teal-900 hover:bg-teal-700 focus:outline-none focus:border-teal-700 focus:shadow-outline-indigo active:bg-green-700 transition duration-150 ease-in-out"    >
+                            Изображение отправлено
+                          </p>
+
                           <p class="text-xs text-gray-500">
                             PNG, JPG, GIF до 10MB
                           </p>
@@ -220,22 +235,6 @@
 
 
 
-                            <button v-if="visibleSendImage"
-                                    @click="crop"
-                                    class="mt-6 inline-flex justify-center w-full py-2 px-4 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-teal-900 hover:bg-teal-700 focus:outline-none focus:border-teal-700 focus:shadow-outline-indigo active:bg-green-700 transition duration-150 ease-in-out"      type="button">
-                              Обрезать
-                            </button>
-                            <button v-if="visibleSendImage"
-
-                                    @click="upload"
-
-                                    class="mt-6 inline-flex justify-center w-full py-2 px-4 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-teal-900 hover:bg-teal-700 focus:outline-none focus:border-teal-700 focus:shadow-outline-indigo active:bg-green-700 transition duration-150 ease-in-out"    >
-                              Отправить
-                            </button>
-                            <p v-else
-                               class="mt-6 inline-flex justify-center w-full py-2 px-4 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-teal-900 hover:bg-teal-700 focus:outline-none focus:border-teal-700 focus:shadow-outline-indigo active:bg-green-700 transition duration-150 ease-in-out"    >
-                              Изображение отправлено
-                            </p>
 
 
                           </div>

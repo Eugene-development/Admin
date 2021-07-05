@@ -13,13 +13,13 @@
                 <div class="relative px-4 py-16 sm:px-6 sm:py-24 lg:py-32 lg:px-8">
                   <h1 class="text-center text-4xl font-extrabold tracking-tight sm:text-5xl lg:text-6xl">
                     <span class="block text-white">Административная панель проекта</span>
-                    <span class="block text-indigo-200">"Орбита"</span>
+                    <span class="block text-indigo-200">""</span>
                   </h1>
                   <p class="mt-6 max-w-lg mx-auto text-center text-xl text-indigo-200 sm:max-w-3xl">
                     Вы находитесь в системе под именем - {{$auth.user.name}} <br>
 <!--                    Ваш статус - Владелец <br>-->
                     Ваш логин - {{$auth.user.email}} <br>
-                    Статус - {{$auth.user.role_id}}
+                    Статус - {{$auth.user.role_id}} <br>
                     Проект - {{$auth.user.project_id}}
                   </p>
                   <div class="mt-10 max-w-sm mx-auto sm:max-w-none sm:flex sm:justify-center">
