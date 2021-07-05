@@ -215,16 +215,8 @@
 
                           <div>
                             <div>
-                              <img ref="image" :src="selectedFile">
+                              <img ref="image" :src="selectedFile" @click="test">
                             </div>
-
-
-
-                            <button
-                              @click="test"
-                              class="mt-6 inline-flex justify-center w-full py-2 px-4 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-teal-900 hover:bg-teal-700 focus:outline-none focus:border-teal-700 focus:shadow-outline-indigo active:bg-green-700 transition duration-150 ease-in-out">
-                              test
-                            </button>
 
 
 
