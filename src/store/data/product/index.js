@@ -112,7 +112,7 @@ export const actions = {
       unit: state.currentProduct_create.unit,
       description: state.currentProduct_create.description
     };
-    console.log(currentProduct_create)
+    // console.log(currentProduct_create)
 
     commit('CURRENT_PRODUCT_CREATE', currentProduct_create)
     commit('CURRENT_CATEGORY_FORM_CREATE', payload.name);
@@ -169,6 +169,10 @@ export const actions = {
         description: ''
       };
       commit('CURRENT_PRODUCT_CREATE', currentProduct_create)
+
+      const currentCategoryFormCreate = '---';
+      commit('CURRENT_CATEGORY_FORM_CREATE', currentCategoryFormCreate);
+
 
 
       // await this.$axios.$post('/upload-image', state.image ,state.apiCROPPER)
