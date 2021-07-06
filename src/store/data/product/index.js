@@ -11,7 +11,7 @@ export const state = () => ({
   visibleDownloadImage: true,
   visibleCropImage: false,
   visibleSendImage: false,
-  visibleSentImage: false,
+  // visibleSentImage: false,
 
   sizePage: 20,
   currentPage: 1,
@@ -437,8 +437,10 @@ export const actions = {
     commit('DIALOG_CREATE', dialogCreate);
 
     const currentProduct_create = [];
-    console.log(currentProduct_create);
-    commit('CURRENT_PRODUCT_CREATE', currentProduct_create)
+    commit('CURRENT_PRODUCT_CREATE', currentProduct_create);
+
+    // const visibleSentImage = false;
+    // commit('VISIBLE_SENT_IMAGE', visibleSentImage);
   },
   dialogReadClose ({ commit }) {
     const dialogRead = false;
@@ -472,6 +474,7 @@ export const mutations = {
   VISIBLE_CATEGORY_FORM_CREATE: (state, visibleCategoryFormCreate) => state.visibleCategoryFormCreate = visibleCategoryFormCreate,
   VISIBLE_CATEGORY_FORM_UPDATE: (state, visibleCategoryFormUpdate) => state.visibleCategoryFormUpdate = visibleCategoryFormUpdate,
   VISIBLE_CREATE_PRODUCT: (state, visibleCreateProduct) => state.visibleCreateProduct = visibleCreateProduct,
+  // VISIBLE_SENT_IMAGE: (state, visibleSentImage) => state.visibleSentImage = visibleSentImage,
   CURRENT_CATEGORY_FORM_CREATE: (state, currentCategoryFormCreate) => state.currentCategoryFormCreate = currentCategoryFormCreate,
   CURRENT_CATEGORY_FORM_UPDATE: (state, currentCategoryFormUpdate) => state.currentCategoryFormUpdate = currentCategoryFormUpdate,
   CREATE_PRODUCT_ID: (state, createProductId) => state.createProductId = createProductId,
@@ -504,6 +507,8 @@ export const getters = {
   visibleCategoryFormCreate: state => state.visibleCategoryFormCreate,
   visibleCategoryFormUpdate: state => state.visibleCategoryFormUpdate,
   visibleCreateProduct: state => state.visibleCreateProduct,
+  // visibleSentImage: state => state.visibleSentImage,
+
 
   createProductId: state => state.createProductId, //TODO удалить?
 };

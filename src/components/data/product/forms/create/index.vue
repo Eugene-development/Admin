@@ -227,10 +227,10 @@
                                 class="mt-6 inline-flex justify-center w-full py-2 px-4 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-teal-900 hover:bg-teal-700 focus:outline-none focus:border-teal-700 focus:shadow-outline-indigo active:bg-green-700 transition duration-150 ease-in-out"    >
                           Отправить
                         </button>
-                        <p v-if="visibleSentImage"
-                           class="mt-6 inline-flex justify-center w-full py-2 px-4 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-teal-900 hover:bg-teal-700 focus:outline-none focus:border-teal-700 focus:shadow-outline-indigo active:bg-green-700 transition duration-150 ease-in-out"    >
-                          Успешно
-                        </p>
+<!--                        <p v-if="visibleSentImage"-->
+<!--                           class="mt-6 inline-flex justify-center w-full py-2 px-4 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-teal-900 hover:bg-teal-700 focus:outline-none focus:border-teal-700 focus:shadow-outline-indigo active:bg-green-700 transition duration-150 ease-in-out"    >-->
+<!--                          Успешно-->
+<!--                        </p>-->
 
 
                       </div>
@@ -291,7 +291,7 @@ export default {
       visibleDownloadImage: true,
       visibleCropImage: false,
       visibleSendImage: false,
-      visibleSentImage: false,
+      // visibleSentImage: false,
     }
   },
 
@@ -303,6 +303,7 @@ export default {
       visibleCategoryFormCreate: 'data/product/visibleCategoryFormCreate',
       currentCategoryFormCreate: 'data/product/currentCategoryFormCreate',
       visibleCreateProduct: 'data/product/visibleCreateProduct',
+      // visibleSentImage: 'data/product/visibleSentImage',
       createProductId: 'data/product/createProductId',
     }),
   },
@@ -362,6 +363,7 @@ export default {
       };
       this.visibleDownloadImage = false;
       this.visibleCropImage = true;
+      // this.visibleSentImage = false;
     },
 
 
@@ -391,7 +393,7 @@ export default {
           });
       }, 'image/jpeg');
       this.visibleSendImage = false;
-      this.visibleSentImage = true;
+      // this.visibleSentImage = true;
     },
 
 
