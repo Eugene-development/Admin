@@ -4,7 +4,7 @@
       <div class="bg-white">
         <main>
           <div class="relative">
-            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="w-full mx-auto sm:px-6 lg:px-8">
               <div class="relative shadow-xl sm:rounded-2xl sm:overflow-hidden">
                 <div class="absolute inset-0">
                   <img class="h-full w-full object-cover" src="/src/photo.jpeg" alt="People working on laptops">
