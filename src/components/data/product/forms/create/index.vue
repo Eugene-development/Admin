@@ -278,7 +278,7 @@
 <script>
 import {mapGetters, mapActions} from 'vuex'
 
-import { Editor } from "~/components";
+import  Editor  from "../../../../microcomponents/editor";
 
 
 import 'cropperjs/dist/cropper.css'
