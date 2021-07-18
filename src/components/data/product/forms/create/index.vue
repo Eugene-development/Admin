@@ -155,13 +155,50 @@
 
                 <div class="m-2 rounded-md shadow-sm">
                   <div class="mt-1 sm:mt-0 sm:col-span-2">
-                    <Editor
-                      :value="currentProduct_create.description"
-                      @input="currentProductForm_createDescription"
-                      id="description"
-                      rows="3"
-                      class="rounded-md pl-2 form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-8"
-                    />
+
+
+<!--                    <vue-editor-->
+<!--                      placeholder="Впишите данные..."-->
+<!--                      v-model="content"-->
+<!--                    />-->
+
+
+
+<!--                    <vue-editor-->
+<!--                      :value="currentProduct_create.description"-->
+<!--                      @input="currentProductForm_createDescription"-->
+<!--                      id="description"-->
+<!--                      rows="3"-->
+<!--                      class="rounded-md pl-2 form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-8"-->
+<!--                    >-->
+<!--                      </vue-editor>-->
+
+
+                      <vue-editor
+                        ref="editor"
+                        :placeholder="$props.placeholder"
+                        :value="$props.content"
+                        :editor-toolbar="toolbar"
+                        :editor-options="settings"
+                        :custom-modules="customModules"
+                        use-custom-image-handler
+                        @image-added="handleImageAdded"
+                        @text-change="handleTextChange"
+                      ></vue-editor>
+
+
+
+
+
+
+
+                    <!--                    <Editor-->
+<!--                      :value="currentProduct_create.description"-->
+<!--                      @input="currentProductForm_createDescription"-->
+<!--                      id="description"-->
+<!--                      rows="3"-->
+<!--                      class="rounded-md pl-2 form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-8"-->
+<!--                    />-->
 <!--                      <textarea-->
 <!--                        :value="currentProduct_create.description"-->
 <!--                        @input="currentProductForm_createDescription"-->
@@ -279,6 +316,7 @@
 import {mapGetters, mapActions} from 'vuex'
 
 import  Editor  from "../../../../microcomponents/editor";
+import { VueEditor } from 'vue2-editor'
 
 
 import 'cropperjs/dist/cropper.css'
@@ -291,9 +329,14 @@ export default {
 
   components: {
     ImageCropper,
-    Editor
+    Editor,
+    VueEditor
   },
 
+  props: {
+    content: { type: String, default: '' },
+    placeholder: { type: String, default: '' },
+  },
 
   data() {
     return {
@@ -304,7 +347,49 @@ export default {
       visibleCropImage: false,
       visibleSendImage: false,
       // visibleSentImage: false,
+
+
+
+
+      loading: false,
+      toolbar: [
+        ['bold', 'italic', 'underline', 'strike'],
+        [{ align: [] }],
+        ['blockquote', 'code-block'],
+        [{ header: [1, 2, 3, 4, 5, 6, false] }],
+        [{ color: [] }, { background: [] }],
+        [{ list: 'ordered' }, { list: 'bullet' }],
+        ['image' /* 'code-block' */],
+        ['clean'],
+      ],
+      customModules: [],
+      settings: {
+        modules: {
+          clipboard: {
+            matchers: [
+              [
+                Node.ELEMENT_NODE,
+                (node, delta) => {
+                  delta.ops = delta.ops.map((op) => {
+                    return { insert: op.insert }
+                  })
+                  return delta
+                },
+              ],
+            ],
+          },
+        },
+      },
+
     }
+  },
+
+  asyncData() {
+    return {
+      content: "",
+      pageIsMounted: false,
+      isSSR: process.server ? true : false
+    };
   },
 
   computed: {
@@ -332,6 +417,30 @@ export default {
 
 
   methods: {
+    handleTextChange(delta, oldDelta, source) {
+      this.$emit('update:content', this.$refs.editor.quill.container.firstChild.innerHTML)
+    },
+    async handleImageAdded(file, Editor, cursorLocation, resetUploader) {
+      try {
+        this.loading = true
+
+        const formData = new FormData()
+
+        formData.append('image', file)
+
+        const { data } = await this.$axios.post(`/wysiwyg/image`, formData) // аплоад картинки на сервер
+
+        Editor.insertEmbed(cursorLocation, 'image', data.url)
+        Editor.formatText(cursorLocation, 1, 'alt', 'image') // Знчение для alt-аттрибута изображения (SEO)
+
+        resetUploader()
+      } catch (error) {
+        console.error(error)
+      } finally {
+        this.loading = false
+      }
+    },
+
 
     multiFunc() {
       this.upload();
