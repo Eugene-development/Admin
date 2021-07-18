@@ -29,6 +29,9 @@ export const state = () => ({
   currentCategoryFormUpdate: '---',
 
 
+  content: '',
+
+
   createProductId: "",
 
   // cropper : {},
@@ -148,7 +151,12 @@ export const actions = {
   //   commit('IMAGE', image);
   // },
 
-  async createProduct ({ commit, state }) {
+
+  RRR (payload){
+    console.log(payload);
+  },
+
+  async createProduct ({ commit, state }, payload) {
     try {
       //Вариант работы с прокси накст
       // const response = await this.$axios.$post('/add-product/', state.currentProduct_create);
@@ -457,6 +465,14 @@ export const actions = {
 };
 
 export const mutations = {
+  SET_CONTENT(state, payload) {
+    console.log(payload)
+    state.content = payload
+  },
+
+
+
+
   ALL_PRODUCT: (state, data) => state.allProduct = data,
   PAGINATE_PRODUCT: (state, paginateProduct) => state.paginateProduct = paginateProduct,
   NUMBER_OF_PAGE: (state, numberOfPage) => state.numberOfPage = numberOfPage,

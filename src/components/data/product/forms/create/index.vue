@@ -159,7 +159,7 @@
 
 <!--                    <vue-editor-->
 <!--                      placeholder="Впишите данные..."-->
-<!--                      v-model="content"-->
+<!--                      :content.sync="content"-->
 <!--                    />-->
 
 
@@ -174,19 +174,21 @@
 <!--                      </vue-editor>-->
 
 
-                      <vue-editor
-                        ref="editor"
-                        :placeholder="$props.placeholder"
-                        :value="$props.content"
-                        :editor-toolbar="toolbar"
-                        :editor-options="settings"
-                        :custom-modules="customModules"
-                        use-custom-image-handler
-                        @image-added="handleImageAdded"
-                        @text-change="handleTextChange"
-                      ></vue-editor>
+<!--                      <vue-editor-->
+<!--                        ref="editor"-->
+<!--                        :placeholder="$props.placeholder"-->
+<!--                        :value="$props.content"-->
+<!--                        :editor-toolbar="toolbar"-->
+<!--                        :editor-options="settings"-->
+<!--                        :custom-modules="customModules"-->
+<!--                        use-custom-image-handler-->
+<!--                        @image-added="handleImageAdded"-->
+<!--                        @text-change="handleTextChange"-->
+<!--                      ></vue-editor>-->
 
 
+<!--                    <Editor  class="bg-white"/>-->
+                    <Editor :content="$store.state.content" @update="handleUpdate"   class="bg-white"/>
 
 
 
@@ -417,6 +419,10 @@ export default {
 
 
   methods: {
+    handleUpdate(data) {
+      this.$store.commit('data/product/SET_CONTENT', data)
+    },
+
     handleTextChange(delta, oldDelta, source) {
       this.$emit('update:content', this.$refs.editor.quill.container.firstChild.innerHTML)
     },
@@ -439,6 +445,9 @@ export default {
       } finally {
         this.loading = false
       }
+    },
+    test2(){
+      console.log($props.content)
     },
 
 
