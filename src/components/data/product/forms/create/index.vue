@@ -155,12 +155,21 @@
 
                 <div class="m-2 rounded-md shadow-sm">
                   <div class="mt-1 sm:mt-0 sm:col-span-2">
-                      <textarea
-                        :value="currentProduct_create.description"
-                        @input="currentProductForm_createDescription"
-                        id="description"
-                        rows="3"
-                        class="rounded-md pl-2 form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-8"></textarea>
+                    <Editor
+                      :value="currentProduct_create.description"
+                      @input="currentProductForm_createDescription"
+                      id="description"
+                      rows="3"
+                      class="rounded-md pl-2 form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-8"
+                    />
+<!--                      <textarea-->
+<!--                        :value="currentProduct_create.description"-->
+<!--                        @input="currentProductForm_createDescription"-->
+<!--                        id="description"-->
+<!--                        rows="3"-->
+<!--                        class="rounded-md pl-2 form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-8"-->
+<!--                      >-->
+<!--                      </textarea>-->
                   </div>
                 </div>
                 <div class="mb-6 ">
@@ -269,6 +278,8 @@
 <script>
 import {mapGetters, mapActions} from 'vuex'
 
+import { Editor } from "~/components";
+
 
 import 'cropperjs/dist/cropper.css'
 import Cropper from 'cropperjs'
@@ -280,6 +291,7 @@ export default {
 
   components: {
     ImageCropper,
+    Editor
   },
 
 

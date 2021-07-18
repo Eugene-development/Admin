@@ -4,7 +4,7 @@ export { default as RubricCatalog } from './data/navigation/catalog/rubric'
 export { default as CategoryCatalog } from './data/navigation/catalog/category'
 export { default as Product } from './data/product'
 
-
+export { default as Editor } from './microcomponents/editor'
 
 
 
