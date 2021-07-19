@@ -52,8 +52,6 @@
       :editor-toolbar="toolbar"
       :editor-options="settings"
       :custom-modules="customModules"
-      use-custom-image-handler
-      @image-added="handleImageAdded"
       @text-change="handleTextChange"
     ></vue-editor>
   </client-only>
@@ -108,26 +106,26 @@ export default {
     //   this.$emit('update:content', this.$refs.editor.quill.container.firstChild.innerHTML)
     // },
 
-    async handleImageAdded(file, Editor, cursorLocation, resetUploader) {
-      try {
-        this.loading = true
-
-        const formData = new FormData()
-
-        formData.append('image', file)
-
-        const { data } = await this.$axios.post(`/wysiwyg/image`, formData) // аплоад картинки на сервер
-
-        Editor.insertEmbed(cursorLocation, 'image', data.url)
-        Editor.formatText(cursorLocation, 1, 'alt', 'image') // Знчение для alt-аттрибута изображения (SEO)
-
-        resetUploader()
-      } catch (error) {
-        console.error(error)
-      } finally {
-        this.loading = false
-      }
-    },
+    // async handleImageAdded(file, Editor, cursorLocation, resetUploader) {
+    //   try {
+    //     this.loading = true
+    //
+    //     const formData = new FormData()
+    //
+    //     formData.append('image', file)
+    //
+    //     const { data } = await this.$axios.post(`/wysiwyg/image`, formData) // аплоад картинки на сервер
+    //
+    //     Editor.insertEmbed(cursorLocation, 'image', data.url)
+    //     Editor.formatText(cursorLocation, 1, 'alt', 'image') // Знчение для alt-аттрибута изображения (SEO)
+    //
+    //     resetUploader()
+    //   } catch (error) {
+    //     console.error(error)
+    //   } finally {
+    //     this.loading = false
+    //   }
+    // },
   },
 }
 </script>

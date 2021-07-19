@@ -95,6 +95,8 @@ export const actions = {
     };
     commit('CURRENT_PRODUCT_CREATE', currentProduct_create)
   },
+
+  //TODO с vue2-editor уже не нужно?
   currentProductForm_createDescription( {commit, state}, e ) {
     const currentProduct_create = {
       category_id: state.currentProduct_create.category_id,
@@ -133,7 +135,7 @@ export const actions = {
       description: state.currentProduct_update.description
     };
 
-    console.log(currentProduct_update)
+    // console.log(currentProduct_update)
 
     commit('CURRENT_PRODUCT_UPDATE', currentProduct_update)
     commit('CURRENT_CATEGORY_FORM_UPDATE', payload.name);
@@ -151,10 +153,6 @@ export const actions = {
   //   commit('IMAGE', image);
   // },
 
-
-  RRR (payload){
-    console.log(payload);
-  },
 
   async createProduct ({ commit, state }, payload) {
     try {
@@ -466,8 +464,16 @@ export const actions = {
 
 export const mutations = {
   SET_CONTENT(state, payload) {
-    console.log(payload)
     state.content = payload
+
+    state.currentProduct_create = {
+      category_id: state.currentProduct_create.category_id,
+      name: state.currentProduct_create.name,
+      price: state.currentProduct_create.price,
+      unit: state.currentProduct_create.unit,
+      description: state.content
+    };
+    console.log(payload)
   },
 
   ALL_PRODUCT: (state, data) => state.allProduct = data,

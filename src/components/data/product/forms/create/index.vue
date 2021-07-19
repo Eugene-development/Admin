@@ -156,8 +156,11 @@
                 <div class="m-2 rounded-md shadow-sm">
                   <div class="mt-1 sm:mt-0 sm:col-span-2">
 
-                    <Editor :content="$store.state.content" @update="handleUpdate" class="bg-white"/>
-                    <!--                      <textarea-->
+                    <Editor
+                      :content="$store.state.content"
+                      @update="handleUpdate"
+                      class="bg-white"/>
+<!--                                          <textarea-->
 <!--                        :value="currentProduct_create.description"-->
 <!--                        @input="currentProductForm_createDescription"-->
 <!--                        id="description"-->
@@ -181,6 +184,16 @@
                          <!--                          </p>-->
                         </span>
                 </div>
+
+
+
+                <button
+                        @click="createProduct"
+                        class="mt-6 inline-flex justify-center w-full py-2 px-4 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-teal-900 hover:bg-teal-700 focus:outline-none focus:border-teal-700 focus:shadow-outline-indigo active:bg-green-700 transition duration-150 ease-in-out"
+                        type="button">
+                  Добавить продукт
+                </button>
+
 
 
                 <div>
@@ -210,8 +223,7 @@
                                  class="mt-6 inline-flex justify-center w-full py-2 px-4 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-teal-900 hover:bg-teal-700 focus:outline-none focus:border-teal-700 focus:shadow-outline-indigo active:bg-green-700 transition duration-150 ease-in-out"
                           >
                             <span>Загрузить фото</span>
-                            <input id="file-upload" name="image" type="file" class="sr-only" @change="onFileSelected"
-                                   @input="createProduct">
+                            <input id="file-upload" name="image" type="file" class="sr-only" @change="onFileSelected">
                             <!--                            <img :src="selectedFile" alt="">-->
                           </label>
                         </div>
@@ -295,39 +307,6 @@ export default {
       visibleCropImage: false,
       visibleSendImage: false,
       // visibleSentImage: false,
-
-
-
-
-      loading: false,
-      toolbar: [
-        ['bold', 'italic', 'underline', 'strike'],
-        [{ align: [] }],
-        ['blockquote', 'code-block'],
-        [{ header: [1, 2, 3, 4, 5, 6, false] }],
-        [{ color: [] }, { background: [] }],
-        [{ list: 'ordered' }, { list: 'bullet' }],
-        ['image' /* 'code-block' */],
-        ['clean'],
-      ],
-      customModules: [],
-      settings: {
-        modules: {
-          clipboard: {
-            matchers: [
-              [
-                Node.ELEMENT_NODE,
-                (node, delta) => {
-                  delta.ops = delta.ops.map((op) => {
-                    return { insert: op.insert }
-                  })
-                  return delta
-                },
-              ],
-            ],
-          },
-        },
-      },
 
     }
   },
