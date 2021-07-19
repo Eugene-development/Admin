@@ -61,7 +61,6 @@
 
 <script>
 import { VueEditor } from 'vue2-editor'
-import {mapActions} from "vuex";
 
 export default {
   components: { VueEditor },
@@ -101,25 +100,14 @@ export default {
     },
   }),
   methods: {
-
-    // async RRR({store, params}) {
-    //   await store.dispatch('data/product/RRR', {
-    //     content: this.content
-    //   })
-    // },
-    //
-    // // ...mapActions({
-    // //   RRR: 'data/product/RRR'
-    // // }),
-
     handleTextChange(delta, oldDelta, source) {
       this.$emit('update', this.$refs.editor.quill.container.firstChild.innerHTML)
     },
 
-
     // handleTextChange(delta, oldDelta, source) {
     //   this.$emit('update:content', this.$refs.editor.quill.container.firstChild.innerHTML)
     // },
+
     async handleImageAdded(file, Editor, cursorLocation, resetUploader) {
       try {
         this.loading = true

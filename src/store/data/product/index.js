@@ -470,9 +470,6 @@ export const mutations = {
     state.content = payload
   },
 
-
-
-
   ALL_PRODUCT: (state, data) => state.allProduct = data,
   PAGINATE_PRODUCT: (state, paginateProduct) => state.paginateProduct = paginateProduct,
   NUMBER_OF_PAGE: (state, numberOfPage) => state.numberOfPage = numberOfPage,

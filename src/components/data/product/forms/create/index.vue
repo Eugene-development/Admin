@@ -156,52 +156,8 @@
                 <div class="m-2 rounded-md shadow-sm">
                   <div class="mt-1 sm:mt-0 sm:col-span-2">
 
-
-<!--                    <vue-editor-->
-<!--                      placeholder="Впишите данные..."-->
-<!--                      :content.sync="content"-->
-<!--                    />-->
-
-
-
-<!--                    <vue-editor-->
-<!--                      :value="currentProduct_create.description"-->
-<!--                      @input="currentProductForm_createDescription"-->
-<!--                      id="description"-->
-<!--                      rows="3"-->
-<!--                      class="rounded-md pl-2 form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-8"-->
-<!--                    >-->
-<!--                      </vue-editor>-->
-
-
-<!--                      <vue-editor-->
-<!--                        ref="editor"-->
-<!--                        :placeholder="$props.placeholder"-->
-<!--                        :value="$props.content"-->
-<!--                        :editor-toolbar="toolbar"-->
-<!--                        :editor-options="settings"-->
-<!--                        :custom-modules="customModules"-->
-<!--                        use-custom-image-handler-->
-<!--                        @image-added="handleImageAdded"-->
-<!--                        @text-change="handleTextChange"-->
-<!--                      ></vue-editor>-->
-
-
-<!--                    <Editor  class="bg-white"/>-->
-                    <Editor :content="$store.state.content" @update="handleUpdate"   class="bg-white"/>
-
-
-
-
-
-                    <!--                    <Editor-->
-<!--                      :value="currentProduct_create.description"-->
-<!--                      @input="currentProductForm_createDescription"-->
-<!--                      id="description"-->
-<!--                      rows="3"-->
-<!--                      class="rounded-md pl-2 form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-8"-->
-<!--                    />-->
-<!--                      <textarea-->
+                    <Editor :content="$store.state.content" @update="handleUpdate" class="bg-white"/>
+                    <!--                      <textarea-->
 <!--                        :value="currentProduct_create.description"-->
 <!--                        @input="currentProductForm_createDescription"-->
 <!--                        id="description"-->
@@ -213,9 +169,6 @@
                 </div>
                 <div class="mb-6 ">
                        <span class="w-full rounded-md shadow-sm">
-
-
-
 <!--                          <button v-if="!visibleCreateProduct"-->
                          <!--                                  @click.prevent="createProduct"-->
                          <!--                                  type="submit"-->
@@ -318,7 +271,6 @@
 import {mapGetters, mapActions} from 'vuex'
 
 import  Editor  from "../../../../microcomponents/editor";
-import { VueEditor } from 'vue2-editor'
 
 
 import 'cropperjs/dist/cropper.css'
@@ -332,12 +284,6 @@ export default {
   components: {
     ImageCropper,
     Editor,
-    VueEditor
-  },
-
-  props: {
-    content: { type: String, default: '' },
-    placeholder: { type: String, default: '' },
   },
 
   data() {
@@ -422,34 +368,6 @@ export default {
     handleUpdate(data) {
       this.$store.commit('data/product/SET_CONTENT', data)
     },
-
-    handleTextChange(delta, oldDelta, source) {
-      this.$emit('update:content', this.$refs.editor.quill.container.firstChild.innerHTML)
-    },
-    async handleImageAdded(file, Editor, cursorLocation, resetUploader) {
-      try {
-        this.loading = true
-
-        const formData = new FormData()
-
-        formData.append('image', file)
-
-        const { data } = await this.$axios.post(`/wysiwyg/image`, formData) // аплоад картинки на сервер
-
-        Editor.insertEmbed(cursorLocation, 'image', data.url)
-        Editor.formatText(cursorLocation, 1, 'alt', 'image') // Знчение для alt-аттрибута изображения (SEO)
-
-        resetUploader()
-      } catch (error) {
-        console.error(error)
-      } finally {
-        this.loading = false
-      }
-    },
-    test2(){
-      console.log($props.content)
-    },
-
 
     multiFunc() {
       this.upload();
