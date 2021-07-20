@@ -186,16 +186,6 @@
                 </div>
 
 
-
-                <button
-                        @click="createProduct"
-                        class="mt-6 inline-flex justify-center w-full py-2 px-4 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-teal-900 hover:bg-teal-700 focus:outline-none focus:border-teal-700 focus:shadow-outline-indigo active:bg-green-700 transition duration-150 ease-in-out"
-                        type="button">
-                  Добавить продукт
-                </button>
-
-
-
                 <div>
                   <label for="first_name" class="block text-sm font-medium leading-5 text-gray-100">
                     Изображение
@@ -223,7 +213,8 @@
                                  class="mt-6 inline-flex justify-center w-full py-2 px-4 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-teal-900 hover:bg-teal-700 focus:outline-none focus:border-teal-700 focus:shadow-outline-indigo active:bg-green-700 transition duration-150 ease-in-out"
                           >
                             <span>Загрузить фото</span>
-                            <input id="file-upload" name="image" type="file" class="sr-only" @change="onFileSelected">
+                            <input id="file-upload" name="image" type="file" class="sr-only" @change="onFileSelected"
+                                   @input="createProduct">
                             <!--                            <img :src="selectedFile" alt="">-->
                           </label>
                         </div>

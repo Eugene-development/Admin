@@ -72,7 +72,7 @@ export default {
       ['bold', 'italic', 'underline', 'strike'],
       [{ align: [] }],
       ['blockquote', 'code-block'],
-      [{ header: [1, 2, 3, 4, 5, 6, false] }],
+      [{ header: [1, 2, 3, false] }],
       [{ color: [] }, { background: [] }],
       [{ list: 'ordered' }, { list: 'bullet' }],
       // ['image' /* 'code-block' */],
