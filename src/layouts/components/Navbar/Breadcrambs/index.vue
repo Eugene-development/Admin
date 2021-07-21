@@ -1,8 +1,7 @@
 <template>
   <div class="flex items-center px-2 lg:px-0  mx-10">
     <nav aria-label="Breadcrumb" class="flex">
-      <ol class="flex items-center space-x-4">
-        <li>
+      <div class="flex items-center space-x-4">
           <div>
             <NuxtLink class="text-gray-700 hover:text-gray-900" to="/">
               <!-- Heroicon name: home -->
@@ -14,8 +13,6 @@
             </NuxtLink>
             <span class="sr-only">Главная</span>
           </div>
-        </li>
-        <li>
           <div class="flex items-center space-x-4">
             <!-- Heroicon name: chevron-right -->
             <svg aria-hidden="true" class="flex-shrink-0 h-5 w-5 text-gray-700"
@@ -29,8 +26,7 @@
                  href="#">{{ breadcrumbsEndPoint }}
             </div>
           </div>
-        </li>
-      </ol>
+      </div>
     </nav>
   </div>
 
