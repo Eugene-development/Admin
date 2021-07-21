@@ -481,7 +481,6 @@ export const mutations = {
       unit: state.currentProduct_update.unit,
       description: state.content,
     };
-    console.log(state.currentProduct_update)
   },
 
   ALL_PRODUCT: (state, data) => state.allProduct = data,
