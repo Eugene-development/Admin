@@ -48,7 +48,7 @@
     <vue-editor
       ref="editor"
       :placeholder="$props.placeholder"
-      :value="currentProduct_update.description"
+      :value="currentProduct.description"
       :editor-toolbar="toolbar"
       :editor-options="settings"
       :custom-modules="customModules"
@@ -131,7 +131,7 @@ export default {
 
   computed: {
     ...mapGetters({
-      currentProduct_update: 'data/product/currentProduct_update',
+      currentProduct: 'data/product/currentProduct',
     }),
   },
 

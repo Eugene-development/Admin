@@ -52,7 +52,7 @@
                 </label>
                 <div class="m-2 rounded-md shadow-sm">
                   <input
-                    :value="currentProduct_create.name"
+                    :value="currentProduct.name"
                     @input="currentProductForm_createName"
                     id="first_name"
                     class="rounded-md pl-2 form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-8">
@@ -134,7 +134,7 @@
                 </label>
                 <div class="m-2 rounded-md shadow-sm">
                   <input
-                    :value="currentProduct_create.price"
+                    :value="currentProduct.price"
                     @input="currentProductForm_createPrice"
                     id="price"
                     class="rounded-md pl-2 form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-8">
@@ -144,7 +144,7 @@
                 </label>
                 <div class="m-2 rounded-md shadow-sm">
                   <input
-                    :value="currentProduct_create.unit"
+                    :value="currentProduct.unit"
                     @input="currentProductForm_createUnit"
                     id="unit"
                     class="rounded-md pl-2 form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-8">
@@ -162,7 +162,7 @@
                       class="bg-white"/>
 
 <!--                                          <textarea-->
-<!--                        :value="currentProduct_create.description"-->
+<!--                        :value="currentProduct.description"-->
 <!--                        @input="currentProductForm_createDescription"-->
 <!--                        id="description"-->
 <!--                        rows="3"-->
@@ -314,7 +314,7 @@ export default {
   computed: {
     ...mapGetters({
       dialogCreate: 'data/product/dialogCreate',
-      currentProduct_create: 'data/product/currentProduct_create',
+      currentProduct: 'data/product/currentProduct',
       allCategory: 'data/navigation/catalog/category/allCategory',
       visibleCategoryFormCreate: 'data/product/visibleCategoryFormCreate',
       currentCategoryFormCreate: 'data/product/currentCategoryFormCreate',

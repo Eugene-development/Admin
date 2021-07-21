@@ -20,9 +20,8 @@ export const state = () => ({
   currentSearch: {
       value: ''
     },
-  currentProduct_create: [],
+  currentProduct: [],
   currentProduct_read: [],
-  currentProduct_update: [],
   currentProduct_delete: [],
 
   currentCategoryFormCreate: '---',
@@ -66,60 +65,60 @@ export const actions = {
   },
 
   currentProductForm_createName( {commit, state}, e ) {
-    const currentProduct_create = {
-      category_id: state.currentProduct_create.category_id,
+    const currentProduct = {
+      category_id: state.currentProduct.category_id,
       name: e.target.value,
-      price: state.currentProduct_create.price,
-      unit: state.currentProduct_create.unit,
-      description: state.currentProduct_create.description
+      price: state.currentProduct.price,
+      unit: state.currentProduct.unit,
+      description: state.currentProduct.description
     };
-    commit('CURRENT_PRODUCT_CREATE', currentProduct_create)
+    commit('CURRENT_PRODUCT_CREATE', currentProduct)
   },
   currentProductForm_createPrice( {commit, state}, e ) {
-    const currentProduct_create = {
-      category_id: state.currentProduct_create.category_id,
-      name: state.currentProduct_create.name,
+    const currentProduct = {
+      category_id: state.currentProduct.category_id,
+      name: state.currentProduct.name,
       price: e.target.value,
-      unit: state.currentProduct_create.unit,
-      description: state.currentProduct_create.description
+      unit: state.currentProduct.unit,
+      description: state.currentProduct.description
     };
-    commit('CURRENT_PRODUCT_CREATE', currentProduct_create)
+    commit('CURRENT_PRODUCT_CREATE', currentProduct)
   },
   currentProductForm_createUnit( {commit, state}, e ) {
-    const currentProduct_create = {
-      category_id: state.currentProduct_create.category_id,
-      name: state.currentProduct_create.name,
-      price: state.currentProduct_create.price,
+    const currentProduct = {
+      category_id: state.currentProduct.category_id,
+      name: state.currentProduct.name,
+      price: state.currentProduct.price,
       unit: e.target.value,
-      description: state.currentProduct_create.description
+      description: state.currentProduct.description
     };
-    commit('CURRENT_PRODUCT_CREATE', currentProduct_create)
+    commit('CURRENT_PRODUCT_CREATE', currentProduct)
   },
 
   //TODO с vue2-editor уже не нужно?
   currentProductForm_createDescription( {commit, state}, e ) {
-    const currentProduct_create = {
-      category_id: state.currentProduct_create.category_id,
-      name: state.currentProduct_create.name,
-      price: state.currentProduct_create.price,
-      unit: state.currentProduct_create.unit,
+    const currentProduct = {
+      category_id: state.currentProduct.category_id,
+      name: state.currentProduct.name,
+      price: state.currentProduct.price,
+      unit: state.currentProduct.unit,
       description: e.target.value
     };
-    commit('CURRENT_PRODUCT_CREATE', currentProduct_create)
+    commit('CURRENT_PRODUCT_CREATE', currentProduct)
   },
 
 
   setCurrentCategoryFormCreate ({commit, state}, payload) {
-    const currentProduct_create = {
+    const currentProduct = {
       category_id: payload.id,
-      name: state.currentProduct_create.name,
-      price: state.currentProduct_create.price,
-      unit: state.currentProduct_create.unit,
-      description: state.currentProduct_create.description
+      name: state.currentProduct.name,
+      price: state.currentProduct.price,
+      unit: state.currentProduct.unit,
+      description: state.currentProduct.description
     };
-    // console.log(currentProduct_create)
+    // console.log(currentProduct)
 
-    commit('CURRENT_PRODUCT_CREATE', currentProduct_create)
+    commit('CURRENT_PRODUCT_CREATE', currentProduct)
     commit('CURRENT_CATEGORY_FORM_CREATE', payload.name);
 
     const visibleCategoryFormCreate = !state.visibleCategoryFormCreate;
@@ -127,17 +126,17 @@ export const actions = {
   },
 
   setCurrentCategoryFormUpdate ({commit, state}, payload) {
-    const currentProduct_update = {
+    const currentProduct = {
       category_id: payload.id,
-      name: state.currentProduct_update.name,
-      price: state.currentProduct_update.price,
-      unit: state.currentProduct_update.unit,
-      description: state.currentProduct_update.description
+      name: state.currentProduct.name,
+      price: state.currentProduct.price,
+      unit: state.currentProduct.unit,
+      description: state.currentProduct.description
     };
 
-    // console.log(currentProduct_update)
+    // console.log(currentProduct)
 
-    commit('CURRENT_PRODUCT_UPDATE', currentProduct_update)
+    commit('CURRENT_PRODUCT_UPDATE', currentProduct)
     commit('CURRENT_CATEGORY_FORM_UPDATE', payload.name);
 
     const visibleCategoryFormUpdate = !state.visibleCategoryFormUpdate;
@@ -157,8 +156,8 @@ export const actions = {
   async createProduct ({ commit, state }, payload) {
     try {
       //Вариант работы с прокси накст
-      // const response = await this.$axios.$post('/add-product/', state.currentProduct_create);
-      const response = await this.$axios.$post('add-product', state.currentProduct_create, state.apiCRUD);
+      // const response = await this.$axios.$post('/add-product/', state.currentProduct);
+      const response = await this.$axios.$post('add-product', state.currentProduct, state.apiCRUD);
       commit('CREATE_PRODUCT_ID', response.id);
 
 
@@ -167,14 +166,14 @@ export const actions = {
 
 
       //TODO сомневаюсь надо ли
-      const currentProduct_create = {
+      const currentProduct = {
         category_id: '---',
         name: '',
         price: '',
         unit: '',
         description: ''
       };
-      commit('CURRENT_PRODUCT_CREATE', currentProduct_create)
+      commit('CURRENT_PRODUCT_CREATE', currentProduct)
 
       const currentCategoryFormCreate = '---';
       commit('CURRENT_CATEGORY_FORM_CREATE', currentCategoryFormCreate);
@@ -265,81 +264,81 @@ export const actions = {
   //UPDATE
   async handleEdit ( { commit, state }, id ) {
     const dialogUpdate = true;
-    const currentProduct_update = await state.allProduct.find(item => item.id === id);
+    const currentProduct = await state.allProduct.find(item => item.id === id);
     commit('DIALOG_UPDATE', dialogUpdate);
-    commit('CURRENT_PRODUCT_UPDATE', currentProduct_update)
+    commit('CURRENT_PRODUCT_UPDATE', currentProduct)
   },
 
   // currentProductForm_updateCategory( {commit, state}, e ) {
-  //   const currentProduct_update = {
-  //     id: state.currentProduct_update.id,
+  //   const currentProduct = {
+  //     id: state.currentProduct.id,
   //     category_id: e.target.value,
-  //     name: state.currentProduct_update.name,
-  //     price: state.currentProduct_update.price,
-  //     unit: state.currentProduct_update.unit,
-  //     description: state.currentProduct_update.description,
+  //     name: state.currentProduct.name,
+  //     price: state.currentProduct.price,
+  //     unit: state.currentProduct.unit,
+  //     description: state.currentProduct.description,
   //   };
-  //   commit('CURRENT_PRODUCT_UPDATE', currentProduct_update)
+  //   commit('CURRENT_PRODUCT_UPDATE', currentProduct)
   // },
 
   currentProductForm_updateName( {commit, state}, e ) {
-    const currentProduct_update = {
-      id: state.currentProduct_update.id,
-      category_id: state.currentProduct_update.category_id,
+    const currentProduct = {
+      id: state.currentProduct.id,
+      category_id: state.currentProduct.category_id,
       name: e.target.value,
-      price: state.currentProduct_update.price,
-      unit: state.currentProduct_update.unit,
-      description: state.currentProduct_update.description,
+      price: state.currentProduct.price,
+      unit: state.currentProduct.unit,
+      description: state.currentProduct.description,
     };
-    commit('CURRENT_PRODUCT_UPDATE', currentProduct_update)
+    commit('CURRENT_PRODUCT_UPDATE', currentProduct)
   },
   currentProductForm_updatePrice( {commit, state}, e ) {
-    const currentProduct_update = {
-      id: state.currentProduct_update.id,
-      category_id: state.currentProduct_update.category_id,
-      name: state.currentProduct_update.name,
+    const currentProduct = {
+      id: state.currentProduct.id,
+      category_id: state.currentProduct.category_id,
+      name: state.currentProduct.name,
       price: e.target.value,
-      unit: state.currentProduct_update.unit,
-      description: state.currentProduct_update.description,
+      unit: state.currentProduct.unit,
+      description: state.currentProduct.description,
     };
-    commit('CURRENT_PRODUCT_UPDATE', currentProduct_update)
+    commit('CURRENT_PRODUCT_UPDATE', currentProduct)
   },
   currentProductForm_updateUnit( {commit, state}, e ) {
-    const currentProduct_update = {
-      id: state.currentProduct_update.id,
-      category_id: state.currentProduct_update.category_id,
-      name: state.currentProduct_update.name,
-      price: state.currentProduct_update.price,
+    const currentProduct = {
+      id: state.currentProduct.id,
+      category_id: state.currentProduct.category_id,
+      name: state.currentProduct.name,
+      price: state.currentProduct.price,
       unit: e.target.value,
-      description: state.currentProduct_update.description,
+      description: state.currentProduct.description,
     };
-    commit('CURRENT_PRODUCT_UPDATE', currentProduct_update)
+    commit('CURRENT_PRODUCT_UPDATE', currentProduct)
   },
 
   currentProductForm_updateDescription( {commit, state}, e ) {
-    const currentProduct_update = {
-      id: state.currentProduct_update.id,
-      category_id: state.currentProduct_update.category_id,
-      name: state.currentProduct_update.name,
-      price: state.currentProduct_update.price,
-      unit: state.currentProduct_update.unit,
+    const currentProduct = {
+      id: state.currentProduct.id,
+      category_id: state.currentProduct.category_id,
+      name: state.currentProduct.name,
+      price: state.currentProduct.price,
+      unit: state.currentProduct.unit,
       description: e.target.value,
     };
-    commit('CURRENT_PRODUCT_UPDATE', currentProduct_update)
+    commit('CURRENT_PRODUCT_UPDATE', currentProduct)
   },
 
   async updateProduct ({ commit, state }) {
     try {
 
-      await this.$axios.$put('update-product', state.currentProduct_update, state.apiCRUD);
+      await this.$axios.$put('update-product', state.currentProduct, state.apiCRUD);
 
       // await this.$axios.$put('update-product', {
-      //   id: state.currentProduct_update.id,
-      //   category_id: state.currentProduct_update.category_id,
-      //   name: state.currentProduct_update.name,
-      //   price: state.currentProduct_update.price,
-      //   unit: state.currentProduct_update.unit,
-      //   description: state.currentProduct_update.description,
+      //   id: state.currentProduct.id,
+      //   category_id: state.currentProduct.category_id,
+      //   name: state.currentProduct.name,
+      //   price: state.currentProduct.price,
+      //   unit: state.currentProduct.unit,
+      //   description: state.currentProduct.description,
       // }, state.apiCRUD);
       //
 
@@ -442,8 +441,8 @@ export const actions = {
     const dialogCreate = false;
     commit('DIALOG_CREATE', dialogCreate);
 
-    const currentProduct_create = [];
-    commit('CURRENT_PRODUCT_CREATE', currentProduct_create);
+    const currentProduct = [];
+    commit('CURRENT_PRODUCT_CREATE', currentProduct);
 
     // const visibleSentImage = false;
     // commit('VISIBLE_SENT_IMAGE', visibleSentImage);
@@ -466,20 +465,13 @@ export const mutations = {
   SET_CONTENT(state, payload) {
     state.content = payload
 
-    state.currentProduct_create = {
-      category_id: state.currentProduct_create.category_id,
-      name: state.currentProduct_create.name,
-      price: state.currentProduct_create.price,
-      unit: state.currentProduct_create.unit,
+    state.currentProduct = {
+      id: state.currentProduct.id,
+      category_id: state.currentProduct.category_id,
+      name: state.currentProduct.name,
+      price: state.currentProduct.price,
+      unit: state.currentProduct.unit,
       description: state.content
-    };
-    state.currentProduct_update = {
-      id: state.currentProduct_update.id,
-      category_id: state.currentProduct_update.category_id,
-      name: state.currentProduct_update.name,
-      price: state.currentProduct_update.price,
-      unit: state.currentProduct_update.unit,
-      description: state.content,
     };
   },
 
@@ -488,9 +480,9 @@ export const mutations = {
   NUMBER_OF_PAGE: (state, numberOfPage) => state.numberOfPage = numberOfPage,
   PAGINATE_CURRENT_PAGE: (state, currentPage) => state.currentPage = currentPage,
   PAGINATE_SIZE_PAGE: (state, sizePage) => state.sizePage = sizePage,
-  CURRENT_PRODUCT_CREATE: (state, currentProduct_create) => state.currentProduct_create = currentProduct_create,
+  CURRENT_PRODUCT_CREATE: (state, currentProduct) => state.currentProduct = currentProduct,
   CURRENT_PRODUCT_READ: (state, currentProduct_read) => state.currentProduct_read = currentProduct_read,
-  CURRENT_PRODUCT_UPDATE: (state, currentProduct_update) => state.currentProduct_update = currentProduct_update,
+  CURRENT_PRODUCT_UPDATE: (state, currentProduct) => state.currentProduct = currentProduct,
   CURRENT_PRODUCT_DELETE: (state, currentProduct_delete) => state.currentProduct_delete = currentProduct_delete,
   CURRENT_SEARCH: (state, currentSearch) => state.currentSearch = currentSearch,
   DIALOG_CREATE: (state, dialogCreate) => state.dialogCreate = dialogCreate,
@@ -514,9 +506,8 @@ export const getters = {
 
   countProduct: state => state.allProduct.length,
 
-  currentProduct_create: state => state.currentProduct_create,
+  currentProduct: state => state.currentProduct,
   currentProduct_read: state => state.currentProduct_read,
-  currentProduct_update: state => state.currentProduct_update,
   currentProduct_delete: state => state.currentProduct_delete,
 
   currentSearch: state => state.currentSearch,

@@ -50,7 +50,7 @@
                   <div class=" rounded-md shadow-sm">
                     <input
                       id="first_name"
-                      :value="currentProduct_update.name"
+                      :value="currentProduct.name"
                       class="m-2 rounded-md pl-2 form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-8"
                       @input="currentProductForm_updateName">
                   </div>
@@ -72,7 +72,7 @@
 <!--                          aria-haspopup="listbox"-->
 <!--                          aria-expanded="true"-->
 <!--                          aria-labelledby="listbox-label">-->
-<!--                          <span class="block truncate">{{ currentProduct_update.category_id }}</span>-->
+<!--                          <span class="block truncate">{{ currentProduct.category_id }}</span>-->
 <!--                          <span class="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">-->
 <!--                        &lt;!&ndash; Heroicon name: solid/selector &ndash;&gt;-->
 <!--                            <svg class="h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">-->
@@ -132,7 +132,7 @@
                   <div class="m-2 rounded-md shadow-sm">
                     <input
                       id="price"
-                      :value="currentProduct_update.price"
+                      :value="currentProduct.price"
                       class="rounded-md pl-2 form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-8"
                       @input="currentProductForm_updatePrice">
                   </div>
@@ -142,7 +142,7 @@
                   </label>
                   <div class="m-2 rounded-md shadow-sm">
                     <input
-                      :value="currentProduct_update.unit"
+                      :value="currentProduct.unit"
                       @input="currentProductForm_updateUnit"
                       id="unit"
                       class="rounded-md pl-2 form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-8">
@@ -161,7 +161,7 @@
                         class="bg-white"/>
 
 <!--                      <textarea-->
-<!--                        :value="currentProduct_update.description"-->
+<!--                        :value="currentProduct.description"-->
 <!--                        @input="currentProductForm_updateDescription"-->
 <!--                        id="description"-->
 <!--                        rows="3"-->
@@ -215,7 +215,7 @@ export default {
   computed: {
     ...mapGetters({
       dialogUpdate: 'data/product/dialogUpdate',
-      currentProduct_update: 'data/product/currentProduct_update',
+      currentProduct: 'data/product/currentProduct',
       allCategory: 'data/navigation/catalog/category/allCategory',
       visibleCategoryFormUpdate: 'data/product/visibleCategoryFormUpdate',
       currentCategoryFormUpdate: 'data/product/currentCategoryFormUpdate',
