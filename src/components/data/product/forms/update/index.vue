@@ -153,12 +153,20 @@
                   </label>
                   <div class="m-2 rounded-md shadow-sm">
                     <div class="mt-1 sm:mt-0 sm:col-span-2">
-                      <textarea
-                        :value="currentProduct_update.description"
-                        @input="currentProductForm_updateDescription"
-                        id="description"
-                        rows="3"
-                        class="rounded-md pl-2 form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-8"></textarea>
+
+
+                      <Editor
+                        :content="$store.state.content"
+                        @update="handleUpdate"
+                        class="bg-white"/>
+
+<!--                      <textarea-->
+<!--                        :value="currentProduct_update.description"-->
+<!--                        @input="currentProductForm_updateDescription"-->
+<!--                        id="description"-->
+<!--                        rows="3"-->
+<!--                        class="rounded-md pl-2 form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-8">-->
+<!--                      </textarea>-->
                     </div>
                   </div>
 
@@ -195,7 +203,15 @@
 <script>
 import {mapActions, mapGetters} from 'vuex'
 
+import  Editor  from "../../../../microcomponents/editor";
+import ImageCropper from "../create/ImageCropper";
+
+
 export default {
+  components: {
+    Editor
+  },
+
   computed: {
     ...mapGetters({
       dialogUpdate: 'data/product/dialogUpdate',
@@ -203,10 +219,14 @@ export default {
       allCategory: 'data/navigation/catalog/category/allCategory',
       visibleCategoryFormUpdate: 'data/product/visibleCategoryFormUpdate',
       currentCategoryFormUpdate: 'data/product/currentCategoryFormUpdate',
-
     }),
   },
+
   methods: {
+    handleUpdate(data) {
+      this.$store.commit('data/product/SET_CONTENT', data)
+    },
+
     ...mapActions({
       updateProduct: 'data/product/updateProduct',
       dialogUpdateClose: 'data/product/dialogUpdateClose',

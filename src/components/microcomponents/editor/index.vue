@@ -48,7 +48,7 @@
     <vue-editor
       ref="editor"
       :placeholder="$props.placeholder"
-      :value="$props.content"
+      :value="currentProduct_update.description"
       :editor-toolbar="toolbar"
       :editor-options="settings"
       :custom-modules="customModules"
@@ -59,6 +59,7 @@
 
 <script>
 import { VueEditor } from 'vue2-editor'
+import {mapGetters} from "vuex";
 
 export default {
   components: { VueEditor },
@@ -127,5 +128,12 @@ export default {
     //   }
     // },
   },
+
+  computed: {
+    ...mapGetters({
+      currentProduct_update: 'data/product/currentProduct_update',
+    }),
+  },
+
 }
 </script>

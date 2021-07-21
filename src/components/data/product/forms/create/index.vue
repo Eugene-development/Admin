@@ -160,6 +160,7 @@
                       :content="$store.state.content"
                       @update="handleUpdate"
                       class="bg-white"/>
+
 <!--                                          <textarea-->
 <!--                        :value="currentProduct_create.description"-->
 <!--                        @input="currentProductForm_createDescription"-->
@@ -206,7 +207,7 @@
                         </p>
                         <hr>
                         <div>
-                          <img ref="image" :src="selectedFile" @click="test">
+                          <img ref="image" :src="selectedFile" @click="newCropper">
                         </div>
                         <div v-if="visibleDownloadImage" class="flex text-sm text-gray-600">
                           <label for="file-upload"
@@ -385,7 +386,7 @@ export default {
     },
 
 
-    test() {
+    newCropper() {
       this.cropper = new Cropper(this.$refs.image, {
         autoCrop: false,
         zoomable: false,

@@ -9,3 +9,25 @@
 .page-enter, .page.leave.active {
   opacity: 0;
 }
+
+@layer base {
+  ul {
+    @apply list-disc list-outside ml-5;
+  }
+  ol {
+    @apply list-decimal list-outside ml-5;
+  }
+  h1 {
+    @apply text-2xl;
+  }
+  h2 {
+    @apply text-xl;
+  }
+  h3 {
+    @apply text-lg;
+  }
+  a {
+    @apply text-blue-600 ;
+  }
+}
+
