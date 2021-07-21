@@ -213,7 +213,7 @@
                           <label for="file-upload"
                                  class="mt-6 inline-flex justify-center w-full py-2 px-4 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-teal-900 hover:bg-teal-700 focus:outline-none focus:border-teal-700 focus:shadow-outline-indigo active:bg-green-700 transition duration-150 ease-in-out"
                           >
-                            <span>Загрузить фото</span>
+                            <span>Добавить фото</span>
                             <input id="file-upload" name="image" type="file" class="sr-only" @change="onFileSelected"
                                    @input="createProduct">
                             <!--                            <img :src="selectedFile" alt="">-->
@@ -260,8 +260,21 @@
               <button
                 @click="dialogCreateClose"
                 type="button"
-                class="mt-2 inline-flex justify-center w-full rounded-md border border-transparent px-4 py-2 bg-blue-900 text-base leading-6 font-medium text-white shadow-sm hover:bg-blue-700 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo transition ease-in-out duration-150 sm:text-sm sm:leading-5">
-                Закрыть
+                class="mt-2 inline-flex justify-center w-full rounded-md border border-transparent px-4 py-2 bg-teal-900 text-base leading-6 font-medium text-white shadow-sm hover:bg-red-800 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo transition ease-in-out duration-150 sm:text-sm sm:leading-5">
+                Отправить и выйти
+              </button>
+            </span>
+          <span class="w-full rounded-md shadow-sm">
+<!--              <button-->
+<!--                @click="onFormReset"-->
+<!--                class="mt-6 inline-flex justify-center w-full py-2 px-4 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-teal-900 hover:bg-teal-700 focus:outline-none focus:border-teal-700 focus:shadow-outline-indigo active:bg-green-700 transition duration-150 ease-in-out">-->
+<!--                Очистить форму-->
+<!--              </button>-->
+              <button
+                @click="dialogCreateCancel"
+                type="button"
+                class="mt-2 inline-flex justify-center w-full rounded-md border border-transparent px-4 py-2 bg-red-900 text-base leading-6 font-medium text-white shadow-sm hover:bg-red-800 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo transition ease-in-out duration-150 sm:text-sm sm:leading-5">
+                Отменить
               </button>
             </span>
         </div>
@@ -348,7 +361,7 @@ export default {
 
     ...mapActions({
       createProduct: 'data/product/createProduct',
-      dialogCreateClose: 'data/product/dialogCreateClose',
+      dialogCreateCancel: 'data/product/dialogCreateCancel',
 
       currentProductForm_createName: 'data/product/currentProductForm_createName',
       currentProductForm_createPrice: 'data/product/currentProductForm_createPrice',

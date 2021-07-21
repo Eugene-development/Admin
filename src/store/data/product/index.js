@@ -437,9 +437,12 @@ export const actions = {
 
 
   //Close Form
-  dialogCreateClose ({ commit }) {
+  dialogCreateCancel ({ commit }) {
     const dialogCreate = false;
     commit('DIALOG_CREATE', dialogCreate);
+
+    const currentCategoryFormCreate = '---';
+    commit('CURRENT_CATEGORY_FORM_CREATE', currentCategoryFormCreate);
 
     const currentProduct = [];
     commit('CURRENT_PRODUCT_CREATE', currentProduct);
