@@ -271,7 +271,7 @@
 <!--                Очистить форму-->
 <!--              </button>-->
               <button
-                @click="dialogCreateCancel"
+                @click="dialogCreateClose"
                 type="button"
                 class="mt-2 inline-flex justify-center w-full rounded-md border border-transparent px-4 py-2 bg-red-900 text-base leading-6 font-medium text-white shadow-sm hover:bg-red-800 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo transition ease-in-out duration-150 sm:text-sm sm:leading-5">
                 Отменить
@@ -361,7 +361,7 @@ export default {
 
     ...mapActions({
       createProduct: 'data/product/createProduct',
-      dialogCreateCancel: 'data/product/dialogCreateCancel',
+      dialogCreateClose: 'data/product/dialogCreateClose',
 
       currentProductForm_createName: 'data/product/currentProductForm_createName',
       currentProductForm_createPrice: 'data/product/currentProductForm_createPrice',
