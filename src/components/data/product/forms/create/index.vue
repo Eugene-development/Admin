@@ -171,12 +171,12 @@
                     <!--                      </textarea>-->
                   </div>
                 </div>
-                <div class="my-5 sm:my-3">
+                <div v-if="!visibleSendImage" class="my-4 sm:my-3">
                     <span class="w-full rounded-md shadow-sm">
                         <button
                           @click="multiFunc1"
                           type="button"
-                          class="mt-2 inline-flex justify-center w-full rounded-md border border-transparent px-4 py-2 bg-teal-900 text-base leading-6 font-medium text-white shadow-sm hover:bg-red-800 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo transition ease-in-out duration-150 sm:text-sm sm:leading-5">
+                          class="mt-2 inline-flex justify-center w-full rounded-md border border-transparent px-4 py-2 bg-teal-900 text-base leading-6 font-medium text-white shadow-sm hover:bg-teal-800 focus:outline-none focus:border-teal-700 focus:shadow-outline-teal transition ease-in-out duration-150 sm:text-sm sm:leading-5">
                           Отправить и выйти
                         </button>
                       </span>
@@ -267,15 +267,15 @@
         </div>
 
 
-        <div v-if="visibleSendImage" class="my-5 sm:my-3">
-                    <span class="w-full rounded-md shadow-sm">
-                        <button
-                          @click="multiFunc2"
-                          type="button"
-                          class="mt-2 inline-flex justify-center w-full rounded-md border border-transparent px-4 py-2 bg-teal-900 text-base leading-6 font-medium text-white shadow-sm hover:bg-red-800 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo transition ease-in-out duration-150 sm:text-sm sm:leading-5">
-                          Отправить и выйти
-                        </button>
-                      </span>
+        <div v-if="visibleSendImage" class="my-4 sm:my-3">
+            <span class="w-full rounded-md shadow-sm">
+                <button
+                  @click="multiFunc2"
+                  type="button"
+                  class="mt-2 inline-flex justify-center w-full rounded-md border border-transparent px-4 py-2 bg-teal-900 text-base leading-6 font-medium text-white shadow-sm hover:bg-teal-800 focus:outline-none focus:border-teal-700 focus:shadow-outline-teal transition ease-in-out duration-150 sm:text-sm sm:leading-5">
+                  Отправить и выйти
+                </button>
+              </span>
         </div>
 
 
