@@ -171,16 +171,6 @@
                     <!--                      </textarea>-->
                   </div>
                 </div>
-                <div v-if="!visibleSendImage" class="my-4 sm:my-3">
-                    <span class="w-full rounded-md shadow-sm">
-                        <button
-                          @click="multiFunc1"
-                          type="button"
-                          class="mt-2 inline-flex justify-center w-full rounded-md border border-transparent px-4 py-2 bg-teal-900 text-base leading-6 font-medium text-white shadow-sm hover:bg-teal-800 focus:outline-none focus:border-teal-700 focus:shadow-outline-teal transition ease-in-out duration-150 sm:text-sm sm:leading-5">
-                          Отправить и выйти
-                        </button>
-                      </span>
-                </div>
 
 
 <!--                <div class="mb-6 ">-->
@@ -266,20 +256,31 @@
           </div>
         </div>
 
-
-        <div v-if="visibleSendImage" class="my-4 sm:my-3">
-            <span class="w-full rounded-md shadow-sm">
-                <button
-                  @click="multiFunc2"
-                  type="button"
-                  class="mt-2 inline-flex justify-center w-full rounded-md border border-transparent px-4 py-2 bg-teal-900 text-base leading-6 font-medium text-white shadow-sm hover:bg-teal-800 focus:outline-none focus:border-teal-700 focus:shadow-outline-teal transition ease-in-out duration-150 sm:text-sm sm:leading-5">
-                  Отправить и выйти
-                </button>
-              </span>
+        <div v-if="!visibleSendImage" class="my-3 sm:my-3">
+          <span class="w-full rounded-md shadow-sm">
+              <button
+                @click="multiFunc1"
+                type="button"
+                class="mt-2 inline-flex justify-center w-full rounded-md border border-transparent px-4 py-2 bg-teal-900 text-base leading-6 font-medium text-white shadow-sm hover:bg-teal-800 focus:outline-none focus:border-teal-700 focus:shadow-outline-teal transition ease-in-out duration-150 sm:text-sm sm:leading-5">
+                Отправить и выйти
+              </button>
+            </span>
         </div>
 
 
-        <div class="mt-5 sm:mt-6">
+        <div v-if="visibleSendImage" class="my-3 sm:my-3">
+          <span class="w-full rounded-md shadow-sm">
+              <button
+                @click="multiFunc2"
+                type="button"
+                class="mt-2 inline-flex justify-center w-full rounded-md border border-transparent px-4 py-2 bg-teal-900 text-base leading-6 font-medium text-white shadow-sm hover:bg-teal-800 focus:outline-none focus:border-teal-700 focus:shadow-outline-teal transition ease-in-out duration-150 sm:text-sm sm:leading-5">
+                Отправить и выйти
+              </button>
+            </span>
+        </div>
+
+
+        <div class="mt-3 sm:mt-3">
           <span class="w-full rounded-md shadow-sm">
 <!--              <button-->
             <!--                @click="onFormReset"-->
