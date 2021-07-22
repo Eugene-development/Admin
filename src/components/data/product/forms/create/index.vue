@@ -161,18 +161,30 @@
                       @update="handleUpdate"
                       class="bg-white"/>
 
-<!--                                          <textarea-->
-<!--                        :value="currentProduct.description"-->
-<!--                        @input="currentProductForm_createDescription"-->
-<!--                        id="description"-->
-<!--                        rows="3"-->
-<!--                        class="rounded-md pl-2 form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-8"-->
-<!--                      >-->
-<!--                      </textarea>-->
+                    <!--                                          <textarea-->
+                    <!--                        :value="currentProduct.description"-->
+                    <!--                        @input="currentProductForm_createDescription"-->
+                    <!--                        id="description"-->
+                    <!--                        rows="3"-->
+                    <!--                        class="rounded-md pl-2 form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-8"-->
+                    <!--                      >-->
+                    <!--                      </textarea>-->
                   </div>
                 </div>
-                <div class="mb-6 ">
-                       <span class="w-full rounded-md shadow-sm">
+                <div class="my-5 sm:my-3">
+                    <span class="w-full rounded-md shadow-sm">
+                        <button
+                          @click="multiFunc1"
+                          type="button"
+                          class="mt-2 inline-flex justify-center w-full rounded-md border border-transparent px-4 py-2 bg-teal-900 text-base leading-6 font-medium text-white shadow-sm hover:bg-red-800 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo transition ease-in-out duration-150 sm:text-sm sm:leading-5">
+                          Отправить и выйти
+                        </button>
+                      </span>
+                </div>
+
+
+<!--                <div class="mb-6 ">-->
+<!--                       <span class="w-full rounded-md shadow-sm">-->
 <!--                          <button v-if="!visibleCreateProduct"-->
                          <!--                                  @click.prevent="createProduct"-->
                          <!--                                  type="submit"-->
@@ -183,13 +195,13 @@
                          <!--                            class="mt-6 inline-flex justify-center w-full py-2 px-4 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-teal-900 hover:bg-teal-700 focus:outline-none focus:border-teal-700 focus:shadow-outline-indigo active:bg-green-700 transition duration-150 ease-in-out">-->
                          <!--                            Товар добавлен-->
                          <!--                          </p>-->
-                        </span>
-                </div>
+<!--                        </span>-->
+<!--                </div>-->
 
 
                 <div>
                   <label for="first_name" class="block text-sm font-medium leading-5 text-gray-100">
-                    Изображение
+                    Добавить изображение
                   </label>
                   <div class="m-2 sm:col-span-6">
                     <div
@@ -213,9 +225,14 @@
                           <label for="file-upload"
                                  class="mt-6 inline-flex justify-center w-full py-2 px-4 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-teal-900 hover:bg-teal-700 focus:outline-none focus:border-teal-700 focus:shadow-outline-indigo active:bg-green-700 transition duration-150 ease-in-out"
                           >
-                            <span>Добавить фото</span>
-                            <input id="file-upload" name="image" type="file" class="sr-only" @change="onFileSelected"
-                                   @input="createProduct">
+                            <span>Загрузить фото</span>
+                            <input
+                              id="file-upload"
+                              name="image"
+                              type="file"
+                              class="sr-only"
+                              @change="onFileSelected"
+                              @input="createProduct">
                             <!--                            <img :src="selectedFile" alt="">-->
                           </label>
                         </div>
@@ -227,15 +244,15 @@
                         </button>
 
 
-                        <button v-if="visibleSendImage"
-                                @click="multiFunc"
-                                class="mt-6 inline-flex justify-center w-full py-2 px-4 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-teal-900 hover:bg-teal-700 focus:outline-none focus:border-teal-700 focus:shadow-outline-indigo active:bg-green-700 transition duration-150 ease-in-out"    >
-                          Отправить
-                        </button>
-<!--                        <p v-if="visibleSentImage"-->
-<!--                           class="mt-6 inline-flex justify-center w-full py-2 px-4 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-teal-900 hover:bg-teal-700 focus:outline-none focus:border-teal-700 focus:shadow-outline-indigo active:bg-green-700 transition duration-150 ease-in-out"    >-->
-<!--                          Успешно-->
-<!--                        </p>-->
+<!--                        <button v-if="visibleSendImage"-->
+<!--                                @click="multiFunc"-->
+<!--                                class="mt-6 inline-flex justify-center w-full py-2 px-4 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-teal-900 hover:bg-teal-700 focus:outline-none focus:border-teal-700 focus:shadow-outline-indigo active:bg-green-700 transition duration-150 ease-in-out">-->
+<!--                          Отправить и выйти-->
+<!--                        </button>-->
+                        <!--                        <p v-if="visibleSentImage"-->
+                        <!--                           class="mt-6 inline-flex justify-center w-full py-2 px-4 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-teal-900 hover:bg-teal-700 focus:outline-none focus:border-teal-700 focus:shadow-outline-indigo active:bg-green-700 transition duration-150 ease-in-out"    >-->
+                        <!--                          Успешно-->
+                        <!--                        </p>-->
 
 
                       </div>
@@ -249,27 +266,26 @@
           </div>
         </div>
 
-        <div class="mt-5 sm:mt-6">
 
+        <div v-if="visibleSendImage" class="my-5 sm:my-3">
+                    <span class="w-full rounded-md shadow-sm">
+                        <button
+                          @click="multiFunc2"
+                          type="button"
+                          class="mt-2 inline-flex justify-center w-full rounded-md border border-transparent px-4 py-2 bg-teal-900 text-base leading-6 font-medium text-white shadow-sm hover:bg-red-800 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo transition ease-in-out duration-150 sm:text-sm sm:leading-5">
+                          Отправить и выйти
+                        </button>
+                      </span>
+        </div>
+
+
+        <div class="mt-5 sm:mt-6">
           <span class="w-full rounded-md shadow-sm">
 <!--              <button-->
-<!--                @click="onFormReset"-->
-<!--                class="mt-6 inline-flex justify-center w-full py-2 px-4 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-teal-900 hover:bg-teal-700 focus:outline-none focus:border-teal-700 focus:shadow-outline-indigo active:bg-green-700 transition duration-150 ease-in-out">-->
-<!--                Очистить форму-->
-<!--              </button>-->
-              <button
-                @click="dialogCreateClose"
-                type="button"
-                class="mt-2 inline-flex justify-center w-full rounded-md border border-transparent px-4 py-2 bg-teal-900 text-base leading-6 font-medium text-white shadow-sm hover:bg-red-800 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo transition ease-in-out duration-150 sm:text-sm sm:leading-5">
-                Отправить и выйти
-              </button>
-            </span>
-          <span class="w-full rounded-md shadow-sm">
-<!--              <button-->
-<!--                @click="onFormReset"-->
-<!--                class="mt-6 inline-flex justify-center w-full py-2 px-4 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-teal-900 hover:bg-teal-700 focus:outline-none focus:border-teal-700 focus:shadow-outline-indigo active:bg-green-700 transition duration-150 ease-in-out">-->
-<!--                Очистить форму-->
-<!--              </button>-->
+            <!--                @click="onFormReset"-->
+            <!--                class="mt-6 inline-flex justify-center w-full py-2 px-4 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-teal-900 hover:bg-teal-700 focus:outline-none focus:border-teal-700 focus:shadow-outline-indigo active:bg-green-700 transition duration-150 ease-in-out">-->
+            <!--                Очистить форму-->
+            <!--              </button>-->
               <button
                 @click="dialogCreateClose"
                 type="button"
@@ -287,7 +303,7 @@
 <script>
 import {mapGetters, mapActions} from 'vuex'
 
-import  Editor  from "../../../../microcomponents/editor";
+import Editor from "../../../../microcomponents/editor";
 
 
 import 'cropperjs/dist/cropper.css'
@@ -353,13 +369,21 @@ export default {
       this.$store.commit('data/product/SET_CONTENT', data)
     },
 
-    multiFunc() {
+
+    multiFunc1() {
+      this.createProduct();
+      this.dialogCreateClose();
+    },
+
+    multiFunc2() {
       this.upload();
-      this.onFormReset()
+      this.onFormReset();
+      this.dialogCreateClose();
     },
 
 
     ...mapActions({
+      // multiCreateProductDialogCreateClose: 'data/product/multiCreateProductDialogCreateClose',
       createProduct: 'data/product/createProduct',
       dialogCreateClose: 'data/product/dialogCreateClose',
 
@@ -394,7 +418,7 @@ export default {
         this.selectedFile = event.target.result;
       };
       this.visibleDownloadImage = false;
-      this.visibleCropImage = true;
+      this.visibleCropImage = false;
       // this.visibleSentImage = false;
     },
 
@@ -405,7 +429,9 @@ export default {
         zoomable: false,
         scalable: false,
         // aspectRatio: 457 / 320,
-      })
+      });
+      this.visibleCropImage = true;
+
     },
 
 
@@ -424,6 +450,7 @@ export default {
             console.log(res)
           });
       }, 'image/jpeg');
+      this.visibleCropImage = false;
       this.visibleSendImage = false;
       // this.visibleSentImage = true;
     },

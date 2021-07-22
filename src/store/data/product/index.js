@@ -153,7 +153,7 @@ export const actions = {
   // },
 
 
-  async createProduct ({ commit, state }, payload) {
+  async createProduct ({ commit, state }) {
     try {
       //Вариант работы с прокси накст
       // const response = await this.$axios.$post('/add-product/', state.currentProduct);
@@ -434,6 +434,10 @@ export const actions = {
 
 
 
+  // multiCreateProductDialogCreateClose() {
+  //   this.createProduct();
+  //   this.dialogCreateClose();
+  // },
 
 
   //Close Form
