@@ -2,7 +2,7 @@
 export default {
   mode: 'universal',
   server: {
-    port: 4114,
+    port: 4124,
     host: '0.0.0.0'
   },
 
@@ -82,13 +82,13 @@ export default {
       local: {
         endpoints: {
           login: {
-            url: 'https://orbita.adminexpo.com:7731/api/login', method: 'post', propertyName: 'meta.token'
+            url: 'https://lubamebel.adminexpo.com:7731/api/login', method: 'post', propertyName: 'meta.token'
           },
           user: {
-            url: 'https://orbita.adminexpo.com:7731/api/me', method: 'get', propertyName: 'data'
+            url: 'https://lubamebel.adminexpo.com:7731/api/me', method: 'get', propertyName: 'data'
           },
           logout: {
-            url: 'https://orbita.adminexpo.com:7731/api/logout', method: 'post'
+            url: 'https://lubamebel.adminexpo.com:7731/api/logout', method: 'post'
           }
         }
       }

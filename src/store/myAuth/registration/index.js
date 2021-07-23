@@ -105,7 +105,7 @@ export const actions = {
 
     if (state.ruleForm.name && state.ruleForm.email && state.ruleForm.password && state.ruleForm.password === state.ruleForm.confirm_password) {
 
-      await this.$axios.post('https://orbita.adminexpo.com:7731/api/register', state.ruleForm);
+      await this.$axios.post('https://lubamebel.adminexpo.com:7731/api/register', state.ruleForm);
 
 
       //TODO А надо ли логинить после регистрации? Может отправлять на логин и там уже проверять роль???
