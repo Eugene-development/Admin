@@ -432,25 +432,16 @@ export const actions = {
     commit('VISIBLE_CATEGORY_FORM_UPDATE', visibleCategoryFormUpdate);
   },
 
-
-
-  // multiCreateProductDialogCreateClose() {
-  //   this.createProduct();
-  //   this.dialogCreateClose();
-  // },
-
-
   //Close Form
   dialogCreateClose ({ commit }) {
     const dialogCreate = false;
     commit('DIALOG_CREATE', dialogCreate);
 
-    const currentCategoryFormCreate = '---';
-    commit('CURRENT_CATEGORY_FORM_CREATE', currentCategoryFormCreate);
-
+    const currentCategoryFormUpdate = '---';
+    commit('CURRENT_CATEGORY_FORM_UPDATE', currentCategoryFormUpdate);
 
     const currentProduct = [];
-    commit('CURRENT_PRODUCT_CREATE', currentProduct);
+    commit('CURRENT_PRODUCT_UPDATE', currentProduct);
 
     // const visibleSentImage = false;
     // commit('VISIBLE_SENT_IMAGE', visibleSentImage);
@@ -459,10 +450,18 @@ export const actions = {
     const dialogRead = false;
     commit('DIALOG_READ', dialogRead)
   },
+
   dialogUpdateClose ({ commit, state }) {
     const dialogUpdate = false;
     commit('DIALOG_UPDATE', dialogUpdate);
+
+    const currentCategoryFormCreate = '---';
+    commit('CURRENT_CATEGORY_FORM_CREATE', currentCategoryFormCreate);
+
+    const currentProduct = [];
+    commit('CURRENT_PRODUCT_CREATE', currentProduct);
   },
+
   dialogDeleteClose ({ commit }) {
     const dialogDelete = false;
     commit('DIALOG_DELETE', dialogDelete);
