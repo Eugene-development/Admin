@@ -4,16 +4,14 @@ export const state = () => ({
 
 export const actions = {
   async getToken ({commit, state, $auth}, ) {
-
-
-    // console.log(this.context);
-    // const token = this.$auth.user.name;
-    // commit('TOKEN', token);
+    // console.log(this.$auth.user.project_id);
+    const data = this.$auth.user.project_id;
+    commit('TOKEN', data);
   }
 };
 
 export const mutations = {
-  TOKEN: (state, token) => state.token = token,
+  TOKEN: (state, data) => state.token = data,
 };
 
 export const getters = {

@@ -12,6 +12,8 @@
 </template>
 
 <script>
+import { mapActions } from "vuex";
+
 
 import Logo from './components/Logo'
 import Sidebar from './components/Sidebar'
@@ -26,7 +28,16 @@ export default {
     Logo,
     Sidebar,
     Navbar
-  }
+  },
+  methods: {
+    ...mapActions({
+      'getToken': 'getToken',
+    })
+  },
+  created() {
+    this.getToken();
+  },
+
 }
 
 

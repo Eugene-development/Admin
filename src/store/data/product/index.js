@@ -165,7 +165,6 @@ export const actions = {
       commit('VISIBLE_CREATE_PRODUCT', visibleCreateProduct);
 
 
-      //TODO сомневаюсь надо ли
       const currentProduct = {
         category_id: '---',
         name: '',
@@ -355,6 +354,14 @@ export const actions = {
     } catch (e) {
       console.error(e)
     } finally {
+      const currentProduct = [];
+      commit('CURRENT_PRODUCT_CREATE', currentProduct)
+
+      const currentCategoryFormUpdate = '---';
+      commit('CURRENT_CATEGORY_FORM_CREATE', currentCategoryFormUpdate);
+
+
+
       const dialogUpdate = false;
       commit('DIALOG_UPDATE', dialogUpdate);
     }

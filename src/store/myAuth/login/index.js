@@ -2,7 +2,7 @@ export const state = () => ({
   ruleForm: {},
   alertDanger: {},
   placeholder: {},
-  // token: '222777'
+  // token: '777'
 });
 
 export const actions = {
@@ -26,7 +26,7 @@ export const actions = {
   },
 
   //Отправка формы на сервер
-  async submitForm({commit, state}) {
+  async submitForm({commit, state, $auth}) {
 
       //Валидация полей формы. bg-red
       if (!state.ruleForm.email) {
@@ -52,7 +52,15 @@ export const actions = {
 
     //Выполнение метода при успешной валидации
 
-    this.$axios.setToken(false);
+    // this.$axios.setToken(false);
+
+
+    // async function setToken() {
+    //   const token = '2';
+    //   commit('TOKEN', token);
+    //
+    // }
+
     if (state.ruleForm.email && state.ruleForm.password) {
       const {data} = await this.$auth.login({
         data: {
@@ -60,6 +68,7 @@ export const actions = {
           password: state.ruleForm.password
         }
       });
+
 
 
       // const token = 'hjhjhjhjhjhj';
@@ -89,7 +98,7 @@ export const mutations = {
   RULE_FORM: (state, ruleForm) => state.ruleForm = ruleForm,
   ALERT_DANGER: (state, alertDanger) => state.alertDanger = alertDanger,
   PLACEHOLDER: (state, placeholder) => state.placeholder = placeholder,
-  TOKEN: (state, token) => state.token = token,
+  // TOKEN: (state, token) => state.token = token,
 
 };
 
@@ -97,6 +106,6 @@ export const getters = {
   ruleForm: state => state.ruleForm,
   alertDanger: state => state.alertDanger,
   placeholder: state => state.placeholder,
-  token: state => state.token,
+  // token: state => state.token,
 
 };
