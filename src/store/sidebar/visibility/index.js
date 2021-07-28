@@ -7,10 +7,6 @@ export const state = () => ({
 export const actions = {
 
   change_visibleSidebar({ commit, state, $auth }) {
-    const token = this.$auth.user.project_id;
-    this.$axios.setToken(token, 'Bearer')
-
-
     const visibleSidebar = !state.visibleSidebar;
     commit('VISIBLE_SIDEBAR', visibleSidebar);
   },

@@ -66,12 +66,12 @@ export default {
   methods: {
     ...mapActions({
       'logout': 'myAuth/logout/logout',
-      // 'getToken': 'getToken',
+      'setToken': 'myAuth/token/setToken',
     })
   },
-  // created() {
-  //   this.getToken();
-  // },
+  mounted() {
+    this.setToken();
+  },
 
   computed: {
     ...mapGetters({
