@@ -86,9 +86,8 @@ export const actions = {
 
 
 
-      await this.$router.push(
-        '/'
-      )
+      await this.$router.push('/');
+      // await this.$forceUpdate();
 
     }
   },

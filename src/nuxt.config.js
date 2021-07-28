@@ -35,7 +35,7 @@ export default {
   */
   plugins: [
     '~/plugins/vue-lodash',
-    '~/plugins/axios',
+    // '~/plugins/axios',
     { src: "~/plugins/vue2-editor", ssr: false }
   ],
   /*

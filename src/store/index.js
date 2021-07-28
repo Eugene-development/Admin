@@ -16,11 +16,14 @@ export const actions = {
     // const token = this.$auth.user.project_id;
     // commit('TOKEN', token)
   },
-  getToken ({commit, state, $auth}, ) {
-    console.log(this.$auth.user.project_id);
-    const token = this.$auth.user.project_id;
-    commit('TOKEN', token);
-  }
+  // getToken ({commit, state, $auth}, ) {
+  //   console.log(this.$auth.user.project_id);
+  //   const token = this.$auth.user.project_id;
+  //   commit('TOKEN', token);
+  // },
+  // reload() {
+  //   document.location.reload();
+  // }
 
 };
 

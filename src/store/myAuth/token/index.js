@@ -7,6 +7,12 @@ export const actions = {
     // console.log(this.$auth.user.project_id);
     const data = this.$auth.user.project_id;
     commit('TOKEN', data);
+    // await this.$forceUpdate();
+
+    // await this.$nuxt.refresh()
+
+    // document.location.reload();
+
   }
 };
 

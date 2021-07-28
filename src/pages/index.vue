@@ -66,8 +66,12 @@ export default {
   methods: {
     ...mapActions({
       'logout': 'myAuth/logout/logout',
+      // 'getToken': 'getToken',
     })
   },
+  // created() {
+  //   this.getToken();
+  // },
 
   computed: {
     ...mapGetters({
