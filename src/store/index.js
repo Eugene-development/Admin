@@ -29,7 +29,6 @@ export const actions = {
 
 
 export const mutations = {
-
   TOKEN: (state, token) => state.token = token,
 };
 

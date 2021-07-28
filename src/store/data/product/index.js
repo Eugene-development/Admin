@@ -244,14 +244,8 @@ export const actions = {
     commit('PAGINATE_PRODUCT', paginateProduct);
   },
 
-  async fetch ({ commit, state, $auth}) {
+  async getAllProduct ({ commit, state, $auth}) {
 
-    console.log(this.$auth.user.project_id);
-
-    const token = this.$auth.user.project_id;
-
-    // const token = '2';
-    await this.$axios.setToken(token, 'Bearer')
     const { data } = await this.$axios.$get('get-all-product', state.apiCRUD);
 
 

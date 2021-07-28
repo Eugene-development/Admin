@@ -38,12 +38,5 @@ export default {
 
 
   mixins: [breadcrumbs, tabs],
-  async fetch({store}) {
-    // await store.dispatch('data/navigation/menu/fetch')
-    // await store.dispatch('data/navigation/catalog/head/fetch')
-    // await store.dispatch('data/navigation/catalog/rubric/fetch')
-    // await store.dispatch('data/navigation/catalog/category/fetch')
-    // await store.dispatch('data/product/fetch')
-  },
 }
 </script>
