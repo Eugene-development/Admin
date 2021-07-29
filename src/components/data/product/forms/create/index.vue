@@ -431,7 +431,7 @@ export default {
       this.cropper.getCroppedCanvas().toBlob((blob) => {
         const formData = new FormData();
         formData.append('image', blob, this.createProductId);
-        this.$axios.$post('https://lubamebel.adminexpo.com:7741/upload-image', formData)
+        this.$axios.$post('https://adminexpo.com:7741/upload-image', formData)
           .then(res => {
             console.log(res)
           });

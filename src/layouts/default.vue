@@ -29,15 +29,6 @@ export default {
     Sidebar,
     Navbar
   },
-  // methods: {
-  //   ...mapActions({
-  //     'getToken': 'getToken',
-  //   })
-  // },
-  // created() {
-  //   this.getToken();
-  // },
-
 }
 
 
