@@ -67,10 +67,12 @@ export default {
     ...mapActions({
       'logout': 'myAuth/logout/logout',
       'setToken': 'myAuth/token/setToken',
+      'getCategory': 'data/navigation/catalog/category/fetch',
     })
   },
   mounted() {
     this.setToken();
+    this.getCategory();
   },
 
   computed: {

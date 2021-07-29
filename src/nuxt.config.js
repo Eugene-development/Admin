@@ -6,12 +6,11 @@ export default {
     host: '0.0.0.0'
   },
 
-
   /*
   ** Headers of the page
   */
   head: {
-    title: process.env.npm_package_name || '',
+    title: process.env.npm_package_name || 'Admin panel',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },

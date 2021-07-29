@@ -1,4 +1,5 @@
 export const state = () => ({
+  token: ''
 });
 
 export const actions = {
@@ -10,7 +11,20 @@ export const actions = {
     // await dispatch('data/navigation/menu/fetch');
     // await dispatch('data/navigation/catalog/category/fetch');
     // await dispatch('data/product/fetch');
+
+
+    // const token = this.$auth.user.project_id;
+    // commit('TOKEN', token)
   },
+  // getToken ({commit, state, $auth}, ) {
+  //   console.log(this.$auth.user.project_id);
+  //   const token = this.$auth.user.project_id;
+  //   commit('TOKEN', token);
+  // },
+  // reload() {
+  //   document.location.reload();
+  // }
+
 };
 
 
@@ -18,5 +32,6 @@ export const mutations = {
 };
 
 export const getters = {
+  token: state => state.token,
 };
 
