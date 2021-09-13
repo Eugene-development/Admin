@@ -7,7 +7,3 @@ export default {
   name: "empty"
 }
 </script>
-
-<style scoped>
-
-</style>

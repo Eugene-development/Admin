@@ -1,4 +1,3 @@
-import { mixinActions } from "~/mixins/store/test";
 
 export const state = () => ({
   allHead: [],

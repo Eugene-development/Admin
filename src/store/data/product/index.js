@@ -49,7 +49,9 @@ export const state = () => ({
 
   apiIMAGE: {
     baseURL: process.env.API_IMAGE
-  }
+  },
+
+
 
   //Connect MAMP (socket)
   // apiCRUD: { baseURL: 'http://crud:8888/' }

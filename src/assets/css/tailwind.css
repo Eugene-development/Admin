@@ -10,7 +10,6 @@
   opacity: 0;
 }
 
-
 @layer base {
   ul {
     @apply list-disc list-outside ml-5;

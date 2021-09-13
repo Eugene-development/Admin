@@ -1,15 +1,14 @@
 export const mixinState = () => {
   return {
-    fields: []
   };
 }
 
 
-export const mixinActions = () => {
+export const menuActions = () => {
   return {
     async fetch ({ commit, state}) {
-      const { data } = await this.$axios.$get(state.url, state.apiCRUD);
-      // console.log(data);
+      const { data } = await this.$axios.$get(process.env.ALL_MENU, state.apiCRUD);
+      // const { data } = await this.$axios.$get(process.env["ALL_MENU"], state.apiCRUD);
       const chunk = (data, size) =>
         Array.from({ length: Math.ceil(data.length / size) }, (v, i) =>
           data.slice(i * size, i * size + size)

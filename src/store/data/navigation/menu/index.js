@@ -1,7 +1,16 @@
-import { mixinActions } from "~/mixins/store/test";
+import { menuActions } from "~/mixins/store/test";
 
 export const state = () => ({
-  url: 'get-all-menu', //it is for mixin
+  // url: 'get-all-menu', //it is for mixin
+  // url: process.env.url["ALL_MENU"], //it is for mixin
+  // ALL_MENU: 'ALL_MENU',
+
+  // url: process.env["ALL_MENU"], //it is for mixin
+  // url: process.env.ALL_MENU, //it is for mixin
+
+
+
+
   allMenu: [],
   paginateMenu: [],
 
@@ -103,7 +112,7 @@ export const actions = {
   },
 
 
-  ...mixinActions(),
+  ...menuActions(),
 
   // async fetch ({ commit, state}) {
   //   const { data } = await this.$axios.$get('get-all-menu', state.apiCRUD);
