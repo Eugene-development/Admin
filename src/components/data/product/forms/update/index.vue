@@ -72,7 +72,7 @@
                           aria-haspopup="listbox"
                           aria-expanded="true"
                           aria-labelledby="listbox-label">
-                          <span class="block truncate">{{ currentProduct.name }}</span>
+                          <span class="block truncate">{{ currentProduct.category_id }}</span>
                           <span class="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
                         <!-- Heroicon name: solid/selector -->
                             <svg class="h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
@@ -231,6 +231,7 @@ export default {
       dialogUpdateClose: 'data/product/dialogUpdateClose',
 
       currentProductForm_updateName: 'data/product/currentProductForm_updateName',
+      currentProductForm_updateCategory: 'data/product/currentProductForm_updateCategory',
       currentProductForm_updatePrice: 'data/product/currentProductForm_updatePrice',
       currentProductForm_updateUnit: 'data/product/currentProductForm_updateUnit',
       currentProductForm_updateDescription: 'data/product/currentProductForm_updateDescription',
