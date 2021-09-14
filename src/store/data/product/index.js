@@ -24,8 +24,8 @@ export const state = () => ({
   currentProduct_read: [],
   currentProduct_delete: [],
 
-  currentCategoryFormCreate: '---',
-  currentCategoryFormUpdate: '---',
+  currentCategoryFormCreate: 'Выбрать категорию',
+  currentCategoryFormUpdate: 'Изменить категорию',
 
 
   content: '',
@@ -250,6 +250,8 @@ export const actions = {
   async handleEdit ( { commit, state }, id ) {
     const dialogUpdate = true;
     const currentProduct = await state.allProduct.find(item => item.id === id);
+
+
     commit('DIALOG_UPDATE', dialogUpdate);
     commit('CURRENT_PRODUCT_UPDATE', currentProduct)
   },
@@ -365,9 +367,7 @@ export const actions = {
       commit('CURRENT_PRODUCT_CREATE', currentProduct)
 
       const currentCategoryFormUpdate = '---';
-      commit('CURRENT_CATEGORY_FORM_CREATE', currentCategoryFormUpdate);
-
-
+      commit('CURRENT_CATEGORY_FORM_UPDATE', currentCategoryFormUpdate);
 
       const dialogUpdate = false;
       commit('DIALOG_UPDATE', dialogUpdate);
