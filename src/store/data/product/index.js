@@ -76,6 +76,23 @@ export const actions = {
     };
     commit('CURRENT_PRODUCT_CREATE', currentProduct)
   },
+
+  setCurrentCategoryFormCreate ({commit, state}, payload) {
+    const currentProduct = {
+      category_id: payload.id,
+      name: state.currentProduct.name,
+      price: state.currentProduct.price,
+      unit: state.currentProduct.unit,
+      description: state.currentProduct.description
+    };
+
+    commit('CURRENT_PRODUCT_CREATE', currentProduct)
+    commit('CURRENT_CATEGORY_FORM_CREATE', payload.name);
+
+    const visibleCategoryFormCreate = !state.visibleCategoryFormCreate;
+    commit('VISIBLE_CATEGORY_FORM_CREATE', visibleCategoryFormCreate);
+  },
+
   currentProductForm_createPrice( {commit, state}, e ) {
     const currentProduct = {
       category_id: state.currentProduct.category_id,
@@ -110,22 +127,6 @@ export const actions = {
   },
 
 
-  setCurrentCategoryFormCreate ({commit, state}, payload) {
-    const currentProduct = {
-      category_id: payload.id,
-      name: state.currentProduct.name,
-      price: state.currentProduct.price,
-      unit: state.currentProduct.unit,
-      description: state.currentProduct.description
-    };
-    // console.log(currentProduct)
-
-    commit('CURRENT_PRODUCT_CREATE', currentProduct)
-    commit('CURRENT_CATEGORY_FORM_CREATE', payload.name);
-
-    const visibleCategoryFormCreate = !state.visibleCategoryFormCreate;
-    commit('VISIBLE_CATEGORY_FORM_CREATE', visibleCategoryFormCreate);
-  },
 
 
 
@@ -287,8 +288,6 @@ export const actions = {
       unit: state.currentProduct.unit,
       description: state.currentProduct.description
     };
-
-    // console.log(currentProduct)
 
     commit('CURRENT_PRODUCT_UPDATE', currentProduct)
     commit('CURRENT_CATEGORY_FORM_UPDATE', payload.name);
