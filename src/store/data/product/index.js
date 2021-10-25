@@ -230,10 +230,10 @@ export const actions = {
     commit('PAGINATE_PRODUCT', paginateProduct);
   },
 
+  //TODO to rename
   async getAllProduct ({ commit, state, $auth}) {
     const { data } = await this.$axios.$get('get-category/' + 186, state.apiCRUD);
     const products = data[0].product;
-    console.log(products);
 
     const chunk = (products, size) =>
       Array.from({ length: Math.ceil(products.length / size) }, (v, i) =>
