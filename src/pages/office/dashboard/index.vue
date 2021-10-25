@@ -27,7 +27,6 @@ import {mapGetters} from "vuex";
 
 export default {
   components: {
-    Test,
   },
   computed: {
     ...mapGetters({

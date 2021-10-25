@@ -231,20 +231,18 @@ export const actions = {
   },
 
   async getAllProduct ({ commit, state, $auth}) {
-
     const { data } = await this.$axios.$get('get-all-product', state.apiCRUD);
-
     const chunk = (data, size) =>
       Array.from({ length: Math.ceil(data.length / size) }, (v, i) =>
         data.slice(i * size, i * size + size)
       );
     const paginateProduct = chunk(data, state.sizePage)[state.currentPage - 1];
     const numberOfPage = Math.ceil(data.length / state.sizePage);
-
     commit('ALL_PRODUCT', data);
     commit('PAGINATE_PRODUCT', paginateProduct);
     commit('NUMBER_OF_PAGE', numberOfPage);
   },
+
 
   //UPDATE
   async handleEdit ( { commit, state }, id ) {

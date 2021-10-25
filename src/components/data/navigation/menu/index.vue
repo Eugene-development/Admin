@@ -32,6 +32,8 @@ export default {
     UpdateMenuModal,
     DeleteMenuModal,
   },
+
+  //TODO Удалить?
   methods: {
     ...mapActions({
       'handleView': 'data/navigation/menu/handleView',

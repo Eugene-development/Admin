@@ -10,7 +10,7 @@
 
 <script>
 
-import { Test, Menu, HeadCatalog, RubricCatalog, CategoryCatalog } from '~/components';
+import { Menu, HeadCatalog, RubricCatalog, CategoryCatalog } from '~/components';
 import breadcrumbs from "~/mixins/breadcrumbs";
 import tabs from "~/mixins/tabs";
 // import {mapGetters} from "vuex";
@@ -23,7 +23,6 @@ export default {
   // },
 
   components: {
-    Test,
     Menu,
     HeadCatalog,
     RubricCatalog,
