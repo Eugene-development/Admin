@@ -211,15 +211,6 @@ export default {
     Editor
   },
 
-  computed: {
-    ...mapGetters({
-      dialogUpdate: 'data/product/dialogUpdate',
-      currentProduct: 'data/product/currentProduct',
-      allCategory: 'data/navigation/catalog/category/allCategory',
-      visibleCategoryFormUpdate: 'data/product/visibleCategoryFormUpdate',
-      currentCategoryFormUpdate: 'data/product/currentCategoryFormUpdate',
-    }),
-  },
 
   methods: {
     handleUpdate(data) {
@@ -240,6 +231,20 @@ export default {
       setCurrentCategoryFormUpdate: 'data/product/setCurrentCategoryFormUpdate',
 
     })
-  }
+  },
+
+
+
+
+  computed: {
+    ...mapGetters({
+      dialogUpdate: 'data/product/dialogUpdate',
+      currentProduct: 'data/product/currentProduct',
+      allCategory: 'data/navigation/catalog/category/allCategory',
+      visibleCategoryFormUpdate: 'data/product/visibleCategoryFormUpdate',
+      currentCategoryFormUpdate: 'data/product/currentCategoryFormUpdate',
+    }),
+  },
+
 }
 </script>

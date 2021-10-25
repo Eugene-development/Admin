@@ -268,20 +268,6 @@ export const actions = {
   //   };
   //   commit('CURRENT_PRODUCT_UPDATE', currentProduct)
   // },
-
-  currentProductForm_updateName( {commit, state}, e ) {
-    const currentProduct = {
-      id: state.currentProduct.id,
-      category_id: state.currentProduct.category_id,
-      name: e.target.value,
-      price: state.currentProduct.price,
-      unit: state.currentProduct.unit,
-      description: state.currentProduct.description,
-    };
-    commit('CURRENT_PRODUCT_UPDATE', currentProduct)
-  },
-
-
   setCurrentCategoryFormUpdate ({commit, state}, payload) {
     const currentProduct = {
       id: state.currentProduct.id,
@@ -300,6 +286,18 @@ export const actions = {
   },
 
 
+  currentProductForm_updateName( {commit, state}, e ) {
+    const currentProduct = {
+      id: state.currentProduct.id,
+      category_id: state.currentProduct.category_id,
+      name: e.target.value,
+      price: state.currentProduct.price,
+      unit: state.currentProduct.unit,
+      description: state.currentProduct.description,
+    };
+    commit('CURRENT_PRODUCT_UPDATE', currentProduct)
+  },
+
 
   currentProductForm_updatePrice( {commit, state}, e ) {
     const currentProduct = {
@@ -312,6 +310,8 @@ export const actions = {
     };
     commit('CURRENT_PRODUCT_UPDATE', currentProduct)
   },
+
+
   currentProductForm_updateUnit( {commit, state}, e ) {
     const currentProduct = {
       id: state.currentProduct.id,
@@ -323,6 +323,7 @@ export const actions = {
     };
     commit('CURRENT_PRODUCT_UPDATE', currentProduct)
   },
+
 
   currentProductForm_updateDescription( {commit, state}, e ) {
     const currentProduct = {
@@ -491,7 +492,7 @@ export const mutations = {
       id: state.currentProduct.id,
       category_id: state.currentProduct.category_id,
       name: state.currentProduct.name,
-      price: state.currentProduct.price,
+      price: state.currentProduct.size[0].price.price,
       unit: state.currentProduct.unit,
       description: state.content
     };
