@@ -231,14 +231,17 @@ export const actions = {
   },
 
   async getAllProduct ({ commit, state, $auth}) {
-    const { data } = await this.$axios.$get('get-all-product', state.apiCRUD);
-    const chunk = (data, size) =>
-      Array.from({ length: Math.ceil(data.length / size) }, (v, i) =>
-        data.slice(i * size, i * size + size)
+    const { data } = await this.$axios.$get('get-category/' + 186, state.apiCRUD);
+    const products = data[0].product;
+    console.log(products);
+
+    const chunk = (products, size) =>
+      Array.from({ length: Math.ceil(products.length / size) }, (v, i) =>
+        products.slice(i * size, i * size + size)
       );
-    const paginateProduct = chunk(data, state.sizePage)[state.currentPage - 1];
-    const numberOfPage = Math.ceil(data.length / state.sizePage);
-    commit('ALL_PRODUCT', data);
+    const paginateProduct = chunk(products, state.sizePage)[state.currentPage - 1];
+    const numberOfPage = Math.ceil(products.length / state.sizePage);
+    commit('ALL_PRODUCT', products);
     commit('PAGINATE_PRODUCT', paginateProduct);
     commit('NUMBER_OF_PAGE', numberOfPage);
   },
