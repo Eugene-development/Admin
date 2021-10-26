@@ -203,7 +203,7 @@ export const actions = {
     const data = await state.allProduct.find(item => item.id === id);
     const currentProduct_read = new Array(data);
     commit('DIALOG_READ', dialogRead);
-    commit('CURRENT_PRODUCT_READ', currentProduct_read)
+    commit('CURRENT_PRODUCT_READ', data)
   },
 
   // async fetch ({ commit, state}, { $config: { baseURL } }) {

@@ -35,7 +35,7 @@
           Tailwind UI components require Tailwind CSS v1.8 and the @tailwindcss/ui plugin.
           Read the documentation to get started: https://tailwindui.com/documentation
         -->
-        <div v-for="product of currentProduct_read" :key="product.id" class="bg-white shadow overflow-hidden sm:rounded-lg">
+        <div class="bg-white shadow overflow-hidden sm:rounded-lg">
           <div class="px-4 py-5 border-b border-gray-200 sm:px-6">
             <h3 class="text-lg leading-6 font-medium text-gray-900">
               Подробная информация
@@ -51,7 +51,7 @@
                   id
                 </dt>
                 <dd class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2">
-                  {{ product.id }}
+                  {{ currentProduct_read.id }}
                 </dd>
               </div>
               <div class="mt-8 sm:mt-0 sm:grid sm:grid-cols-3 sm:gap-4 sm:border-t sm:border-gray-200 sm:px-6 sm:py-5">
@@ -59,7 +59,7 @@
                   Наименование
                 </dt>
                 <dd class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2">
-                  {{ product.name }}
+                  {{ currentProduct_read.name }}
                 </dd>
               </div>
               <div class="mt-8 sm:mt-0 sm:grid sm:grid-cols-3 sm:gap-4 sm:border-t sm:border-gray-200 sm:px-6 sm:py-5">
@@ -67,7 +67,7 @@
                   Цена
                 </dt>
                 <dd class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2">
-                  {{ product.size[0].price.price }} р/{{ product.unit }}
+                  {{ currentProduct_read.size[0].price.price }} р/{{ currentProduct_read.unit }}
                 </dd>
               </div>
               <div class="mt-8 sm:mt-0 sm:grid sm:grid-cols-3 sm:gap-4 sm:border-t sm:border-gray-200 sm:px-6 sm:py-5">
@@ -75,7 +75,7 @@
                   Актуально на дату
                 </dt>
                 <dd class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2">
-                  {{ product.size[0].price.updated_at }}
+                  {{ currentProduct_read.size[0].price.updated_at }}
                 </dd>
               </div>
             </dl>
