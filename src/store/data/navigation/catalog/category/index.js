@@ -109,6 +109,8 @@ export const actions = {
     commit('PAGINATE_CATEGORY', paginateCategory);
   },
 
+
+  //TODO to rename it
   async fetch ({ commit, state}) {
     const { data } = await this.$axios.$get('get-all-category', state.apiCRUD);
 
@@ -252,9 +254,6 @@ export const getters = {
   currentCategory_read: state => state.currentCategory_read,
   currentCategory_update: state => state.currentCategory_update,
   currentCategory_delete: state => state.currentCategory_delete,
-
-
-
 
   dialogCreate: state => state.dialogCreate,
   dialogRead: state => state.dialogRead,
