@@ -19,6 +19,8 @@ export const state = () => ({
   dialogUpdate: false,
   dialogDelete: false,
 
+  visibleCategoryCart: false,
+
   apiCRUD: { baseURL: process.env.API_CRUD }
 
   //Connect MAMP (socket)
@@ -215,7 +217,7 @@ export const actions = {
     const dialogRead = false;
     commit('DIALOG_READ', dialogRead)
   },
-  dialogUpdateClose ({ commit, state }) {
+  dialogUpdateClose ({ commit }) {
     const dialogUpdate = false;
     commit('DIALOG_UPDATE', dialogUpdate);
   },
@@ -223,6 +225,13 @@ export const actions = {
     const dialogDelete = false;
     commit('DIALOG_DELETE', dialogDelete);
   },
+
+
+
+  changeVisibleCategoryCart ({ commit, state }){
+    const visibleCategoryCart = !state.visibleCategoryCart;
+    commit('VISIBLE_CATEGORY_CART', visibleCategoryCart);
+  }
 };
 
 export const mutations = {
@@ -239,6 +248,7 @@ export const mutations = {
   DIALOG_READ: (state, dialogRead) => state.dialogRead = dialogRead,
   DIALOG_UPDATE: (state, dialogUpdate) => state.dialogUpdate = dialogUpdate,
   DIALOG_DELETE: (state, dialogDelete) => state.dialogDelete = dialogDelete,
+  VISIBLE_CATEGORY_CART: (state, visibleCategoryCart) => state.visibleCategoryCart = visibleCategoryCart
 };
 
 export const getters = {
@@ -259,4 +269,6 @@ export const getters = {
   dialogRead: state => state.dialogRead,
   dialogUpdate: state => state.dialogUpdate,
   dialogDelete: state => state.dialogDelete,
+
+  visibleCategoryCart: state => state.visibleCategoryCart
 };
