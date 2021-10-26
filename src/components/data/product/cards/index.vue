@@ -50,15 +50,15 @@
                       From: "opacity-100"
                       To: "opacity-0"
                   -->
-                  <ul v-if="visibleCategoryCart" class="absolute z-20 mt-1 w-2xl bg-white shadow-lg max-h-80 rounded-md py-1 text-base ring-1 ring-black ring-opacity-5 overflow-auto focus:outline-none sm:text-sm" tabindex="-1" role="listbox" aria-labelledby="listbox-label" aria-activedescendant="listbox-option-3">
+                  <ul v-if="visibleCategoryCart" class="absolute z-20 mt-1 w-2xl bg-white shadow-lg max-h-80 rounded-md py-1 ring-1 ring-black ring-opacity-5 overflow-auto focus:outline-none sm:text-sm" tabindex="-1" role="listbox" aria-labelledby="listbox-label" aria-activedescendant="listbox-option-3">
                     <!--
                       Select option, manage highlight styles based on mouseenter/mouseleave and keyboard navigation.
 
                       Highlighted: "text-white bg-indigo-600", Not Highlighted: "text-gray-900"
                     -->
-                    <li v-for="category of allCategory" :key="category.id" class="text-gray-900 cursor-default select-none relative py-2 pl-3 pr-9" id="listbox-option-0" role="option">
+                    <li v-for="category of allCategory" :key="category.id" class="text-gray-900 cursor-default select-none relative py-2 pl-3 pr-9 overflow-auto focus:outline-none" id="listbox-option-0" role="option">
                       <!-- Selected: "font-semibold", Not Selected: "font-normal" -->
-                      <span class="font-normal block truncate">{{ category.name }}</span>
+                      <span class="text-gray-900 font-normal hover:text-2xl cursor-pointer select-none relative py-2 pl-8 pr-4 hover:text-red-900">{{ category.name }}</span>
 
                       <!--
                         Checkmark, only display for selected option.
