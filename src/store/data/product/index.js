@@ -249,7 +249,7 @@ export const actions = {
 
   //TODO to rename
   async getAllProduct ({ commit, state}, payload) {
-    const { data } = await this.$axios.$get('get-category/' + 186, state.apiCRUD);
+    const { data } = await this.$axios.$get('get-category/' + payload, state.apiCRUD);
     const products = data[0].product;
 
     const chunk = (products, size) =>

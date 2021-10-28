@@ -16,9 +16,9 @@ export default {
   },
   mixins: [breadcrumbs, tabs],
 
-  async asyncData({store}) {
-    await store.dispatch('data/product/getAllProduct')
-  },
+  // async asyncData({store}) {
+  //   await store.dispatch('data/product/getAllProduct')
+  // },
 
 }
 </script>

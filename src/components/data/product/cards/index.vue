@@ -59,12 +59,15 @@
                     <li v-for="category of allCategory" :key="category.id" class="text-gray-900 relative py-2 pl-3 pr-9 overflow-auto focus:outline-none" id="listbox-option-0" role="option">
                       <!-- Selected: "font-semibold", Not Selected: "font-normal" -->
 
-
-                      <span
-                        @click="setCurrentCategoryCard (category.name)"
-                        class="text-gray-900 font-normal hover:text-2xl cursor-pointer relative py-2 pl-8 pr-4 hover:text-red-900">
-                        {{ category.name }}
-                      </span>
+                      <button
+                        @click="getAllProduct (category.id)"
+                        type="button">
+                          <span
+                            @click="setCurrentCategoryCard (category.name)"
+                            class="text-gray-900 font-normal hover:text-2xl cursor-pointer relative py-2 pl-8 pr-4 hover:text-red-900">
+                            {{ category.name }}
+                          </span>
+                      </button>
 
                       <!--
                         Checkmark, only display for selected option.
@@ -132,7 +135,8 @@ export default {
       getCurrentSearch: 'data/product/getCurrentSearch',
       searchFromTable: 'data/product/searchFromTable',
       changeVisibleCategoryCard: 'data/product/changeVisibleCategoryCard',
-      setCurrentCategoryCard: 'data/product/setCurrentCategoryCard'
+      setCurrentCategoryCard: 'data/product/setCurrentCategoryCard',
+      getAllProduct: 'data/product/getAllProduct'
     })
   },
   computed: {
