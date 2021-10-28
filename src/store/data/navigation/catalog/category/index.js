@@ -116,12 +116,11 @@ export const actions = {
   async fetch ({ commit, state}) {
     const { data } = await this.$axios.$get('get-all-category', state.apiCRUD);
 
-    data.sort(function(a, b){
-      let nameA = a.name.toLowerCase(), nameB = b.name.toLowerCase()
-      if (nameA < nameB) return -1
-      if (nameA > nameB) return 1
-      return 0
-    })
+    data.sort((a, b) =>
+      (a.name.toLowerCase() < b.name.toLowerCase())
+        ? -1 : (a.name.toLowerCase() > b.name.toLowerCase())
+        ? 1 : 0
+    )
 
     const chunk = (data, size) =>
       Array.from({ length: Math.ceil(data.length / size) }, (v, i) =>
