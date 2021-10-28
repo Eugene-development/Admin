@@ -355,7 +355,6 @@ export default {
       this.$store.commit('data/product/SET_CONTENT', data)
     },
 
-
     multiFunc1() {
       this.createProduct();
       this.dialogCreateClose();

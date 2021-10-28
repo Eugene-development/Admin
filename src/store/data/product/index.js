@@ -6,6 +6,7 @@ export const state = () => ({
   visiblePagination: true,
   visibleCategoryFormCreate: false,
   visibleCategoryFormUpdate: false,
+  visibleCategoryCard: false,
   visibleCreateProduct: false,
 
   visibleDownloadImage: true,
@@ -26,6 +27,9 @@ export const state = () => ({
 
   currentCategoryFormCreate: 'Выбрать категорию',
   currentCategoryFormUpdate: 'Изменить категорию',
+
+
+  currentCategoryCard: 'Категория',
 
 
   content: '',
@@ -91,6 +95,19 @@ export const actions = {
 
     const visibleCategoryFormCreate = !state.visibleCategoryFormCreate;
     commit('VISIBLE_CATEGORY_FORM_CREATE', visibleCategoryFormCreate);
+  },
+
+  setCurrentCategoryCard ({commit, state}, payload) {
+
+    commit('CURRENT_CATEGORY_CARD', payload);
+
+    const visibleCategoryCard = !state.visibleCategoryCard;
+    commit('VISIBLE_CATEGORY_CARD', visibleCategoryCard);
+  },
+
+  changeVisibleCategoryCard({commit, state}) {
+    const visibleCategoryCard = !state.visibleCategoryCard;
+    commit('VISIBLE_CATEGORY_CARD', visibleCategoryCard);
   },
 
   currentProductForm_createPrice( {commit, state}, e ) {
@@ -231,7 +248,7 @@ export const actions = {
   },
 
   //TODO to rename
-  async getAllProduct ({ commit, state, $auth}) {
+  async getAllProduct ({ commit, state}, payload) {
     const { data } = await this.$axios.$get('get-category/' + 186, state.apiCRUD);
     const products = data[0].product;
 
@@ -514,11 +531,13 @@ export const mutations = {
   DIALOG_DELETE: (state, dialogDelete) => state.dialogDelete = dialogDelete,
   VISIBLE_CATEGORY_FORM_CREATE: (state, visibleCategoryFormCreate) => state.visibleCategoryFormCreate = visibleCategoryFormCreate,
   VISIBLE_CATEGORY_FORM_UPDATE: (state, visibleCategoryFormUpdate) => state.visibleCategoryFormUpdate = visibleCategoryFormUpdate,
+  VISIBLE_CATEGORY_CARD: (state, visibleCategoryCard) => state.visibleCategoryCard = visibleCategoryCard,
   VISIBLE_CREATE_PRODUCT: (state, visibleCreateProduct) => state.visibleCreateProduct = visibleCreateProduct,
   // VISIBLE_SENT_IMAGE: (state, visibleSentImage) => state.visibleSentImage = visibleSentImage,
   CURRENT_CATEGORY_FORM_CREATE: (state, currentCategoryFormCreate) => state.currentCategoryFormCreate = currentCategoryFormCreate,
   CURRENT_CATEGORY_FORM_UPDATE: (state, currentCategoryFormUpdate) => state.currentCategoryFormUpdate = currentCategoryFormUpdate,
   CREATE_PRODUCT_ID: (state, createProductId) => state.createProductId = createProductId,
+  CURRENT_CATEGORY_CARD: (state, currentCategoryCard) => state.currentCategoryCard = currentCategoryCard
 };
 
 export const getters = {
@@ -536,7 +555,7 @@ export const getters = {
   currentSearch: state => state.currentSearch,
   currentCategoryFormCreate: state => state.currentCategoryFormCreate,
   currentCategoryFormUpdate: state => state.currentCategoryFormUpdate,
-
+  currentCategoryCard: state => state.currentCategoryCard,
 
   dialogCreate: state => state.dialogCreate,
   dialogRead: state => state.dialogRead,
@@ -547,6 +566,7 @@ export const getters = {
   visibleCategoryFormCreate: state => state.visibleCategoryFormCreate,
   visibleCategoryFormUpdate: state => state.visibleCategoryFormUpdate,
   visibleCreateProduct: state => state.visibleCreateProduct,
+  visibleCategoryCard: state => state.visibleCategoryCard,
   // visibleSentImage: state => state.visibleSentImage,
 
 
