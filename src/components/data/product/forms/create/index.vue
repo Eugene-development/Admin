@@ -129,7 +129,22 @@
                   </div>
                 </div>
 
-                <label for="first_name" class="block text-sm font-medium leading-5 text-gray-100">
+
+
+
+<!--                <label for="size" class="block text-sm font-medium leading-5 text-gray-100">-->
+<!--                  Размер-->
+<!--                </label>-->
+<!--                <div class="m-2 rounded-md shadow-sm">-->
+<!--                  <input-->
+<!--                    :value="currentProduct.size"-->
+<!--                    @input="currentProductForm_createSize"-->
+<!--                    id="size"-->
+<!--                    class="rounded-md pl-2 form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-8">-->
+<!--                </div>-->
+
+
+                <label for="price" class="block text-sm font-medium leading-5 text-gray-100">
                   Цена
                 </label>
                 <div class="m-2 rounded-md shadow-sm">
@@ -139,6 +154,16 @@
                     id="price"
                     class="rounded-md pl-2 form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-8">
                 </div>
+
+
+
+
+
+
+
+
+
+
                 <label for="first_name" class="block text-sm font-medium leading-5 text-gray-100">
                   Единица измерения
                 </label>

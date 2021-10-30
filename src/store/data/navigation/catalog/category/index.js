@@ -116,6 +116,7 @@ export const actions = {
   async fetch ({ commit, state}) {
     const { data } = await this.$axios.$get('get-all-category', state.apiCRUD);
 
+    //Сортировка по алфавиту
     data.sort((a, b) =>
       (a.name.toLowerCase() < b.name.toLowerCase())
         ? -1 : (a.name.toLowerCase() > b.name.toLowerCase())
