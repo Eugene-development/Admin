@@ -132,16 +132,16 @@
 
 
 
-<!--                <label for="size" class="block text-sm font-medium leading-5 text-gray-100">-->
-<!--                  Размер-->
-<!--                </label>-->
-<!--                <div class="m-2 rounded-md shadow-sm">-->
-<!--                  <input-->
-<!--                    :value="currentProduct.size"-->
-<!--                    @input="currentProductForm_createSize"-->
-<!--                    id="size"-->
-<!--                    class="rounded-md pl-2 form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-8">-->
-<!--                </div>-->
+                <label for="size" class="block text-sm font-medium leading-5 text-gray-100">
+                  Размер
+                </label>
+                <div class="m-2 rounded-md shadow-sm">
+                  <input
+                    :value="currentProduct.size"
+                    @input="currentProductForm_createSize"
+                    id="size"
+                    class="rounded-md pl-2 form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-8">
+                </div>
 
 
                 <label for="price" class="block text-sm font-medium leading-5 text-gray-100">
@@ -174,6 +174,9 @@
                     id="unit"
                     class="rounded-md pl-2 form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-8">
                 </div>
+
+
+
                 <label for="first_name" class="block text-sm font-medium leading-5 text-gray-100">
                   Описание
                 </label>
@@ -399,6 +402,7 @@ export default {
 
       currentProductForm_createName: 'data/product/currentProductForm_createName',
       currentProductForm_createPrice: 'data/product/currentProductForm_createPrice',
+      currentProductForm_createSize: 'data/product/currentProductForm_createSize',
       currentProductForm_createUnit: 'data/product/currentProductForm_createUnit',
       currentProductForm_createDescription: 'data/product/currentProductForm_createDescription',
 

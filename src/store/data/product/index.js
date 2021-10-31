@@ -70,17 +70,6 @@ export const actions = {
     commit('DIALOG_CREATE', dialogCreate);
   },
 
-  currentProductForm_createName( {commit, state}, e ) {
-    const currentProduct = {
-      category_id: state.currentProduct.category_id,
-      name: e.target.value,
-      price: state.currentProduct.price,
-      unit: state.currentProduct.unit,
-      description: state.currentProduct.description
-    };
-    commit('CURRENT_PRODUCT_CREATE', currentProduct)
-  },
-
   setCurrentCategoryFormCreate ({commit, state}, payload) {
     const currentProduct = {
       category_id: payload.id,
@@ -110,10 +99,34 @@ export const actions = {
     commit('VISIBLE_CATEGORY_CARD', visibleCategoryCard);
   },
 
+
+  currentProductForm_createName( {commit, state}, e ) {
+    const currentProduct = {
+      category_id: state.currentProduct.category_id,
+      name: e.target.value,
+      size: state.currentProduct.size,
+      price: state.currentProduct.price,
+      unit: state.currentProduct.unit,
+      description: state.currentProduct.description
+    };
+    commit('CURRENT_PRODUCT_CREATE', currentProduct)
+  },
+  currentProductForm_createSize( {commit, state}, e ) {
+    const currentProduct = {
+      category_id: state.currentProduct.category_id,
+      name: state.currentProduct.name,
+      size: e.target.value,
+      price: state.currentProduct.price,
+      unit: state.currentProduct.unit,
+      description: state.currentProduct.description
+    };
+    commit('CURRENT_PRODUCT_CREATE', currentProduct)
+  },
   currentProductForm_createPrice( {commit, state}, e ) {
     const currentProduct = {
       category_id: state.currentProduct.category_id,
       name: state.currentProduct.name,
+      size: state.currentProduct.size,
       price: e.target.value,
       unit: state.currentProduct.unit,
       description: state.currentProduct.description
@@ -124,6 +137,7 @@ export const actions = {
     const currentProduct = {
       category_id: state.currentProduct.category_id,
       name: state.currentProduct.name,
+      size: state.currentProduct.size,
       price: state.currentProduct.price,
       unit: e.target.value,
       description: state.currentProduct.description
@@ -136,6 +150,7 @@ export const actions = {
     const currentProduct = {
       category_id: state.currentProduct.category_id,
       name: state.currentProduct.name,
+      size: state.currentProduct.size,
       price: state.currentProduct.price,
       unit: state.currentProduct.unit,
       description: e.target.value
@@ -158,24 +173,49 @@ export const actions = {
 
   async createProduct ({ commit, state }) {
     try {
-      //Вариант работы с прокси накст
-      // const response = await this.$axios.$post('/add-product/', state.currentProduct);
-      const response = await this.$axios.$post('add-product', state.currentProduct, state.apiCRUD);
-      commit('CREATE_PRODUCT_ID', response.id);
 
+      const category_id = state.currentProduct.category_id;
+      const size = state.currentProduct.size;
+      const price = state.currentProduct.price;
+      const name = state.currentProduct.name;
+      const unit = state.currentProduct.unit;
+      const description = state.currentProduct.description;
+
+      const productObj = {
+        category_id: category_id,
+        name: name,
+        unit: unit,
+        description: description
+      };
+      const responseProduct = await this.$axios.$post('add-product', productObj, state.apiCRUD);
+      commit('CREATE_PRODUCT_ID', responseProduct.id);//TODO зачем?
+
+      const sizeObj = {
+        product_id: responseProduct.id,
+        size: size,
+      };
+      const responseSize = await this.$axios.$post('add-size', sizeObj, state.apiCRUD);
+
+      const priceObj = {
+        size_id: responseSize.id,
+        price: price,
+      };
+      await this.$axios.$post('add-price', priceObj, state.apiCRUD);
 
       const visibleCreateProduct = !state.visibleCreateProduct;
       commit('VISIBLE_CREATE_PRODUCT', visibleCreateProduct);
 
 
-      const currentProduct = {
-        category_id: '---',
-        name: '',
-        price: '',
-        unit: '',
-        description: ''
-      };
-      commit('CURRENT_PRODUCT_CREATE', currentProduct)
+      //TODO Очищаем форму? В финал её?
+
+      // const currentProduct = {
+      //   category_id: '---',
+      //   name: '',
+      //   price: '',
+      //   unit: '',
+      //   description: ''
+      // };
+      // commit('CURRENT_PRODUCT_CREATE', currentProduct)
 
       const currentCategoryFormCreate = '---';
       commit('CURRENT_CATEGORY_FORM_CREATE', currentCategoryFormCreate);
@@ -509,7 +549,9 @@ export const mutations = {
       id: state.currentProduct.id,
       category_id: state.currentProduct.category_id,
       name: state.currentProduct.name,
-      price: state.currentProduct.size[0].price.price,
+      size: state.currentProduct.size,
+      price: state.currentProduct.price,
+      // price: state.currentProduct.size[0].price.price,//TODO при обновлении товара показывает цену
       unit: state.currentProduct.unit,
       description: state.content
     };
