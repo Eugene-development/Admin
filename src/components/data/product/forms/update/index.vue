@@ -127,6 +127,17 @@
 
 
                   <label class="mt-2 block text-sm font-medium leading-5 text-gray-100" for="first_name">
+                    Размер
+                  </label>
+                  <div class="m-2 rounded-md shadow-sm">
+                    <input
+                      id="size"
+                      :value="currentProduct.size"
+                      class="rounded-md pl-2 form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-8"
+                      @input="currentProductForm_updateSize">
+                  </div>
+
+                  <label class="mt-2 block text-sm font-medium leading-5 text-gray-100" for="first_name">
                     Цена
                   </label>
                   <div class="m-2 rounded-md shadow-sm">
@@ -222,7 +233,7 @@ export default {
       dialogUpdateClose: 'data/product/dialogUpdateClose',
 
       currentProductForm_updateName: 'data/product/currentProductForm_updateName',
-      currentProductForm_updateCategory: 'data/product/currentProductForm_updateCategory',
+      currentProductForm_updateSize: 'data/product/currentProductForm_updateSize',
       currentProductForm_updatePrice: 'data/product/currentProductForm_updatePrice',
       currentProductForm_updateUnit: 'data/product/currentProductForm_updateUnit',
       currentProductForm_updateDescription: 'data/product/currentProductForm_updateDescription',
