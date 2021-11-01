@@ -296,7 +296,7 @@ export const actions = {
   async handleEdit ( { commit, state }, ID ) {
     const dialogUpdate = true;
     const product = await state.allProduct.find(item => item.id === ID);
-console.log(product)
+
     const id = product.id;
     const category_id = product.category_id;
     const name = product.name;
@@ -318,7 +318,6 @@ console.log(product)
       unit: unit,
       description: description
     }
-    console.log(currentProduct);
 
     commit('DIALOG_UPDATE', dialogUpdate);
     commit('CURRENT_PRODUCT_UPDATE', currentProduct)
@@ -422,8 +421,6 @@ console.log(product)
   async updateProduct ({ commit, state }) {
     try {
 
-      console.log(state.currentProduct)
-
       const product_id = state.currentProduct.id;
       const category_id = state.currentProduct.category_id;
       const name = state.currentProduct.name;
@@ -434,7 +431,6 @@ console.log(product)
       const unit = state.currentProduct.unit;
       const description = state.currentProduct.description;
 
-
       const productObj = {
         id: product_id,
         category_id: category_id,
@@ -442,7 +438,6 @@ console.log(product)
         unit: unit,
         description: description
       }
-      // console.log(productObj)
       await this.$axios.$put('update-product', productObj, state.apiCRUD);
 
       const sizeObj = {
@@ -450,7 +445,6 @@ console.log(product)
         product_id: product_id,
         size: size,
       };
-      // console.log(sizeObj)
       await this.$axios.$put('update-size', sizeObj, state.apiCRUD);
 
       const priceObj = {
@@ -458,7 +452,6 @@ console.log(product)
         size_id: size_id,
         price: price,
       };
-      // console.log(priceObj)
       await this.$axios.$put('update-price', priceObj, state.apiCRUD);
 
 
@@ -497,6 +490,7 @@ console.log(product)
 
   async deleteProduct ({ commit, state } ){
     try {
+
       await this.$axios.$delete('delete-image/' + state.currentProduct_delete[0].id, state.apiIMAGE);
       await this.$axios.$delete('delete-product/' + state.currentProduct_delete[0].id, state.apiCRUD);
 
