@@ -296,14 +296,14 @@ export const actions = {
   async handleEdit ( { commit, state }, ID ) {
     const dialogUpdate = true;
     const product = await state.allProduct.find(item => item.id === ID);
-
-
-
+console.log(product)
     const id = product.id;
     const category_id = product.category_id;
     const name = product.name;
+    const size_id = product.size[0].id
     const size = product.size[0].size;
     const price = product.size[0].price.price;
+    const price_id = product.size[0].price.id;
     const unit = product.unit;
     const description = product.description;
 
@@ -312,13 +312,12 @@ export const actions = {
       category_id: category_id,
       name: name,
       size: size,
+      size_id: size_id,
+      price_id: price_id,
       price: price,
       unit: unit,
       description: description
     }
-
-
-
     console.log(currentProduct);
 
     commit('DIALOG_UPDATE', dialogUpdate);
@@ -330,6 +329,8 @@ export const actions = {
       id: state.currentProduct.id,
       category_id: payload.id,
       name: state.currentProduct.name,
+      size_id: state.currentProduct.size_id,
+      price_id: state.currentProduct.price_id,
       size: state.currentProduct.size,
       price: state.currentProduct.price,
       unit: state.currentProduct.unit,
@@ -343,12 +344,13 @@ export const actions = {
     commit('VISIBLE_CATEGORY_FORM_UPDATE', visibleCategoryFormUpdate);
   },
 
-
   currentProductForm_updateName( {commit, state}, e ) {
     const currentProduct = {
       id: state.currentProduct.id,
       category_id: state.currentProduct.category_id,
       name: e.target.value,
+      size_id: state.currentProduct.size_id,
+      price_id: state.currentProduct.price_id,
       size: state.currentProduct.size,
       price: state.currentProduct.price,
       unit: state.currentProduct.unit,
@@ -357,12 +359,13 @@ export const actions = {
     commit('CURRENT_PRODUCT_UPDATE', currentProduct)
   },
 
-
   currentProductForm_updateSize( {commit, state}, e ) {
     const currentProduct = {
       id: state.currentProduct.id,
       category_id: state.currentProduct.category_id,
       name: state.currentProduct.name,
+      size_id: state.currentProduct.size_id,
+      price_id: state.currentProduct.price_id,
       size: e.target.value,
       price: state.currentProduct.price,
       unit: state.currentProduct.unit,
@@ -376,6 +379,8 @@ export const actions = {
       id: state.currentProduct.id,
       category_id: state.currentProduct.category_id,
       name: state.currentProduct.name,
+      size_id: state.currentProduct.size_id,
+      price_id: state.currentProduct.price_id,
       size: state.currentProduct.size,
       price: e.target.value,
       unit: state.currentProduct.unit,
@@ -384,12 +389,13 @@ export const actions = {
     commit('CURRENT_PRODUCT_UPDATE', currentProduct)
   },
 
-
   currentProductForm_updateUnit( {commit, state}, e ) {
     const currentProduct = {
       id: state.currentProduct.id,
       category_id: state.currentProduct.category_id,
       name: state.currentProduct.name,
+      size_id: state.currentProduct.size_id,
+      price_id: state.currentProduct.price_id,
       size: state.currentProduct.size,
       price: state.currentProduct.price,
       unit: e.target.value,
@@ -403,6 +409,8 @@ export const actions = {
       id: state.currentProduct.id,
       category_id: state.currentProduct.category_id,
       name: state.currentProduct.name,
+      size_id: state.currentProduct.size_id,
+      price_id: state.currentProduct.price_id,
       size: state.currentProduct.size,
       price: state.currentProduct.price,
       unit: state.currentProduct.unit,
@@ -414,28 +422,44 @@ export const actions = {
   async updateProduct ({ commit, state }) {
     try {
 
-      const id = state.currentProduct.id;
+      console.log(state.currentProduct)
+
+      const product_id = state.currentProduct.id;
       const category_id = state.currentProduct.category_id;
       const name = state.currentProduct.name;
+      const size_id = state.currentProduct.size_id;
       const size = state.currentProduct.size;
+      const price_id = state.currentProduct.price_id;
       const price = state.currentProduct.price;
       const unit = state.currentProduct.unit;
       const description = state.currentProduct.description;
 
+
       const productObj = {
-        id: id,
+        id: product_id,
         category_id: category_id,
         name: name,
-        size: size,
-        price: price,
         unit: unit,
         description: description
       }
-
-      console.log(productObj)
-
-
+      // console.log(productObj)
       await this.$axios.$put('update-product', productObj, state.apiCRUD);
+
+      const sizeObj = {
+        id: size_id,
+        product_id: product_id,
+        size: size,
+      };
+      // console.log(sizeObj)
+      await this.$axios.$put('update-size', sizeObj, state.apiCRUD);
+
+      const priceObj = {
+        id: price_id,
+        size_id: size_id,
+        price: price,
+      };
+      // console.log(priceObj)
+      await this.$axios.$put('update-price', priceObj, state.apiCRUD);
 
 
       const { data } = await this.$axios.$get('get-all-product', state.apiCRUD);
