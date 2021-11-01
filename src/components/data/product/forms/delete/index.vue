@@ -35,7 +35,7 @@
           Tailwind UI components require Tailwind CSS v1.8 and the @tailwindcss/ui plugin.
           Read the documentation to get started: https://tailwindui.com/documentation
         -->
-        <div v-for="head of currentProduct_delete" :key="head.id" class="bg-gray-100 shadow overflow-hidden sm:rounded-lg">
+        <div class="bg-gray-100 shadow overflow-hidden sm:rounded-lg">
           <div class="px-4 py-5 border-b border-gray-200 sm:px-6">
             <h3 class="text-lg leading-6 font-medium text-gray-900">
               Удаление значения
@@ -51,7 +51,7 @@
                   id
                 </dt>
                 <dd class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2">
-                  {{ head.id }}
+                  {{ currentProduct_delete.id }}
                 </dd>
               </div>
               <div class="mt-8 sm:mt-0 sm:grid sm:grid-cols-3 sm:gap-4 sm:border-t sm:border-gray-200 sm:px-6 sm:py-5">
@@ -59,7 +59,7 @@
                   Наименование
                 </dt>
                 <dd class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2">
-                  {{ head.name }}
+                  {{ currentProduct_delete.name }}
                 </dd>
               </div>
             </dl>

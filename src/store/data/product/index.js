@@ -480,10 +480,32 @@ export const actions = {
   },
 
   //DELETE
-  async handleDelete ({ commit, state }, id){
+  async handleDelete ({ commit, state }, ID){
     const dialogDelete = true;
-    const data = await state.allProduct.find(item => item.id === id);
-    const currentProduct_delete = new Array(data);
+    const product = await state.allProduct.find(item => item.id === ID);
+
+
+    const id = product.id;
+    const name = product.name;
+    const size_id = product.size[0].id
+    const price = product.size[0].price.price;
+    const price_id = product.size[0].price.id;
+    const unit = product.unit;
+    const description = product.description;
+
+    const currentProduct_delete = {
+      id: id,
+      name: name,
+      size_id: size_id,
+      price_id: price_id,
+      price: price,
+      unit: unit,
+      description: description
+    }
+
+
+
+    // const currentProduct_delete = new Array(product);// TODO ???
     commit('DIALOG_DELETE', dialogDelete);
     commit('CURRENT_PRODUCT_DELETE', currentProduct_delete)
   },
@@ -491,8 +513,14 @@ export const actions = {
   async deleteProduct ({ commit, state } ){
     try {
 
-      await this.$axios.$delete('delete-image/' + state.currentProduct_delete[0].id, state.apiIMAGE);
-      await this.$axios.$delete('delete-product/' + state.currentProduct_delete[0].id, state.apiCRUD);
+      const product_id = state.currentProduct_delete.id;
+      const size_id = state.currentProduct_delete.size_id;
+      const price_id = state.currentProduct_delete.price_id;
+
+      await this.$axios.$delete('delete-image/' + product_id, state.apiIMAGE);
+      await this.$axios.$delete('delete-price/' + price_id, state.apiCRUD);
+      await this.$axios.$delete('delete-size/' + size_id, state.apiCRUD);
+      await this.$axios.$delete('delete-product/' + product_id, state.apiCRUD);
 
       // await this.$axios.$get('delete-product/' + state.currentProduct_delete[0].id, state.apiCRUD);
       // const index = await state.allProduct.findIndex(item => item.id === state.currentProduct_delete[0].id);
