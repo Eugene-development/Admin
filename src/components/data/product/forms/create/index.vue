@@ -134,7 +134,7 @@
 
                 <div >
 
-                  <div v-for="(size, idx) of 2" :key="size.id" class="flex">
+                  <div class="flex">
                     <div class="">
                       <label for="size" class="block text-sm font-medium leading-5 text-gray-100">
                         Размер:
@@ -161,19 +161,19 @@
                     </div>
                   </div>
 
-                  <div class="">
-<!--                    <label  class="block text-sm font-medium leading-5 text-gray-100">-->
-<!--                     Добавить-->
-<!--                    </label>-->
-                    <span class="w-full rounded-md shadow-sm">
-                      <button v-if="true"
-                              @click=""
-                              type="button"
-                              class="mt-2 ml-2 inline-flex justify-center w-full rounded-md border border-transparent px-4 py-1.5 bg-teal-900 text-base leading-6 font-medium text-white shadow-sm hover:bg-teal-800 focus:outline-none focus:border-teal-700 focus:shadow-outline-teal transition ease-in-out duration-150 sm:text-sm sm:leading-5">
-                        +
-                      </button>
-                    </span>
-                  </div>
+<!--                  <div class="">-->
+<!--&lt;!&ndash;                    <label  class="block text-sm font-medium leading-5 text-gray-100">&ndash;&gt;-->
+<!--&lt;!&ndash;                     Добавить&ndash;&gt;-->
+<!--&lt;!&ndash;                    </label>&ndash;&gt;-->
+<!--                    <span class="w-full rounded-md shadow-sm">-->
+<!--                      <button v-if="true"-->
+<!--                              @click=""-->
+<!--                              type="button"-->
+<!--                              class="mt-2 ml-2 inline-flex justify-center w-full rounded-md border border-transparent px-4 py-1.5 bg-teal-900 text-base leading-6 font-medium text-white shadow-sm hover:bg-teal-800 focus:outline-none focus:border-teal-700 focus:shadow-outline-teal transition ease-in-out duration-150 sm:text-sm sm:leading-5">-->
+<!--                        +-->
+<!--                      </button>-->
+<!--                    </span>-->
+<!--                  </div>-->
                 </div>
 
 
@@ -375,20 +375,6 @@ export default {
     };
   },
 
-  ...mapActions({
-    // multiCreateProductDialogCreateClose: 'data/product/multiCreateProductDialogCreateClose',
-    createProduct: 'data/product/createProduct',
-    dialogCreateClose: 'data/product/dialogCreateClose',
-
-    currentProductForm_createName: 'data/product/currentProductForm_createName',
-    currentProductForm_createPrice: 'data/product/currentProductForm_createPrice',
-    currentProductForm_createSize: 'data/product/currentProductForm_createSize',
-    currentProductForm_createUnit: 'data/product/currentProductForm_createUnit',
-    currentProductForm_createDescription: 'data/product/currentProductForm_createDescription',
-
-    changeVisibleCategoryFormCreate: 'data/product/changeVisibleCategoryFormCreate',
-    setCurrentCategoryFormCreate: 'data/product/setCurrentCategoryFormCreate',
-  }),
 
 
   computed: {
@@ -491,6 +477,24 @@ export default {
       this.visibleSendImage = false;
       // this.visibleSentImage = true;
     },
+
+
+
+    ...mapActions({
+      // multiCreateProductDialogCreateClose: 'data/product/multiCreateProductDialogCreateClose',
+      createProduct: 'data/product/createProduct',
+      dialogCreateClose: 'data/product/dialogCreateClose',
+
+      currentProductForm_createName: 'data/product/currentProductForm_createName',
+      currentProductForm_createPrice: 'data/product/currentProductForm_createPrice',
+      currentProductForm_createSize: 'data/product/currentProductForm_createSize',
+      currentProductForm_createUnit: 'data/product/currentProductForm_createUnit',
+      currentProductForm_createDescription: 'data/product/currentProductForm_createDescription',
+
+      changeVisibleCategoryFormCreate: 'data/product/changeVisibleCategoryFormCreate',
+      setCurrentCategoryFormCreate: 'data/product/setCurrentCategoryFormCreate',
+    }),
+
 
 
     // upload(){

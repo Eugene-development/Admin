@@ -157,18 +157,11 @@ export const actions = {
     commit('CURRENT_PRODUCT_CREATE', currentProduct)
   },
 
-
-
-
-
-
-
   // onFileSelected ({commit, state}, e) {
   //   const image = e.target.files[0];
   //   console.log(image)
   //   commit('IMAGE', image);
   // },
-
 
   async createProduct ({ commit, state }) {
     try {
