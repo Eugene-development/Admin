@@ -375,6 +375,22 @@ export default {
     };
   },
 
+  ...mapActions({
+    // multiCreateProductDialogCreateClose: 'data/product/multiCreateProductDialogCreateClose',
+    createProduct: 'data/product/createProduct',
+    dialogCreateClose: 'data/product/dialogCreateClose',
+
+    currentProductForm_createName: 'data/product/currentProductForm_createName',
+    currentProductForm_createPrice: 'data/product/currentProductForm_createPrice',
+    currentProductForm_createSize: 'data/product/currentProductForm_createSize',
+    currentProductForm_createUnit: 'data/product/currentProductForm_createUnit',
+    currentProductForm_createDescription: 'data/product/currentProductForm_createDescription',
+
+    changeVisibleCategoryFormCreate: 'data/product/changeVisibleCategoryFormCreate',
+    setCurrentCategoryFormCreate: 'data/product/setCurrentCategoryFormCreate',
+  }),
+
+
   computed: {
     ...mapGetters({
       dialogCreate: 'data/product/dialogCreate',
@@ -416,20 +432,6 @@ export default {
     },
 
 
-    ...mapActions({
-      // multiCreateProductDialogCreateClose: 'data/product/multiCreateProductDialogCreateClose',
-      createProduct: 'data/product/createProduct',
-      dialogCreateClose: 'data/product/dialogCreateClose',
-
-      currentProductForm_createName: 'data/product/currentProductForm_createName',
-      currentProductForm_createPrice: 'data/product/currentProductForm_createPrice',
-      currentProductForm_createSize: 'data/product/currentProductForm_createSize',
-      currentProductForm_createUnit: 'data/product/currentProductForm_createUnit',
-      currentProductForm_createDescription: 'data/product/currentProductForm_createDescription',
-
-      changeVisibleCategoryFormCreate: 'data/product/changeVisibleCategoryFormCreate',
-      setCurrentCategoryFormCreate: 'data/product/setCurrentCategoryFormCreate',
-    }),
 
 
     onFormReset() {

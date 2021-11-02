@@ -187,7 +187,7 @@ export const actions = {
         description: description
       };
       const responseProduct = await this.$axios.$post('add-product', productObj, state.apiCRUD);
-      // commit('CREATE_PRODUCT_ID', responseProduct.id);//TODO зачем?
+      commit('CREATE_PRODUCT_ID', responseProduct.id);//для изображений
 
 
 
@@ -654,7 +654,7 @@ export const mutations = {
   // VISIBLE_SENT_IMAGE: (state, visibleSentImage) => state.visibleSentImage = visibleSentImage,
   CURRENT_CATEGORY_FORM_CREATE: (state, currentCategoryFormCreate) => state.currentCategoryFormCreate = currentCategoryFormCreate,
   CURRENT_CATEGORY_FORM_UPDATE: (state, currentCategoryFormUpdate) => state.currentCategoryFormUpdate = currentCategoryFormUpdate,
-  // CREATE_PRODUCT_ID: (state, createProductId) => state.createProductId = createProductId,
+  CREATE_PRODUCT_ID: (state, createProductId) => state.createProductId = createProductId,
   CURRENT_CATEGORY_CARD: (state, currentCategoryCard) => state.currentCategoryCard = currentCategoryCard
 };
 
@@ -687,6 +687,5 @@ export const getters = {
   visibleCategoryCard: state => state.visibleCategoryCard,
   // visibleSentImage: state => state.visibleSentImage,
 
-
-  // createProductId: state => state.createProductId, //TODO удалить?
+  createProductId: state => state.createProductId,
 };
