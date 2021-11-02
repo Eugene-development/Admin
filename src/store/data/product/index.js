@@ -22,17 +22,17 @@ export const state = () => ({
       value: ''
     },
   currentProduct: [],
+  currentSize: [],
   currentProduct_read: [],
   currentProduct_delete: [],
 
   currentCategoryFormCreate: 'Выбрать категорию',
   currentCategoryFormUpdate: 'Изменить категорию',
-
   currentCategoryCard: 'Категория',
-
-
   content: '',
 
+
+  size: {},
 
   // createProductId: "",
 
@@ -67,13 +67,48 @@ export const actions = {
   async handleAdd ({ commit }) {
     const dialogCreate = true;
     commit('DIALOG_CREATE', dialogCreate);
+
+
+
+    // let test = {
+    //   0: {
+    //     ggg: 8,
+    //     ttt: "vnut1"
+    //   },
+    //   1: {
+    //     ggg: 9,
+    //     ttt: "vnut2"
+    //   },
+    //
+    // }
+    //
+    // for (let x in test) {
+    //   console.log(test[x]);
+    // }
+
+
+
+
+
+
+
+  },
+
+
+  addSize ({commit, state}, payload) {
+    let size = {
+      size: payload.size,
+      price: payload.price
+    }
+    console.log(size)
   },
 
   setCurrentCategoryFormCreate ({commit, state}, payload) {
     const currentProduct = {
       category_id: payload.id,
       name: state.currentProduct.name,
-      price: state.currentProduct.price,
+      // size: state.currentProduct.size,
+      // price: state.currentProduct.price,
       unit: state.currentProduct.unit,
       description: state.currentProduct.description
     };
@@ -98,46 +133,37 @@ export const actions = {
     commit('VISIBLE_CATEGORY_CARD', visibleCategoryCard);
   },
 
-
   currentProductForm_createName( {commit, state}, e ) {
     const currentProduct = {
       category_id: state.currentProduct.category_id,
       name: e.target.value,
-      size: state.currentProduct.size,
-      price: state.currentProduct.price,
+      // size: state.currentProduct.size,
+      // price: state.currentProduct.price,
       unit: state.currentProduct.unit,
       description: state.currentProduct.description
     };
     commit('CURRENT_PRODUCT_CREATE', currentProduct)
   },
   currentProductForm_createSize( {commit, state}, e ) {
-    const currentProduct = {
-      category_id: state.currentProduct.category_id,
-      name: state.currentProduct.name,
+    const currentSize = {
       size: e.target.value,
-      price: state.currentProduct.price,
-      unit: state.currentProduct.unit,
-      description: state.currentProduct.description
+      price: state.currentSize.price,
     };
-    commit('CURRENT_PRODUCT_CREATE', currentProduct)
+    commit('CURRENT_SIZE_CREATE', currentSize)
   },
   currentProductForm_createPrice( {commit, state}, e ) {
-    const currentProduct = {
-      category_id: state.currentProduct.category_id,
-      name: state.currentProduct.name,
-      size: state.currentProduct.size,
+    const currentSize = {
+      size: state.currentSize.size,
       price: e.target.value,
-      unit: state.currentProduct.unit,
-      description: state.currentProduct.description
     };
-    commit('CURRENT_PRODUCT_CREATE', currentProduct)
+    commit('CURRENT_SIZE_CREATE', currentSize)
   },
   currentProductForm_createUnit( {commit, state}, e ) {
     const currentProduct = {
       category_id: state.currentProduct.category_id,
       name: state.currentProduct.name,
-      size: state.currentProduct.size,
-      price: state.currentProduct.price,
+      // size: state.currentProduct.size,
+      // price: state.currentProduct.price,
       unit: e.target.value,
       description: state.currentProduct.description
     };
@@ -149,8 +175,8 @@ export const actions = {
     const currentProduct = {
       category_id: state.currentProduct.category_id,
       name: state.currentProduct.name,
-      size: state.currentProduct.size,
-      price: state.currentProduct.price,
+      // size: state.currentProduct.size,
+      // price: state.currentProduct.price,
       unit: state.currentProduct.unit,
       description: e.target.value
     };
@@ -632,6 +658,7 @@ export const mutations = {
   PAGINATE_CURRENT_PAGE: (state, currentPage) => state.currentPage = currentPage,
   PAGINATE_SIZE_PAGE: (state, sizePage) => state.sizePage = sizePage,
   CURRENT_PRODUCT_CREATE: (state, currentProduct) => state.currentProduct = currentProduct,
+  CURRENT_SIZE_CREATE: (state, currentSize) => state.currentSize = currentSize,
   CURRENT_PRODUCT_READ: (state, currentProduct_read) => state.currentProduct_read = currentProduct_read,
   CURRENT_PRODUCT_UPDATE: (state, currentProduct) => state.currentProduct = currentProduct,
   CURRENT_PRODUCT_DELETE: (state, currentProduct_delete) => state.currentProduct_delete = currentProduct_delete,
@@ -660,6 +687,7 @@ export const getters = {
   countProduct: state => state.allProduct.length,
 
   currentProduct: state => state.currentProduct,
+  currentSize: state => state.currentSize,
   currentProduct_read: state => state.currentProduct_read,
   currentProduct_delete: state => state.currentProduct_delete,
 
