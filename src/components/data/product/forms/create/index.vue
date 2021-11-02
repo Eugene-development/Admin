@@ -47,8 +47,8 @@
           <div class="mt-8 border-t border-gray-400 pt-8">
             <div class="mt-1 ">
               <div class="mx-2 sm:col-span-3 ">
-                <label for="first_name" class="block text-sm font-medium leading-5 text-gray-100">
-                  Наименование
+                <label class="block text-sm font-medium leading-5 text-gray-100">
+                  Наименование:
                 </label>
                 <div class="m-2 rounded-md shadow-sm">
                   <input
@@ -58,8 +58,8 @@
                     class="rounded-md pl-2 form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-8">
                 </div>
 
-                <label for="first_name" class="block text-sm font-medium leading-5 text-gray-100">
-                  Категория
+                <label class="mt-6 block text-sm font-medium leading-5 text-gray-100">
+                  Категория:
                 </label>
                 <div class="m-2 rounded-md shadow-sm">
                   <div>
@@ -132,28 +132,48 @@
 
 
 
-                <label for="size" class="block text-sm font-medium leading-5 text-gray-100">
-                  Размер
-                </label>
-                <div class="m-2 rounded-md shadow-sm">
-                  <input
-                    :value="currentProduct.size"
-                    @input="currentProductForm_createSize"
-                    id="size"
-                    class="rounded-md pl-2 form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-8">
+                <div class="mt-6 flex">
+                  <div class="">
+                    <label for="size" class="block text-sm font-medium leading-5 text-gray-100">
+                      Размер:
+                    </label>
+                    <div class="m-2 rounded-md shadow-sm">
+                      <input
+                        :value="currentProduct.size"
+                        @input="currentProductForm_createSize"
+                        id="size"
+                        class="rounded-md pl-2 form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-8">
+                    </div>
+
+                  </div>
+                  <div class="ml-4">
+                    <label for="price" class="block text-sm font-medium leading-5 text-gray-100">
+                      Цена:
+                    </label>
+                    <div class="m-2 rounded-md shadow-sm">
+                      <input
+                        :value="currentProduct.price"
+                        @input="currentProductForm_createPrice"
+                        id="price"
+                        class="rounded-md pl-2 form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-8">
+                    </div>
+                  </div>
+                  <div class="ml-6">
+                    <label  class="block text-sm font-medium leading-5 text-gray-100">
+                     Добавить
+                    </label>
+                    <span class="w-full rounded-md shadow-sm">
+                      <button v-if="true"
+                              @click=""
+                              type="button"
+                              class="mt-2 ml-2 inline-flex justify-center w-full rounded-md border border-transparent px-4 py-1.5 bg-teal-900 text-base leading-6 font-medium text-white shadow-sm hover:bg-teal-800 focus:outline-none focus:border-teal-700 focus:shadow-outline-teal transition ease-in-out duration-150 sm:text-sm sm:leading-5">
+                        +
+                      </button>
+                    </span>
+                  </div>
                 </div>
 
 
-                <label for="price" class="block text-sm font-medium leading-5 text-gray-100">
-                  Цена
-                </label>
-                <div class="m-2 rounded-md shadow-sm">
-                  <input
-                    :value="currentProduct.price"
-                    @input="currentProductForm_createPrice"
-                    id="price"
-                    class="rounded-md pl-2 form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-8">
-                </div>
 
 
 
@@ -162,10 +182,8 @@
 
 
 
-
-
-                <label for="first_name" class="block text-sm font-medium leading-5 text-gray-100">
-                  Единица измерения
+                <label for="first_name" class="mt-6 block text-sm font-medium leading-5 text-gray-100">
+                  Единица измерения:
                 </label>
                 <div class="m-2 rounded-md shadow-sm">
                   <input
@@ -177,8 +195,8 @@
 
 
 
-                <label for="first_name" class="block text-sm font-medium leading-5 text-gray-100">
-                  Описание
+                <label for="first_name" class="mt-6 block text-sm font-medium leading-5 text-gray-100">
+                  Описание:
                 </label>
 
                 <div class="m-2 rounded-md shadow-sm">
@@ -218,8 +236,8 @@
 
 
                 <div>
-                  <label for="first_name" class="block text-sm font-medium leading-5 text-gray-100">
-                    Добавить изображение
+                  <label for="first_name" class="mt-6 block text-sm font-medium leading-5 text-gray-100">
+                    Добавить изображение:
                   </label>
                   <div class="m-2 sm:col-span-6">
                     <div
@@ -284,7 +302,7 @@
           </div>
         </div>
 
-        <div  class="my-3 sm:my-3">
+        <div  class="my-6">
           <span class="w-full rounded-md shadow-sm">
               <button v-if="!visibleSendImage"
                 @click="multiFunc1"
