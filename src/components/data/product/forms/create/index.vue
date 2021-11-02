@@ -61,7 +61,7 @@
                 <label class="mt-6 block text-sm font-medium leading-5 text-gray-100">
                   Категория:
                 </label>
-                <div class="m-2 rounded-md shadow-sm">
+                <div class="m-2 mb-6 rounded-md shadow-sm">
                   <div>
                     <div class="mt-1 relative">
                       <button
@@ -132,36 +132,39 @@
 
 
 
-                <div class="mt-6 flex">
-                  <div class="">
-                    <label for="size" class="block text-sm font-medium leading-5 text-gray-100">
-                      Размер:
-                    </label>
-                    <div class="m-2 rounded-md shadow-sm">
-                      <input
-                        :value="currentProduct.size"
-                        @input="currentProductForm_createSize"
-                        id="size"
-                        class="rounded-md pl-2 form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-8">
-                    </div>
+                <div >
 
-                  </div>
-                  <div class="ml-4">
-                    <label for="price" class="block text-sm font-medium leading-5 text-gray-100">
-                      Цена:
-                    </label>
-                    <div class="m-2 rounded-md shadow-sm">
-                      <input
-                        :value="currentProduct.price"
-                        @input="currentProductForm_createPrice"
-                        id="price"
-                        class="rounded-md pl-2 form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-8">
+                  <div v-for="(size, idx) of 2" :key="size.id" class="flex">
+                    <div class="">
+                      <label for="size" class="block text-sm font-medium leading-5 text-gray-100">
+                        Размер:
+                      </label>
+                      <div class="m-2 rounded-md shadow-sm">
+                        <input
+                          :value="currentProduct.size"
+                          @input="currentProductForm_createSize"
+                          id="size"
+                          class="rounded-md pl-2 form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-8">
+                      </div>
+                    </div>
+                    <div class="ml-4">
+                      <label for="price" class="block text-sm font-medium leading-5 text-gray-100">
+                        Цена:
+                      </label>
+                      <div class="m-2 rounded-md shadow-sm">
+                        <input
+                          :value="currentProduct.price"
+                          @input="currentProductForm_createPrice"
+                          id="price"
+                          class="rounded-md pl-2 form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-8">
+                      </div>
                     </div>
                   </div>
-                  <div class="ml-6">
-                    <label  class="block text-sm font-medium leading-5 text-gray-100">
-                     Добавить
-                    </label>
+
+                  <div class="">
+<!--                    <label  class="block text-sm font-medium leading-5 text-gray-100">-->
+<!--                     Добавить-->
+<!--                    </label>-->
                     <span class="w-full rounded-md shadow-sm">
                       <button v-if="true"
                               @click=""
