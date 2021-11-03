@@ -1,3 +1,4 @@
+import {cloneDeep, merge, concat} from 'lodash';
 
 export const state = () => ({
   allProduct: [],
@@ -19,8 +20,8 @@ export const state = () => ({
   numberOfPage: 1,
 
   currentSearch: {
-      value: ''
-    },
+    value: ''
+  },
   currentProduct: [],
   currentSize: [],
   currentProduct_read: [],
@@ -33,6 +34,8 @@ export const state = () => ({
 
 
   size: {},
+
+  sizePrice: [],
 
   // createProductId: "",
 
@@ -55,7 +58,6 @@ export const state = () => ({
   },
 
 
-
   //Connect MAMP (socket)
   // apiCRUD: { baseURL: 'http://crud:8888/' }
 });
@@ -64,46 +66,64 @@ export const actions = {
 
 
   //CREATE
-  async handleAdd ({ commit }) {
+  async handleAdd({commit}) {
     const dialogCreate = true;
     commit('DIALOG_CREATE', dialogCreate);
 
 
-
     // let test = {
-    //   0: {
+    //   a: {
     //     ggg: 8,
     //     ttt: "vnut1"
     //   },
-    //   1: {
+    //   b: {
     //     ggg: 9,
     //     ttt: "vnut2"
     //   },
-    //
     // }
     //
-    // for (let x in test) {
+    // let obj = {
+    //   c: {
+    //     ggg: 10,
+    //     ttt: "vnut3"
+    //   },
+    // }
+    //
+    // let sizePrice = merge(test, obj)
+    // console.log(sizePrice)
+
+
+    // for (let x in sizePrice) {
     //   console.log(test[x]);
     // }
 
 
+  },
+
+
+  addSize({commit, state}, payload) {
+    let size = [
+      {
+        size: payload.size,
+        price: payload.price
+      }
+    ]
 
 
 
+    // let sizePrice = size.push(state.sizePrice)
+
+    const bbb = cloneDeep(state.sizePrice)
+
+    let sizePrice = concat(size, bbb)
+    console.log(sizePrice)
+
+    commit('SIZE_PRICE', sizePrice)
 
 
   },
 
-
-  addSize ({commit, state}, payload) {
-    let size = {
-      size: payload.size,
-      price: payload.price
-    }
-    console.log(size)
-  },
-
-  setCurrentCategoryFormCreate ({commit, state}, payload) {
+  setCurrentCategoryFormCreate({commit, state}, payload) {
     const currentProduct = {
       category_id: payload.id,
       name: state.currentProduct.name,
@@ -120,7 +140,7 @@ export const actions = {
     commit('VISIBLE_CATEGORY_FORM_CREATE', visibleCategoryFormCreate);
   },
 
-  setCurrentCategoryCard ({commit, state}, payload) {
+  setCurrentCategoryCard({commit, state}, payload) {
 
     commit('CURRENT_CATEGORY_CARD', payload);
 
@@ -133,7 +153,7 @@ export const actions = {
     commit('VISIBLE_CATEGORY_CARD', visibleCategoryCard);
   },
 
-  currentProductForm_createName( {commit, state}, e ) {
+  currentProductForm_createName({commit, state}, e) {
     const currentProduct = {
       category_id: state.currentProduct.category_id,
       name: e.target.value,
@@ -144,21 +164,21 @@ export const actions = {
     };
     commit('CURRENT_PRODUCT_CREATE', currentProduct)
   },
-  currentProductForm_createSize( {commit, state}, e ) {
+  currentProductForm_createSize({commit, state}, e) {
     const currentSize = {
       size: e.target.value,
       price: state.currentSize.price,
     };
     commit('CURRENT_SIZE_CREATE', currentSize)
   },
-  currentProductForm_createPrice( {commit, state}, e ) {
+  currentProductForm_createPrice({commit, state}, e) {
     const currentSize = {
       size: state.currentSize.size,
       price: e.target.value,
     };
     commit('CURRENT_SIZE_CREATE', currentSize)
   },
-  currentProductForm_createUnit( {commit, state}, e ) {
+  currentProductForm_createUnit({commit, state}, e) {
     const currentProduct = {
       category_id: state.currentProduct.category_id,
       name: state.currentProduct.name,
@@ -171,7 +191,7 @@ export const actions = {
   },
 
   //TODO с vue2-editor уже не нужно?
-  currentProductForm_createDescription( {commit, state}, e ) {
+  currentProductForm_createDescription({commit, state}, e) {
     const currentProduct = {
       category_id: state.currentProduct.category_id,
       name: state.currentProduct.name,
@@ -189,7 +209,7 @@ export const actions = {
   //   commit('IMAGE', image);
   // },
 
-  async createProduct ({ commit, state }) {
+  async createProduct({commit, state}) {
     try {
 
       const category_id = state.currentProduct.category_id;
@@ -209,7 +229,6 @@ export const actions = {
       commit('CREATE_PRODUCT_ID', responseProduct.id);//для изображений
 
 
-
       const sizeObj = {
         product_id: responseProduct.id,
         size: size,
@@ -227,7 +246,7 @@ export const actions = {
       const data = await state.allProduct.concat(response);
 
       const chunk = (data, size) =>
-        Array.from({ length: Math.ceil(data.length / size) }, (v, i) =>
+        Array.from({length: Math.ceil(data.length / size)}, (v, i) =>
           data.slice(i * size, i * size + size)
         );
       const paginateProduct = chunk(data, state.sizePage)[state.currentPage - 1];
@@ -254,16 +273,14 @@ export const actions = {
       commit('VISIBLE_CREATE_PRODUCT', visibleCreateProduct);
 
 
-
       // const dialogCreate = false;
       // commit('DIALOG_CREATE', dialogCreate)
     }
   },
 
 
-
   //READ
-  async handleView ({ commit, state }, id) {
+  async handleView({commit, state}, id) {
     const dialogRead = true;
     const data = await state.allProduct.find(item => item.id === id);
     const currentProduct_read = new Array(data);
@@ -275,9 +292,9 @@ export const actions = {
   //   const { data } = await this.$axios.$get(`${baseURL}/navigation-product`);
   //   commit('SET_PRODUCT', data);
   // },
-  async handleSizeChange({ commit, state }, sizePage) {
+  async handleSizeChange({commit, state}, sizePage) {
     const chunk = (data, size) =>
-      Array.from({ length: Math.ceil(data.length / size) }, (v, i) =>
+      Array.from({length: Math.ceil(data.length / size)}, (v, i) =>
         data.slice(i * size, i * size + size)
       );
     const paginateProduct = chunk(state.allProduct, sizePage)[state.currentPage - 1];
@@ -285,9 +302,9 @@ export const actions = {
     commit('PAGINATE_PRODUCT', paginateProduct);
   },
 
-  async handleCurrentChange({ state, commit }, currentPage) {
+  async handleCurrentChange({state, commit}, currentPage) {
     const chunk = (data, size) =>
-      Array.from({ length: Math.ceil(data.length / size) }, (v, i) =>
+      Array.from({length: Math.ceil(data.length / size)}, (v, i) =>
         data.slice(i * size, i * size + size)
       );
     const paginateProduct = chunk(state.allProduct, state.sizePage)[currentPage - 1];
@@ -296,12 +313,12 @@ export const actions = {
   },
 
   //TODO to rename Не хочет переименовываться
-  async getAllProduct ({ commit, state}, payload) {
-    const { data } = await this.$axios.$get('get-category/' + payload, state.apiCRUD);
+  async getAllProduct({commit, state}, payload) {
+    const {data} = await this.$axios.$get('get-category/' + payload, state.apiCRUD);
     const products = data[0].product;
 
     const chunk = (products, size) =>
-      Array.from({ length: Math.ceil(products.length / size) }, (v, i) =>
+      Array.from({length: Math.ceil(products.length / size)}, (v, i) =>
         products.slice(i * size, i * size + size)
       );
     const paginateProduct = chunk(products, state.sizePage)[state.currentPage - 1];
@@ -313,7 +330,7 @@ export const actions = {
 
 
   //UPDATE
-  async handleEdit ( { commit, state }, ID ) {
+  async handleEdit({commit, state}, ID) {
     const dialogUpdate = true;
     const product = await state.allProduct.find(item => item.id === ID);
 
@@ -343,7 +360,7 @@ export const actions = {
     commit('CURRENT_PRODUCT_UPDATE', currentProduct)
   },
 
-  setCurrentCategoryFormUpdate ({commit, state}, payload) {
+  setCurrentCategoryFormUpdate({commit, state}, payload) {
     const currentProduct = {
       id: state.currentProduct.id,
       category_id: payload.id,
@@ -363,7 +380,7 @@ export const actions = {
     commit('VISIBLE_CATEGORY_FORM_UPDATE', visibleCategoryFormUpdate);
   },
 
-  currentProductForm_updateName( {commit, state}, e ) {
+  currentProductForm_updateName({commit, state}, e) {
     const currentProduct = {
       id: state.currentProduct.id,
       category_id: state.currentProduct.category_id,
@@ -378,7 +395,7 @@ export const actions = {
     commit('CURRENT_PRODUCT_UPDATE', currentProduct)
   },
 
-  currentProductForm_updateSize( {commit, state}, e ) {
+  currentProductForm_updateSize({commit, state}, e) {
     const currentProduct = {
       id: state.currentProduct.id,
       category_id: state.currentProduct.category_id,
@@ -393,7 +410,7 @@ export const actions = {
     commit('CURRENT_PRODUCT_UPDATE', currentProduct)
   },
 
-  currentProductForm_updatePrice( {commit, state}, e ) {
+  currentProductForm_updatePrice({commit, state}, e) {
     const currentProduct = {
       id: state.currentProduct.id,
       category_id: state.currentProduct.category_id,
@@ -408,7 +425,7 @@ export const actions = {
     commit('CURRENT_PRODUCT_UPDATE', currentProduct)
   },
 
-  currentProductForm_updateUnit( {commit, state}, e ) {
+  currentProductForm_updateUnit({commit, state}, e) {
     const currentProduct = {
       id: state.currentProduct.id,
       category_id: state.currentProduct.category_id,
@@ -423,7 +440,7 @@ export const actions = {
     commit('CURRENT_PRODUCT_UPDATE', currentProduct)
   },
 
-  currentProductForm_updateDescription( {commit, state}, e ) {
+  currentProductForm_updateDescription({commit, state}, e) {
     const currentProduct = {
       id: state.currentProduct.id,
       category_id: state.currentProduct.category_id,
@@ -438,7 +455,7 @@ export const actions = {
     commit('CURRENT_PRODUCT_UPDATE', currentProduct)
   },
 
-  async updateProduct ({ commit, state }) {
+  async updateProduct({commit, state}) {
     try {
 
       const product_id = state.currentProduct.id;
@@ -475,11 +492,11 @@ export const actions = {
       await this.$axios.$put('update-price', priceObj, state.apiCRUD);
 
 
-      const { data } = await this.$axios.$get('get-all-product', state.apiCRUD);
+      const {data} = await this.$axios.$get('get-all-product', state.apiCRUD);
       commit('ALL_PRODUCT', data);
 
       const chunk = (data, size) =>
-        Array.from({ length: Math.ceil(data.length / size) }, (v, i) =>
+        Array.from({length: Math.ceil(data.length / size)}, (v, i) =>
           data.slice(i * size, i * size + size)
         );
       const paginateProduct = chunk(data, state.sizePage)[state.currentPage - 1];
@@ -500,7 +517,7 @@ export const actions = {
   },
 
   //DELETE
-  async handleDelete ({ commit, state }, ID){
+  async handleDelete({commit, state}, ID) {
     const dialogDelete = true;
     const product = await state.allProduct.find(item => item.id === ID);
 
@@ -524,13 +541,12 @@ export const actions = {
     }
 
 
-
     // const currentProduct_delete = new Array(product);// TODO ???
     commit('DIALOG_DELETE', dialogDelete);
     commit('CURRENT_PRODUCT_DELETE', currentProduct_delete)
   },
 
-  async deleteProduct ({ commit, state } ){
+  async deleteProduct({commit, state}) {
     try {
 
       const product_id = state.currentProduct_delete.id;
@@ -545,10 +561,10 @@ export const actions = {
       // await this.$axios.$get('delete-product/' + state.currentProduct_delete[0].id, state.apiCRUD);
       // const index = await state.allProduct.findIndex(item => item.id === state.currentProduct_delete[0].id);
       // const  data  = await state.allProduct.splice(index, 1);
-      const { data } = await this.$axios.$get('get-all-product', state.apiCRUD);
+      const {data} = await this.$axios.$get('get-all-product', state.apiCRUD);
 
       const chunk = (data, size) =>
-        Array.from({ length: Math.ceil(data.length / size) }, (v, i) =>
+        Array.from({length: Math.ceil(data.length / size)}, (v, i) =>
           data.slice(i * size, i * size + size)
         );
       const paginateProduct = chunk(data, state.sizePage)[state.currentPage - 1];
@@ -572,7 +588,7 @@ export const actions = {
 
 
   //SEARCH
-  getCurrentSearch( {commit, state}, e ) {
+  getCurrentSearch({commit, state}, e) {
     const currentSearch = {
       value: e.target.value
     };
@@ -582,26 +598,25 @@ export const actions = {
     commit('VISIBLE_PAGINATION', visiblePagination);//TODO I can't to see VISIBLE_PAGINATION in mutation
 
   },
-  searchFromTable({ commit, state }) {
-    const search = (text) => state.allProduct.filter(({ name }) => name.includes(text));
+  searchFromTable({commit, state}) {
+    const search = (text) => state.allProduct.filter(({name}) => name.includes(text));
     const result = search(state.currentSearch.value);
     commit('PAGINATE_PRODUCT', result);
   },
 
 
-
-  changeVisibleCategoryFormCreate ({commit, state}) {
+  changeVisibleCategoryFormCreate({commit, state}) {
     const visibleCategoryFormCreate = !state.visibleCategoryFormCreate;
     commit('VISIBLE_CATEGORY_FORM_CREATE', visibleCategoryFormCreate);
   },
 
-  changeVisibleCategoryFormUpdate ({commit, state}) {
+  changeVisibleCategoryFormUpdate({commit, state}) {
     const visibleCategoryFormUpdate = !state.visibleCategoryFormUpdate;
     commit('VISIBLE_CATEGORY_FORM_UPDATE', visibleCategoryFormUpdate);
   },
 
   //Close Form
-  dialogCreateClose ({ commit }) {
+  dialogCreateClose({commit}) {
     const dialogCreate = false;
     commit('DIALOG_CREATE', dialogCreate);
 
@@ -614,12 +629,12 @@ export const actions = {
     // const visibleSentImage = false;
     // commit('VISIBLE_SENT_IMAGE', visibleSentImage);
   },
-  dialogReadClose ({ commit }) {
+  dialogReadClose({commit}) {
     const dialogRead = false;
     commit('DIALOG_READ', dialogRead)
   },
 
-  dialogUpdateClose ({ commit, state }) {
+  dialogUpdateClose({commit, state}) {
     const dialogUpdate = false;
     commit('DIALOG_UPDATE', dialogUpdate);
 
@@ -630,7 +645,7 @@ export const actions = {
     commit('CURRENT_PRODUCT_CREATE', currentProduct);
   },
 
-  dialogDeleteClose ({ commit }) {
+  dialogDeleteClose({commit}) {
     const dialogDelete = false;
     commit('DIALOG_DELETE', dialogDelete);
   },
@@ -675,7 +690,8 @@ export const mutations = {
   CURRENT_CATEGORY_FORM_CREATE: (state, currentCategoryFormCreate) => state.currentCategoryFormCreate = currentCategoryFormCreate,
   CURRENT_CATEGORY_FORM_UPDATE: (state, currentCategoryFormUpdate) => state.currentCategoryFormUpdate = currentCategoryFormUpdate,
   CREATE_PRODUCT_ID: (state, createProductId) => state.createProductId = createProductId,
-  CURRENT_CATEGORY_CARD: (state, currentCategoryCard) => state.currentCategoryCard = currentCategoryCard
+  CURRENT_CATEGORY_CARD: (state, currentCategoryCard) => state.currentCategoryCard = currentCategoryCard,
+  SIZE_PRICE: (state, sizePrice) => state.sizePrice = sizePrice,
 };
 
 export const getters = {
