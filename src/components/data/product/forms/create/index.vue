@@ -133,15 +133,14 @@
 
 
                 <div >
-
-                  <div class="flex">
-                    <div class="">
+                  <div  class="flex">
+                    <div>
                       <label for="size" class="block text-sm font-medium leading-5 text-gray-100">
                         Размер:
                       </label>
                       <div class="m-2 rounded-md shadow-sm">
                         <input
-                          :value="currentSize.size"
+                          :value="currentProduct.size"
                           @input="currentProductForm_createSize"
                           id="size"
                           class="rounded-md pl-2 form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-8">
@@ -153,7 +152,7 @@
                       </label>
                       <div class="m-2 rounded-md shadow-sm">
                         <input
-                          :value="currentSize.price"
+                          :value="currentProduct.price"
                           @input="currentProductForm_createPrice"
                           id="price"
                           class="rounded-md pl-2 form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-8">
@@ -176,6 +175,30 @@
                   </div>
                 </div>
 
+                <div v-for="ggg in sizePrice" :key="ggg.id" class="flex">
+                  <div  >
+                    <label for="size" class="block text-sm font-medium leading-5 text-gray-100">
+                      Размер:
+                    </label>
+                    <div class="m-2 rounded-md shadow-sm">
+                      <p class="rounded-md pl-2 text-gray-100 text- block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-8">
+                        {{ ggg.size}}
+                      </p>
+
+                    </div>
+                  </div>
+                  <div class=" ml-4">
+                    <label for="price" class="block text-sm font-medium leading-5 text-gray-100">
+                      Цена:
+                    </label>
+                    <div class="m-2 rounded-md shadow-sm">
+                      <p class="rounded-md pl-2 text-gray-100 block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-8">
+                        {{ ggg.price }}
+                      </p>
+                    </div>
+                  </div>
+
+                </div>
 
 
 
@@ -388,6 +411,7 @@ export default {
       visibleCreateProduct: 'data/product/visibleCreateProduct',
       // visibleSentImage: 'data/product/visibleSentImage',
       createProductId: 'data/product/createProductId',
+      sizePrice: 'data/product/sizePrice'
     }),
   },
 

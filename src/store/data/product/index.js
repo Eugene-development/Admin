@@ -113,9 +113,21 @@ export const actions = {
 
     // let sizePrice = size.push(state.sizePrice)
 
-    const bbb = cloneDeep(state.sizePrice)
+    const cloneSize = cloneDeep(state.sizePrice)
+    // const emptySize = [
+    //   {
+    //     size: null,
+    //     price: null
+    //   }
+    // ]
 
-    let sizePrice = concat(size, bbb)
+
+    // let sizeReverse = cloneSize.reverse()
+
+    let sizePrice = concat(size, cloneSize)
+    // let sizePrice = concat(emptySize, sizeReverse)
+
+
     console.log(sizePrice)
 
     commit('SIZE_PRICE', sizePrice)
@@ -725,4 +737,5 @@ export const getters = {
   // visibleSentImage: state => state.visibleSentImage,
 
   createProductId: state => state.createProductId,
+  sizePrice: state => state.sizePrice,
 };
