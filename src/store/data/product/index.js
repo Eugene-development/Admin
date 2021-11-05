@@ -1,4 +1,4 @@
-import {cloneDeep, merge, concat} from 'lodash';
+import {cloneDeep, forEach, concat} from 'lodash';
 
 export const state = () => ({
   allProduct: [],
@@ -108,31 +108,12 @@ export const actions = {
         price: payload.price
       }
     ]
-
-
-
     // let sizePrice = size.push(state.sizePrice)
-
     const cloneSize = cloneDeep(state.sizePrice)
-    // const emptySize = [
-    //   {
-    //     size: null,
-    //     price: null
-    //   }
-    // ]
-
-
     // let sizeReverse = cloneSize.reverse()
-
     let sizePrice = concat(size, cloneSize)
     // let sizePrice = concat(emptySize, sizeReverse)
-
-
-    console.log(sizePrice)
-
     commit('SIZE_PRICE', sizePrice)
-
-
   },
 
   setCurrentCategoryFormCreate({commit, state}, payload) {
@@ -226,10 +207,11 @@ export const actions = {
 
       const category_id = state.currentProduct.category_id;
       const name = state.currentProduct.name;
-      const size = state.currentProduct.size;
-      const price = state.currentProduct.price;
+      // const price = state.currentProduct.price;
       const unit = state.currentProduct.unit;
       const description = state.currentProduct.description;
+
+      const size = state.sizePrice;
 
       const productObj = {
         category_id: category_id,
@@ -240,18 +222,52 @@ export const actions = {
       const responseProduct = await this.$axios.$post('add-product', productObj, state.apiCRUD);
       commit('CREATE_PRODUCT_ID', responseProduct.id);//для изображений
 
+      for(let value of size) {
+        const sizeObj = {
+          product_id: responseProduct.id,
+          size: value.size,
+        };
 
-      const sizeObj = {
-        product_id: responseProduct.id,
-        size: size,
-      };
-      const responseSize = await this.$axios.$post('add-size', sizeObj, state.apiCRUD);
+        let responseSize = await this.$axios.$post('add-size', sizeObj, state.apiCRUD);
 
-      const priceObj = {
-        size_id: responseSize.id,
-        price: price,
-      };
-      await this.$axios.$post('add-price', priceObj, state.apiCRUD);
+        const priceObj = {
+          size_id: responseSize.id,
+          price: value.price,
+        };
+        let response = await this.$axios.$post('add-price', priceObj, state.apiCRUD);
+        console.log(response)
+      }
+
+
+
+      // forEach(size, (value) => {
+      //   const sizeObj = {
+      //     product_id: responseProduct.id,
+      //     size: value.size,
+      //   };
+      //
+      //   let responseSize = await this.$axios.$post('add-size', sizeObj, state.apiCRUD);
+      //   console.log(responseSize)
+      //
+      //
+      //   const priceObj = {
+      //     size_id: responseSize.id,
+      //     price: value.price,
+      //   };
+      //
+      //
+      //   await this.$axios.$post('add-price', priceObj, state.apiCRUD);
+      //
+      // });
+      //
+
+
+
+
+
+
+
+
 
       // await this.$axios.$post('/upload-image', state.image ,state.apiCROPPER)
 
