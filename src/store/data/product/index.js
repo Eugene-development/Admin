@@ -299,7 +299,7 @@ export const actions = {
 
       const sizePrice =  []
       commit('SIZE_PRICE', sizePrice)
-      //TODO Так очищать форму может?
+      //TODO Так очищать форму может? Предпочтительно
     }
   },
 
@@ -308,6 +308,7 @@ export const actions = {
   async handleView({commit, state}, id) {
     const dialogRead = true;
     const data = await state.allProduct.find(item => item.id === id);
+    console.log(data)
     const currentProduct_read = new Array(data);
     commit('DIALOG_READ', dialogRead);
     commit('CURRENT_PRODUCT_READ', data)

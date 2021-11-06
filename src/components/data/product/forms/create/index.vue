@@ -175,14 +175,14 @@
                   </div>
                 </div>
 
-                <div v-for="ggg in sizePrice" :key="ggg.id" class="flex">
+                <div v-for="sizePrice in sizePrice" :key="sizePrice.id" class="flex">
                   <div  >
                     <label for="size" class="block text-sm font-medium leading-5 text-gray-100">
                       Размер:
                     </label>
                     <div class="m-2 rounded-md shadow-sm">
                       <p class="rounded-md pl-2 text-gray-100 text- block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-8">
-                        {{ ggg.size}}
+                        {{ sizePrice.size}}
                       </p>
 
                     </div>
@@ -193,7 +193,7 @@
                     </label>
                     <div class="m-2 rounded-md shadow-sm">
                       <p class="rounded-md pl-2 text-gray-100 block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-8">
-                        {{ ggg.price }}
+                        {{ sizePrice.price }}
                       </p>
                     </div>
                   </div>
@@ -442,9 +442,6 @@ export default {
       this.dialogCreateClose();
     },
 
-
-
-
     onFormReset() {
       if (this.cropper) {
         this.cropper.destroy()
@@ -456,7 +453,6 @@ export default {
       this.visibleSendImage = false;
       // this.$refs.form.reset()
     },
-
 
     onFileSelected(event) {
       let image = event.target.files[0];
@@ -503,8 +499,6 @@ export default {
       // this.visibleSentImage = true;
     },
 
-
-
     ...mapActions({
       addSize: 'data/product/addSize',
       // multiCreateProductDialogCreateClose: 'data/product/multiCreateProductDialogCreateClose',
@@ -520,7 +514,6 @@ export default {
       changeVisibleCategoryFormCreate: 'data/product/changeVisibleCategoryFormCreate',
       setCurrentCategoryFormCreate: 'data/product/setCurrentCategoryFormCreate',
     }),
-
 
 
     // upload(){
