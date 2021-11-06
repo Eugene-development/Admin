@@ -52,7 +52,6 @@ export const state = () => ({
   apiCRUD: {
     baseURL: process.env.API_CRUD
   },
-
   apiIMAGE: {
     baseURL: process.env.API_IMAGE
   },
@@ -295,13 +294,12 @@ export const actions = {
       const currentCategoryFormCreate = '---';
       commit('CURRENT_CATEGORY_FORM_CREATE', currentCategoryFormCreate);
 
-
       const visibleCreateProduct = !state.visibleCreateProduct;
       commit('VISIBLE_CREATE_PRODUCT', visibleCreateProduct);
 
-
-      // const dialogCreate = false;
-      // commit('DIALOG_CREATE', dialogCreate)
+      const sizePrice =  []
+      commit('SIZE_PRICE', sizePrice)
+      //TODO Так очищать форму может?
     }
   },
 
