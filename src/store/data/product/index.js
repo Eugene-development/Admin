@@ -234,8 +234,7 @@ export const actions = {
           size_id: responseSize.id,
           price: value.price,
         };
-        let response = await this.$axios.$post('add-price', priceObj, state.apiCRUD);
-        console.log(response)
+        await this.$axios.$post('add-price', priceObj, state.apiCRUD);
       }
 
 
@@ -271,7 +270,7 @@ export const actions = {
 
       // await this.$axios.$post('/upload-image', state.image ,state.apiCROPPER)
 
-      const data = await state.allProduct.concat(response);
+      const data = await state.paginateProduct.concat(responseProduct);
 
       const chunk = (data, size) =>
         Array.from({length: Math.ceil(data.length / size)}, (v, i) =>
