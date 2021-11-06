@@ -308,8 +308,7 @@ export const actions = {
   async handleView({commit, state}, id) {
     const dialogRead = true;
     const data = await state.allProduct.find(item => item.id === id);
-    console.log(data)
-    const currentProduct_read = new Array(data);
+    // const currentProduct_read = new Array(data);
     commit('DIALOG_READ', dialogRead);
     commit('CURRENT_PRODUCT_READ', data)
   },
@@ -358,32 +357,45 @@ export const actions = {
   //UPDATE
   async handleEdit({commit, state}, ID) {
     const dialogUpdate = true;
+    commit('DIALOG_UPDATE', dialogUpdate);
+
+
     const product = await state.allProduct.find(item => item.id === ID);
+
+
+
+
 
     const id = product.id;
     const category_id = product.category_id;
     const name = product.name;
-    const size_id = product.size[0].id
-    const size = product.size[0].size;
-    const price = product.size[0].price.price;
-    const price_id = product.size[0].price.id;
     const unit = product.unit;
     const description = product.description;
+
+    const sizePrice = product.size;
+    commit('SIZE_PRICE', sizePrice)
+
+    // const size_id = product.size[0].id;
+    // const size = product.size[0].size;
+    // const price = product.size[0].price.price;
+    // const price_id = product.size[0].price.id;
 
     const currentProduct = {
       id: id,
       category_id: category_id,
       name: name,
-      size: size,
-      size_id: size_id,
-      price_id: price_id,
-      price: price,
+      // size: size,
+      // size_id: size_id,
+      // price_id: price_id,
+      // price: price,
       unit: unit,
       description: description
     }
-
-    commit('DIALOG_UPDATE', dialogUpdate);
     commit('CURRENT_PRODUCT_UPDATE', currentProduct)
+  },
+
+  handleEditSizePrice ({commit, state}, payload) {
+    console.log(payload)
   },
 
   setCurrentCategoryFormUpdate({commit, state}, payload) {

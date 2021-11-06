@@ -126,27 +126,79 @@
 
 
 
-                  <label class="mt-2 block text-sm font-medium leading-5 text-gray-100" for="first_name">
-                    Размер
-                  </label>
-                  <div class="m-2 rounded-md shadow-sm">
-                    <input
-                      id="size"
-                      :value="currentProduct.size"
-                      class="rounded-md pl-2 form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-8"
-                      @input="currentProductForm_updateSize">
+
+
+
+
+
+                  <div v-for="sizePrice in sizePrice" :key="sizePrice.id" class="flex">
+                    <div  >
+                      <label  class="block text-sm font-medium leading-5 text-gray-100">
+                        Размер:
+                      </label>
+                      <div class="m-2 rounded-md shadow-sm">
+                        <p class="rounded-md pl-2 text-gray-100 text- block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-8">
+                          {{ sizePrice.size}}
+                        </p>
+
+                      </div>
+                    </div>
+                    <div class=" ml-4">
+                      <label  class="block text-sm font-medium leading-5 text-gray-100">
+                        Цена:
+                      </label>
+                      <div class="m-2 rounded-md shadow-sm">
+                        <p class="rounded-md pl-2 text-gray-100 block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-8">
+                          {{ sizePrice.price.price }}
+                        </p>
+                      </div>
+                    </div>
+                    <button
+                      @click="handleEditSizePrice ([sizePrice.id, sizePrice.price.id])"
+                      type="button"
+                      class="inline-flex items-center justify-center px-4 py-2 border border-transparent font-medium rounded-md text-blue-500 bg-blue-50 hover:bg-blue-200 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-blue-200 transition ease-in-out duration-150 sm:text-sm sm:leading-5">
+                      <svg
+                        class=" h-4 w-4  duration-150"
+                        xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M4 2a1 1 0 011 1v2.101a7.002 7.002 0 0111.601 2.566 1 1 0 11-1.885.666A5.002 5.002 0 005.999 7H9a1 1 0 010 2H4a1 1 0 01-1-1V3a1 1 0 011-1zm.008 9.057a1 1 0 011.276.61A5.002 5.002 0 0014.001 13H11a1 1 0 110-2h5a1 1 0 011 1v5a1 1 0 11-2 0v-2.101a7.002 7.002 0 01-11.601-2.566 1 1 0 01.61-1.276z" clip-rule="evenodd" />
+                      </svg>
+                    </button>
+
                   </div>
 
-                  <label class="mt-2 block text-sm font-medium leading-5 text-gray-100" for="first_name">
-                    Цена
-                  </label>
-                  <div class="m-2 rounded-md shadow-sm">
-                    <input
-                      id="price"
-                      :value="currentProduct.price"
-                      class="rounded-md pl-2 form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-8"
-                      @input="currentProductForm_updatePrice">
-                  </div>
+
+
+<!--                  <label class="mt-2 block text-sm font-medium leading-5 text-gray-100" for="first_name">-->
+<!--                    Размер-->
+<!--                  </label>-->
+<!--                  <div class="m-2 rounded-md shadow-sm">-->
+<!--                    <input-->
+<!--                      id="size"-->
+<!--                      :value="currentProduct.size"-->
+<!--                      class="rounded-md pl-2 form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-8"-->
+<!--                      @input="currentProductForm_updateSize">-->
+<!--                  </div>-->
+
+<!--                  <label class="mt-2 block text-sm font-medium leading-5 text-gray-100" for="first_name">-->
+<!--                    Цена-->
+<!--                  </label>-->
+<!--                  <div class="m-2 rounded-md shadow-sm">-->
+<!--                    <input-->
+<!--                      id="price"-->
+<!--                      :value="currentProduct.price"-->
+<!--                      class="rounded-md pl-2 form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-8"-->
+<!--                      @input="currentProductForm_updatePrice">-->
+<!--                  </div>-->
+
+
+
+
+
+
+
+
+
+
 
                   <label for="first_name" class="block text-sm font-medium leading-5 text-gray-100">
                     Единица измерения
@@ -240,7 +292,7 @@ export default {
 
       changeVisibleCategoryFormUpdate: 'data/product/changeVisibleCategoryFormUpdate',
       setCurrentCategoryFormUpdate: 'data/product/setCurrentCategoryFormUpdate',
-
+      handleEditSizePrice: 'data/product/handleEditSizePrice',
     })
   },
 
@@ -254,6 +306,7 @@ export default {
       allCategory: 'data/navigation/catalog/category/allCategory',
       visibleCategoryFormUpdate: 'data/product/visibleCategoryFormUpdate',
       currentCategoryFormUpdate: 'data/product/currentCategoryFormUpdate',
+      sizePrice: 'data/product/sizePrice'
     }),
   },
 
