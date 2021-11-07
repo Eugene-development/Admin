@@ -173,7 +173,7 @@
   <div class="m-2 rounded-md shadow-sm">
     <input
       id="size"
-      :value="currentProduct.size"
+      :value="currentSize.size"
       class="rounded-md pl-2 form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-8"
       @input="currentProductForm_updateSize">
   </div>
@@ -184,7 +184,7 @@
   <div class="m-2 rounded-md shadow-sm">
     <input
       id="price"
-      :value="currentProduct.price"
+      :value="currentSize.price"
       class="rounded-md pl-2 form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-8"
       @input="currentProductForm_updatePrice">
   </div>
@@ -304,6 +304,7 @@ export default {
     ...mapGetters({
       dialogUpdate: 'data/product/dialogUpdate',
       currentProduct: 'data/product/currentProduct',
+      currentSize: 'data/product/currentSize',
       allCategory: 'data/navigation/catalog/category/allCategory',
       visibleCategoryFormUpdate: 'data/product/visibleCategoryFormUpdate',
       currentCategoryFormUpdate: 'data/product/currentCategoryFormUpdate',

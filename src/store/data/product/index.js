@@ -13,7 +13,7 @@ export const state = () => ({
   visibleDownloadImage: true,
   visibleCropImage: false,
   visibleSendImage: false,
-  visibleSizePrice: true,
+  visibleSizePrice: false,
   // visibleSentImage: false,
 
   sizePage: 20,
@@ -399,18 +399,39 @@ export const actions = {
     const visibleSizePrice = !state.visibleSizePrice;
     commit('VISIBLE_SIZE_PRICE', visibleSizePrice);
 
-    console.log(payload)
+    const currentSize = {
+      size: payload.size,
+      price: payload.price.price,
+    }
+
+    console.log(currentSize)
   },
+
+  currentProductForm_updateSize({commit, state}, e) {
+    const currentSize = {
+      size: e.target.value,
+      price: state.currentSize.price,
+    };
+    commit('CURRENT_SIZE_UPDATE', currentSize)
+  },
+  currentProductForm_updatePrice({commit, state}, e) {
+    const currentSize = {
+      size: state.currentSize.size,
+      price: e.target.value,
+    };
+    commit('CURRENT_SIZE_UPDATE', currentSize)
+  },
+
 
   setCurrentCategoryFormUpdate({commit, state}, payload) {
     const currentProduct = {
       id: state.currentProduct.id,
       category_id: payload.id,
       name: state.currentProduct.name,
-      size_id: state.currentProduct.size_id,
-      price_id: state.currentProduct.price_id,
-      size: state.currentProduct.size,
-      price: state.currentProduct.price,
+      // size_id: state.currentProduct.size_id,
+      // price_id: state.currentProduct.price_id,
+      // size: state.currentProduct.size,
+      // price: state.currentProduct.price,
       unit: state.currentProduct.unit,
       description: state.currentProduct.description
     };
@@ -427,55 +448,55 @@ export const actions = {
       id: state.currentProduct.id,
       category_id: state.currentProduct.category_id,
       name: e.target.value,
-      size_id: state.currentProduct.size_id,
-      price_id: state.currentProduct.price_id,
-      size: state.currentProduct.size,
-      price: state.currentProduct.price,
+      // size_id: state.currentProduct.size_id,
+      // price_id: state.currentProduct.price_id,
+      // size: state.currentProduct.size,
+      // price: state.currentProduct.price,
       unit: state.currentProduct.unit,
       description: state.currentProduct.description,
     };
     commit('CURRENT_PRODUCT_UPDATE', currentProduct)
   },
 
-  currentProductForm_updateSize({commit, state}, e) {
-    const currentProduct = {
-      id: state.currentProduct.id,
-      category_id: state.currentProduct.category_id,
-      name: state.currentProduct.name,
-      size_id: state.currentProduct.size_id,
-      price_id: state.currentProduct.price_id,
-      size: e.target.value,
-      price: state.currentProduct.price,
-      unit: state.currentProduct.unit,
-      description: state.currentProduct.description,
-    };
-    commit('CURRENT_PRODUCT_UPDATE', currentProduct)
-  },
-
-  currentProductForm_updatePrice({commit, state}, e) {
-    const currentProduct = {
-      id: state.currentProduct.id,
-      category_id: state.currentProduct.category_id,
-      name: state.currentProduct.name,
-      size_id: state.currentProduct.size_id,
-      price_id: state.currentProduct.price_id,
-      size: state.currentProduct.size,
-      price: e.target.value,
-      unit: state.currentProduct.unit,
-      description: state.currentProduct.description,
-    };
-    commit('CURRENT_PRODUCT_UPDATE', currentProduct)
-  },
+  // currentProductForm_updateSize({commit, state}, e) {
+  //   const currentProduct = {
+  //     id: state.currentProduct.id,
+  //     category_id: state.currentProduct.category_id,
+  //     name: state.currentProduct.name,
+  //     size_id: state.currentProduct.size_id,
+  //     price_id: state.currentProduct.price_id,
+  //     size: e.target.value,
+  //     price: state.currentProduct.price,
+  //     unit: state.currentProduct.unit,
+  //     description: state.currentProduct.description,
+  //   };
+  //   commit('CURRENT_PRODUCT_UPDATE', currentProduct)
+  // },
+  //
+  // currentProductForm_updatePrice({commit, state}, e) {
+  //   const currentProduct = {
+  //     id: state.currentProduct.id,
+  //     category_id: state.currentProduct.category_id,
+  //     name: state.currentProduct.name,
+  //     size_id: state.currentProduct.size_id,
+  //     price_id: state.currentProduct.price_id,
+  //     size: state.currentProduct.size,
+  //     price: e.target.value,
+  //     unit: state.currentProduct.unit,
+  //     description: state.currentProduct.description,
+  //   };
+  //   commit('CURRENT_PRODUCT_UPDATE', currentProduct)
+  // },
 
   currentProductForm_updateUnit({commit, state}, e) {
     const currentProduct = {
       id: state.currentProduct.id,
       category_id: state.currentProduct.category_id,
       name: state.currentProduct.name,
-      size_id: state.currentProduct.size_id,
-      price_id: state.currentProduct.price_id,
-      size: state.currentProduct.size,
-      price: state.currentProduct.price,
+      // size_id: state.currentProduct.size_id,
+      // price_id: state.currentProduct.price_id,
+      // size: state.currentProduct.size,
+      // price: state.currentProduct.price,
       unit: e.target.value,
       description: state.currentProduct.description,
     };
@@ -487,10 +508,10 @@ export const actions = {
       id: state.currentProduct.id,
       category_id: state.currentProduct.category_id,
       name: state.currentProduct.name,
-      size_id: state.currentProduct.size_id,
-      price_id: state.currentProduct.price_id,
-      size: state.currentProduct.size,
-      price: state.currentProduct.price,
+      // size_id: state.currentProduct.size_id,
+      // price_id: state.currentProduct.price_id,
+      // size: state.currentProduct.size,
+      // price: state.currentProduct.price,
       unit: state.currentProduct.unit,
       description: e.target.value,
     };
@@ -503,10 +524,10 @@ export const actions = {
       const product_id = state.currentProduct.id;
       const category_id = state.currentProduct.category_id;
       const name = state.currentProduct.name;
-      const size_id = state.currentProduct.size_id;
-      const size = state.currentProduct.size;
-      const price_id = state.currentProduct.price_id;
-      const price = state.currentProduct.price;
+      // const size_id = state.currentProduct.size_id;
+      // const size = state.currentProduct.size;
+      // const price_id = state.currentProduct.price_id;
+      // const price = state.currentProduct.price;
       const unit = state.currentProduct.unit;
       const description = state.currentProduct.description;
 
@@ -716,6 +737,7 @@ export const mutations = {
   PAGINATE_SIZE_PAGE: (state, sizePage) => state.sizePage = sizePage,
   CURRENT_PRODUCT_CREATE: (state, currentProduct) => state.currentProduct = currentProduct,
   CURRENT_SIZE_CREATE: (state, currentSize) => state.currentSize = currentSize,
+  CURRENT_SIZE_UPDATE: (state, currentSize) => state.currentSize = currentSize,
   CURRENT_PRODUCT_READ: (state, currentProduct_read) => state.currentProduct_read = currentProduct_read,
   CURRENT_PRODUCT_UPDATE: (state, currentProduct) => state.currentProduct = currentProduct,
   CURRENT_PRODUCT_DELETE: (state, currentProduct_delete) => state.currentProduct_delete = currentProduct_delete,
