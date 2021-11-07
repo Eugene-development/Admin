@@ -308,7 +308,7 @@ export const actions = {
   //READ
   async handleView({commit, state}, id) {
     const dialogRead = true;
-    const data = await state.allProduct.find(item => item.id === id);
+    const data = await state.allProduct.find(item => item.id === id);//TODO а в allProduct ли искать?
     // const currentProduct_read = new Array(data);
     commit('DIALOG_READ', dialogRead);
     commit('CURRENT_PRODUCT_READ', data)
@@ -405,8 +405,6 @@ export const actions = {
       price_id: payload.price.id,
       price: payload.price.price,
     }
-
-    console.log(currentSize)
 
     commit('CURRENT_SIZE_UPDATE', currentSize)
   },
@@ -593,40 +591,49 @@ export const actions = {
     const product = await state.allProduct.find(item => item.id === ID);
 
 
+
     const id = product.id;
     const name = product.name;
-    const size_id = product.size[0].id
-    const price = product.size[0].price.price;
-    const price_id = product.size[0].price.id;
+    // const size_id = product.size[0].id
+    // const price = product.size[0].price.price;
+    // const price_id = product.size[0].price.id;
     const unit = product.unit;
     const description = product.description;
 
     const currentProduct_delete = {
       id: id,
       name: name,
-      size_id: size_id,
-      price_id: price_id,
-      price: price,
       unit: unit,
       description: description
     }
+
+    const currentSize = product.size
 
 
     // const currentProduct_delete = new Array(product);// TODO ???
     commit('DIALOG_DELETE', dialogDelete);
     commit('CURRENT_PRODUCT_DELETE', currentProduct_delete)
+    commit('CURRENT_SIZE_DELETE', currentSize)
   },
 
   async deleteProduct({commit, state}) {
     try {
 
       const product_id = state.currentProduct_delete.id;
-      const size_id = state.currentProduct_delete.size_id;
-      const price_id = state.currentProduct_delete.price_id;
+      const currentSize = state.currentSize
+
+      // const size_id = state.currentProduct_delete.size_id;
+      // const price_id = state.currentProduct_delete.price_id;
 
       await this.$axios.$delete('delete-image/' + product_id, state.apiIMAGE);
-      await this.$axios.$delete('delete-price/' + price_id, state.apiCRUD);
-      await this.$axios.$delete('delete-size/' + size_id, state.apiCRUD);
+
+      for(let value of currentSize) {
+        await this.$axios.$delete('delete-price/' + value.price.id, state.apiCRUD);
+      }
+      for(let value of currentSize) {
+        await this.$axios.$delete('delete-size/' + value.id, state.apiCRUD);
+      }
+
       await this.$axios.$delete('delete-product/' + product_id, state.apiCRUD);
 
       // await this.$axios.$get('delete-product/' + state.currentProduct_delete[0].id, state.apiCRUD);
@@ -732,7 +739,6 @@ export const mutations = {
       name: state.currentProduct.name,
       size: state.currentProduct.size,
       price: state.currentProduct.price,
-      // price: state.currentProduct.size[0].price.price,//TODO при обновлении товара показывает цену
       unit: state.currentProduct.unit,
       description: state.content
     };
@@ -746,6 +752,7 @@ export const mutations = {
   CURRENT_PRODUCT_CREATE: (state, currentProduct) => state.currentProduct = currentProduct,
   CURRENT_SIZE_CREATE: (state, currentSize) => state.currentSize = currentSize,
   CURRENT_SIZE_UPDATE: (state, currentSize) => state.currentSize = currentSize,
+  CURRENT_SIZE_DELETE: (state, currentSize) => state.currentSize = currentSize,
   CURRENT_PRODUCT_READ: (state, currentProduct_read) => state.currentProduct_read = currentProduct_read,
   CURRENT_PRODUCT_UPDATE: (state, currentProduct) => state.currentProduct = currentProduct,
   CURRENT_PRODUCT_DELETE: (state, currentProduct_delete) => state.currentProduct_delete = currentProduct_delete,
