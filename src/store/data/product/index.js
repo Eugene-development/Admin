@@ -13,6 +13,7 @@ export const state = () => ({
   visibleDownloadImage: true,
   visibleCropImage: false,
   visibleSendImage: false,
+  visibleSizePrice: true,
   // visibleSentImage: false,
 
   sizePage: 20,
@@ -395,6 +396,9 @@ export const actions = {
   },
 
   handleEditSizePrice ({commit, state}, payload) {
+    const visibleSizePrice = !state.visibleSizePrice;
+    commit('VISIBLE_SIZE_PRICE', visibleSizePrice);
+
     console.log(payload)
   },
 
@@ -724,6 +728,7 @@ export const mutations = {
   VISIBLE_CATEGORY_FORM_UPDATE: (state, visibleCategoryFormUpdate) => state.visibleCategoryFormUpdate = visibleCategoryFormUpdate,
   VISIBLE_CATEGORY_CARD: (state, visibleCategoryCard) => state.visibleCategoryCard = visibleCategoryCard,
   VISIBLE_CREATE_PRODUCT: (state, visibleCreateProduct) => state.visibleCreateProduct = visibleCreateProduct,
+  VISIBLE_SIZE_PRICE: (state, visibleSizePrice) => state.visibleSizePrice = visibleSizePrice,
   // VISIBLE_SENT_IMAGE: (state, visibleSentImage) => state.visibleSentImage = visibleSentImage,
   CURRENT_CATEGORY_FORM_CREATE: (state, currentCategoryFormCreate) => state.currentCategoryFormCreate = currentCategoryFormCreate,
   CURRENT_CATEGORY_FORM_UPDATE: (state, currentCategoryFormUpdate) => state.currentCategoryFormUpdate = currentCategoryFormUpdate,
@@ -760,6 +765,7 @@ export const getters = {
   visibleCategoryFormUpdate: state => state.visibleCategoryFormUpdate,
   visibleCreateProduct: state => state.visibleCreateProduct,
   visibleCategoryCard: state => state.visibleCategoryCard,
+  visibleSizePrice: state => state.visibleSizePrice,
   // visibleSentImage: state => state.visibleSentImage,
 
   createProductId: state => state.createProductId,
