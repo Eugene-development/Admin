@@ -400,23 +400,31 @@ export const actions = {
     commit('VISIBLE_SIZE_PRICE', visibleSizePrice);
 
     const currentSize = {
+      size_id : payload.id,
       size: payload.size,
+      price_id: payload.price.id,
       price: payload.price.price,
     }
 
     console.log(currentSize)
+
+    commit('CURRENT_SIZE_UPDATE', currentSize)
   },
 
   currentProductForm_updateSize({commit, state}, e) {
     const currentSize = {
+      size_id : state.currentSize.size_id,
       size: e.target.value,
+      price_id : state.currentSize.price_id,
       price: state.currentSize.price,
     };
     commit('CURRENT_SIZE_UPDATE', currentSize)
   },
   currentProductForm_updatePrice({commit, state}, e) {
     const currentSize = {
+      size_id : state.currentSize.size_id,
       size: state.currentSize.size,
+      price_id : state.currentSize.price_id,
       price: e.target.value,
     };
     commit('CURRENT_SIZE_UPDATE', currentSize)
@@ -524,10 +532,10 @@ export const actions = {
       const product_id = state.currentProduct.id;
       const category_id = state.currentProduct.category_id;
       const name = state.currentProduct.name;
-      // const size_id = state.currentProduct.size_id;
-      // const size = state.currentProduct.size;
-      // const price_id = state.currentProduct.price_id;
-      // const price = state.currentProduct.price;
+      const size_id = state.currentSize.size_id;
+      const size = state.currentSize.size;
+      const price_id = state.currentSize.price_id;
+      const price = state.currentSize.price;
       const unit = state.currentProduct.unit;
       const description = state.currentProduct.description;
 
