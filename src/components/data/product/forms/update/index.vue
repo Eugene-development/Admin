@@ -130,34 +130,34 @@
                 </div>
 
 
-                <div v-for="currentSizePrice in sizePrice" :key="sizePrice.id" class="flex">
+                <div v-for="(currentSizePrice, idx) in sizePrice" :key="sizePrice.id" class="flex mt-1">
                   <div>
-                    <label class="block text-sm font-medium leading-5 text-gray-100">
-                      Размер:
-                    </label>
-                    <div class="m-2 rounded-md shadow-sm">
+<!--                    <label class="block text-sm font-medium leading-5 text-gray-100">-->
+<!--                      Размер:-->
+<!--                    </label>-->
+                    <div class="rounded-md shadow-sm">
                       <p
                         class="rounded-md pl-2 text-gray-100 text- block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-8">
-                        {{ currentSizePrice.size }}
+                        {{ idx + 1 }}. Размер - {{ currentSizePrice.size }},
                       </p>
 
                     </div>
                   </div>
                   <div class=" ml-4">
-                    <label class="block text-sm font-medium leading-5 text-gray-100">
-                      Цена:
-                    </label>
-                    <div class="m-2 rounded-md shadow-sm">
+<!--                    <label class="block text-sm font-medium leading-5 text-gray-100">-->
+<!--                      Цена:-->
+<!--                    </label>-->
+                    <div class="rounded-md shadow-sm">
                       <p
-                        class="rounded-md pl-2 text-gray-100 block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-8">
-                        {{ currentSizePrice.price.price }}
+                        class="rounded-md text-gray-100 block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-8">
+                        цена - {{ currentSizePrice.price.price }}
                       </p>
                     </div>
                   </div>
                   <button
                     @click="handleEditSizePrice (currentSizePrice)"
                     type="button"
-                    class="inline-flex items-center justify-center px-4 py-2 border border-transparent font-medium rounded-md text-blue-500 bg-blue-50 hover:bg-blue-200 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-blue-200 transition ease-in-out duration-150 sm:text-sm sm:leading-5">
+                    class="inline-flex items-center justify-center m-2 px-2 py-1 border border-transparent font-medium rounded-md text-blue-500 bg-blue-50 hover:bg-blue-200 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-blue-200 transition ease-in-out duration-150 sm:text-sm sm:leading-5">
                     <svg
                       class=" h-4 w-4  duration-150"
                       xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">

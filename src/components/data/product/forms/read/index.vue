@@ -68,7 +68,7 @@
                 </dt>
                 <br>
                 <dd v-for="(sizePrice, idx) in currentProduct_read.size" :key="sizePrice.id" class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2">
-                  {{idx+1}}. {{ sizePrice.size }} - {{ sizePrice.price.price }} р/{{ currentProduct_read.unit }}
+                  {{ idx + 1 }}. {{ sizePrice.size }} - {{ sizePrice.price.price }} р/{{ currentProduct_read.unit }}
                 </dd>
               </div>
 <!--              <div class="mt-8 sm:mt-0 sm:grid sm:grid-cols-3 sm:gap-4 sm:border-t sm:border-gray-200 sm:px-6 sm:py-5">-->

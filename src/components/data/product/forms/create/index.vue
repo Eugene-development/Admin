@@ -182,7 +182,7 @@
 <!--                    </label>-->
                     <div class="rounded-md shadow-sm">
                       <p class="rounded-md pl-2 text-gray-100 text- block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-8">
-                        {{idx+1}}. Размер - {{ sizePrice.size}},
+                        {{ idx + 1 }}. Размер - {{ sizePrice.size}},
                       </p>
 
                     </div>
