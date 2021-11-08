@@ -260,14 +260,6 @@ export const actions = {
       // });
       //
 
-
-
-
-
-
-
-
-
       // await this.$axios.$post('/upload-image', state.image ,state.apiCROPPER)
 
       const data = await state.paginateProduct.concat(responseProduct);
@@ -360,12 +352,7 @@ export const actions = {
     const dialogUpdate = true;
     commit('DIALOG_UPDATE', dialogUpdate);
 
-
     const product = await state.allProduct.find(item => item.id === ID);
-
-
-
-
 
     const id = product.id;
     const category_id = product.category_id;
@@ -385,10 +372,6 @@ export const actions = {
       id: id,
       category_id: category_id,
       name: name,
-      // size: size,
-      // size_id: size_id,
-      // price_id: price_id,
-      // price: price,
       unit: unit,
       description: description
     }
@@ -434,10 +417,6 @@ export const actions = {
       id: state.currentProduct.id,
       category_id: payload.id,
       name: state.currentProduct.name,
-      // size_id: state.currentProduct.size_id,
-      // price_id: state.currentProduct.price_id,
-      // size: state.currentProduct.size,
-      // price: state.currentProduct.price,
       unit: state.currentProduct.unit,
       description: state.currentProduct.description
     };
@@ -454,55 +433,17 @@ export const actions = {
       id: state.currentProduct.id,
       category_id: state.currentProduct.category_id,
       name: e.target.value,
-      // size_id: state.currentProduct.size_id,
-      // price_id: state.currentProduct.price_id,
-      // size: state.currentProduct.size,
-      // price: state.currentProduct.price,
       unit: state.currentProduct.unit,
       description: state.currentProduct.description,
     };
     commit('CURRENT_PRODUCT_UPDATE', currentProduct)
   },
 
-  // currentProductForm_updateSize({commit, state}, e) {
-  //   const currentProduct = {
-  //     id: state.currentProduct.id,
-  //     category_id: state.currentProduct.category_id,
-  //     name: state.currentProduct.name,
-  //     size_id: state.currentProduct.size_id,
-  //     price_id: state.currentProduct.price_id,
-  //     size: e.target.value,
-  //     price: state.currentProduct.price,
-  //     unit: state.currentProduct.unit,
-  //     description: state.currentProduct.description,
-  //   };
-  //   commit('CURRENT_PRODUCT_UPDATE', currentProduct)
-  // },
-  //
-  // currentProductForm_updatePrice({commit, state}, e) {
-  //   const currentProduct = {
-  //     id: state.currentProduct.id,
-  //     category_id: state.currentProduct.category_id,
-  //     name: state.currentProduct.name,
-  //     size_id: state.currentProduct.size_id,
-  //     price_id: state.currentProduct.price_id,
-  //     size: state.currentProduct.size,
-  //     price: e.target.value,
-  //     unit: state.currentProduct.unit,
-  //     description: state.currentProduct.description,
-  //   };
-  //   commit('CURRENT_PRODUCT_UPDATE', currentProduct)
-  // },
-
   currentProductForm_updateUnit({commit, state}, e) {
     const currentProduct = {
       id: state.currentProduct.id,
       category_id: state.currentProduct.category_id,
       name: state.currentProduct.name,
-      // size_id: state.currentProduct.size_id,
-      // price_id: state.currentProduct.price_id,
-      // size: state.currentProduct.size,
-      // price: state.currentProduct.price,
       unit: e.target.value,
       description: state.currentProduct.description,
     };
@@ -514,10 +455,6 @@ export const actions = {
       id: state.currentProduct.id,
       category_id: state.currentProduct.category_id,
       name: state.currentProduct.name,
-      // size_id: state.currentProduct.size_id,
-      // price_id: state.currentProduct.price_id,
-      // size: state.currentProduct.size,
-      // price: state.currentProduct.price,
       unit: state.currentProduct.unit,
       description: e.target.value,
     };
@@ -560,16 +497,30 @@ export const actions = {
       };
       await this.$axios.$put('update-price', priceObj, state.apiCRUD);
 
+      const {data} = await this.$axios.$get('get-category/' + payload, state.apiCRUD);
+      const products = data[0].product;
 
-      const {data} = await this.$axios.$get('get-all-product', state.apiCRUD);
-      commit('ALL_PRODUCT', data);
-
-      const chunk = (data, size) =>
-        Array.from({length: Math.ceil(data.length / size)}, (v, i) =>
-          data.slice(i * size, i * size + size)
+      const chunk = (products, size) =>
+        Array.from({length: Math.ceil(products.length / size)}, (v, i) =>
+          products.slice(i * size, i * size + size)
         );
-      const paginateProduct = chunk(data, state.sizePage)[state.currentPage - 1];
+      const paginateProduct = chunk(products, state.sizePage)[state.currentPage - 1];
+      const numberOfPage = Math.ceil(products.length / state.sizePage);
+      commit('ALL_PRODUCT', products);
       commit('PAGINATE_PRODUCT', paginateProduct);
+      commit('NUMBER_OF_PAGE', numberOfPage);
+
+
+
+      // const {data} = await this.$axios.$get('get-all-product', state.apiCRUD);
+      // commit('ALL_PRODUCT', data);
+
+      // const chunk = (data, size) =>
+      //   Array.from({length: Math.ceil(data.length / size)}, (v, i) =>
+      //     data.slice(i * size, i * size + size)
+      //   );
+      // const paginateProduct = chunk(data, state.sizePage)[state.currentPage - 1];
+      // commit('PAGINATE_PRODUCT', paginateProduct);
     } catch (e) {
       console.error(e)
     } finally {
