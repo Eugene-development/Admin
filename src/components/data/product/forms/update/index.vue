@@ -31,213 +31,205 @@
       -->
       <div
         aria-labelledby="modal-headline"
-        aria-modal="true" class="inline-block align-bottom bg-gray-900 rounded-lg px-4 pt-5 pb-4 text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-2xl sm:w-full sm:p-6" role="dialog">
+        aria-modal="true"
+        class="inline-block align-bottom bg-gray-900 rounded-lg px-4 pt-5 pb-4 text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-2xl sm:w-full sm:p-6"
+        role="dialog">
         <form>
-              <div>
-                <h3 class="text-lg leading-6 font-medium text-gray-100">
-                  Изменить значение
-                </h3>
-                <p class="mt-1 text-sm leading-5 text-gray-100">
-                  Таблица "Продукция"
-                </p>
-              </div>
-            <div class="mt-8 border-t border-gray-400 pt-8">
-              <div class="mt-6 ">
-                <div class="mx-2 sm:col-span-3">
-                  <label class="mt-2 block text-sm font-medium leading-5 text-gray-100" for="first_name">
-                    Наименование
-                  </label>
-                  <div class="m-2 rounded-md shadow-sm">
-                    <input
-                      id="first_name"
-                      :value="currentProduct.name"
-                      class="rounded-md pl-2 form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-8"
-                      @input="currentProductForm_updateName">
-                  </div>
+          <div>
+            <h3 class="text-lg leading-6 font-medium text-gray-100">
+              Изменить значение
+            </h3>
+            <p class="mt-1 text-sm leading-5 text-gray-100">
+              Таблица "Продукция"
+            </p>
+          </div>
+          <div class="mt-8 border-t border-gray-400 pt-8">
+            <div class="mt-6 ">
+              <div class="mx-2 sm:col-span-3">
+                <label class="mt-2 block text-sm font-medium leading-5 text-gray-100" for="first_name">
+                  Наименование
+                </label>
+                <div class="m-2 rounded-md shadow-sm">
+                  <input
+                    id="first_name"
+                    :value="currentProduct.name"
+                    class="rounded-md pl-2 form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-8"
+                    @input="currentProductForm_updateName">
+                </div>
 
 
-
-
-
-                  <label for="first_name" class="block text-sm font-medium leading-5 text-gray-100">
-                    Категория
-                  </label>
-                  <div class="m-2 rounded-md shadow-sm">
-                    <div>
-                      <div class="mt-1 relative">
-                        <button
-                          @click="changeVisibleCategoryFormUpdate"
-                          type="button"
-                          class="bg-white relative w-full border border-gray-300 rounded-md shadow-sm pl-3 pr-10 py-2 text-left cursor-default focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                          aria-haspopup="listbox"
-                          aria-expanded="true"
-                          aria-labelledby="listbox-label">
-                          <span class="block truncate">{{ currentCategoryFormUpdate }}</span>
-                          <span class="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
+                <label for="first_name" class="block text-sm font-medium leading-5 text-gray-100">
+                  Категория
+                </label>
+                <div class="m-2 rounded-md shadow-sm">
+                  <div>
+                    <div class="mt-1 relative">
+                      <button
+                        @click="changeVisibleCategoryFormUpdate"
+                        type="button"
+                        class="bg-white relative w-full border border-gray-300 rounded-md shadow-sm pl-3 pr-10 py-2 text-left cursor-default focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                        aria-haspopup="listbox"
+                        aria-expanded="true"
+                        aria-labelledby="listbox-label">
+                        <span class="block truncate">{{ currentCategoryFormUpdate }}</span>
+                        <span class="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
                         <!-- Heroicon name: solid/selector -->
-                            <svg class="h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                              <path fill-rule="evenodd" d="M10 3a1 1 0 01.707.293l3 3a1 1 0 01-1.414 1.414L10 5.414 7.707 7.707a1 1 0 01-1.414-1.414l3-3A1 1 0 0110 3zm-3.707 9.293a1 1 0 011.414 0L10 14.586l2.293-2.293a1 1 0 011.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd" />
+                            <svg class="h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
+                                 fill="currentColor" aria-hidden="true">
+                              <path fill-rule="evenodd"
+                                    d="M10 3a1 1 0 01.707.293l3 3a1 1 0 01-1.414 1.414L10 5.414 7.707 7.707a1 1 0 01-1.414-1.414l3-3A1 1 0 0110 3zm-3.707 9.293a1 1 0 011.414 0L10 14.586l2.293-2.293a1 1 0 011.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z"
+                                    clip-rule="evenodd"/>
                             </svg>
                           </span>
-                        </button>
+                      </button>
 
+                      <!--
+                        Select popover, show/hide based on select state.
+
+                        Entering: ""
+                          From: ""
+                          To: ""
+                        Leaving: "transition ease-in duration-100"
+                          From: "opacity-100"
+                          To: "opacity-0"
+                      -->
+                      <ul v-if="visibleCategoryFormUpdate"
+                          class="absolute z-10 mt-1 w-full bg-white shadow-lg max-h-60 rounded-md py-1 text-base ring-1 ring-black ring-opacity-5 overflow-auto focus:outline-none sm:text-sm"
+                          tabindex="-1" role="listbox" aria-labelledby="listbox-label"
+                          aria-activedescendant="listbox-option-3">
                         <!--
-                          Select popover, show/hide based on select state.
+                          Select option, manage highlight styles based on mouseenter/mouseleave and keyboard navigation.
 
-                          Entering: ""
-                            From: ""
-                            To: ""
-                          Leaving: "transition ease-in duration-100"
-                            From: "opacity-100"
-                            To: "opacity-0"
+                          Highlighted: "text-white bg-indigo-600", Not Highlighted: "text-gray-900"
                         -->
-                        <ul v-if="visibleCategoryFormUpdate" class="absolute z-10 mt-1 w-full bg-white shadow-lg max-h-60 rounded-md py-1 text-base ring-1 ring-black ring-opacity-5 overflow-auto focus:outline-none sm:text-sm" tabindex="-1" role="listbox" aria-labelledby="listbox-label" aria-activedescendant="listbox-option-3">
+                        <li v-for="(category, idx) of allCategory" :key="category.id"
+                            class="text-gray-900 cursor-pointer select-none relative py-2 pl-3 pr-9 hover:bg-gray-100"
+                            id="listbox-option-0" role="option">
+                          <!-- Selected: "font-semibold", Not Selected: "font-normal" -->
+                          <button
+                            @click="setCurrentCategoryFormUpdate (category)"
+                            type="button">
+                            <span class="font-normal block truncate">{{ category.name }}</span>
+                          </button>
                           <!--
-                            Select option, manage highlight styles based on mouseenter/mouseleave and keyboard navigation.
+                            Checkmark, only display for selected option.
 
-                            Highlighted: "text-white bg-indigo-600", Not Highlighted: "text-gray-900"
+                            Highlighted: "text-white", Not Highlighted: "text-indigo-600"
                           -->
-                          <li v-for="(category, idx) of allCategory" :key="category.id"
-                              class="text-gray-900 cursor-pointer select-none relative py-2 pl-3 pr-9 hover:bg-gray-100" id="listbox-option-0" role="option">
-                            <!-- Selected: "font-semibold", Not Selected: "font-normal" -->
-                            <button
-                              @click="setCurrentCategoryFormUpdate (category)"
-                              type="button">
-                              <span class="font-normal block truncate">{{ category.name }}</span>
-                            </button>
-                            <!--
-                              Checkmark, only display for selected option.
+                          <!--                            <span class="text-indigo-600 absolute inset-y-0 right-0 flex items-center pr-4">-->
+                          <!-- Heroicon name: solid/check -->
+                          <!--                              <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">-->
+                          <!--                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />-->
+                          <!--                              </svg>-->
+                          <!--                            </span>-->
+                        </li>
 
-                              Highlighted: "text-white", Not Highlighted: "text-indigo-600"
-                            -->
-                            <!--                            <span class="text-indigo-600 absolute inset-y-0 right-0 flex items-center pr-4">-->
-                            <!-- Heroicon name: solid/check -->
-                            <!--                              <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">-->
-                            <!--                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />-->
-                            <!--                              </svg>-->
-                            <!--                            </span>-->
-                          </li>
-
-                        </ul>
-                      </div>
+                      </ul>
                     </div>
                   </div>
+                </div>
 
 
+                <div v-for="currentSizePrice in sizePrice" :key="sizePrice.id" class="flex">
+                  <div>
+                    <label class="block text-sm font-medium leading-5 text-gray-100">
+                      Размер:
+                    </label>
+                    <div class="m-2 rounded-md shadow-sm">
+                      <p
+                        class="rounded-md pl-2 text-gray-100 text- block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-8">
+                        {{ currentSizePrice.size }}
+                      </p>
 
-
-
-
-
-
-
-                  <div v-for="currentSizePrice in sizePrice" :key="sizePrice.id" class="flex">
-                    <div  >
-                      <label  class="block text-sm font-medium leading-5 text-gray-100">
-                        Размер:
-                      </label>
-                      <div class="m-2 rounded-md shadow-sm">
-                        <p class="rounded-md pl-2 text-gray-100 text- block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-8">
-                          {{ currentSizePrice.size}}
-                        </p>
-
-                      </div>
                     </div>
-                    <div class=" ml-4">
-                      <label  class="block text-sm font-medium leading-5 text-gray-100">
-                        Цена:
-                      </label>
-                      <div class="m-2 rounded-md shadow-sm">
-                        <p class="rounded-md pl-2 text-gray-100 block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-8">
-                          {{ currentSizePrice.price.price }}
-                        </p>
-                      </div>
-                    </div>
-                    <button
-                      @click="handleEditSizePrice (currentSizePrice)"
-                      type="button"
-                      class="inline-flex items-center justify-center px-4 py-2 border border-transparent font-medium rounded-md text-blue-500 bg-blue-50 hover:bg-blue-200 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-blue-200 transition ease-in-out duration-150 sm:text-sm sm:leading-5">
-                      <svg
-                        class=" h-4 w-4  duration-150"
-                        xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                        <path fill-rule="evenodd" d="M4 2a1 1 0 011 1v2.101a7.002 7.002 0 0111.601 2.566 1 1 0 11-1.885.666A5.002 5.002 0 005.999 7H9a1 1 0 010 2H4a1 1 0 01-1-1V3a1 1 0 011-1zm.008 9.057a1 1 0 011.276.61A5.002 5.002 0 0014.001 13H11a1 1 0 110-2h5a1 1 0 011 1v5a1 1 0 11-2 0v-2.101a7.002 7.002 0 01-11.601-2.566 1 1 0 01.61-1.276z" clip-rule="evenodd" />
-                      </svg>
-                    </button>
                   </div>
+                  <div class=" ml-4">
+                    <label class="block text-sm font-medium leading-5 text-gray-100">
+                      Цена:
+                    </label>
+                    <div class="m-2 rounded-md shadow-sm">
+                      <p
+                        class="rounded-md pl-2 text-gray-100 block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-8">
+                        {{ currentSizePrice.price.price }}
+                      </p>
+                    </div>
+                  </div>
+                  <button
+                    @click="handleEditSizePrice (currentSizePrice)"
+                    type="button"
+                    class="inline-flex items-center justify-center px-4 py-2 border border-transparent font-medium rounded-md text-blue-500 bg-blue-50 hover:bg-blue-200 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-blue-200 transition ease-in-out duration-150 sm:text-sm sm:leading-5">
+                    <svg
+                      class=" h-4 w-4  duration-150"
+                      xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                      <path fill-rule="evenodd"
+                            d="M4 2a1 1 0 011 1v2.101a7.002 7.002 0 0111.601 2.566 1 1 0 11-1.885.666A5.002 5.002 0 005.999 7H9a1 1 0 010 2H4a1 1 0 01-1-1V3a1 1 0 011-1zm.008 9.057a1 1 0 011.276.61A5.002 5.002 0 0014.001 13H11a1 1 0 110-2h5a1 1 0 011 1v5a1 1 0 11-2 0v-2.101a7.002 7.002 0 01-11.601-2.566 1 1 0 01.61-1.276z"
+                            clip-rule="evenodd"/>
+                    </svg>
+                  </button>
+                </div>
 
 
-<div v-if="visibleSizePrice">
-  <label class="mt-2 block text-sm font-medium leading-5 text-gray-100" >
-    Изменить размер
-  </label>
-  <div class="m-2 rounded-md shadow-sm">
-    <input
-      id="size"
-      :value="currentSize.size"
-      class="rounded-md pl-2 form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-8"
-      @input="currentProductForm_updateSize">
-  </div>
-
-  <label class="mt-2 block text-sm font-medium leading-5 text-gray-100" for="first_name">
-    Цена
-  </label>
-  <div class="m-2 rounded-md shadow-sm">
-    <input
-      id="price"
-      :value="currentSize.price"
-      class="rounded-md pl-2 form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-8"
-      @input="currentProductForm_updatePrice">
-  </div>
-
-</div>
-
-
-
-
-
-
-
-
-
-
-
-                  <label for="first_name" class="block text-sm font-medium leading-5 text-gray-100">
-                    Единица измерения
+                <div v-if="visibleSizePrice">
+                  <label class="mt-2 block text-sm font-medium leading-5 text-gray-100">
+                    Изменить размер
                   </label>
                   <div class="m-2 rounded-md shadow-sm">
                     <input
-                      :value="currentProduct.unit"
-                      @input="currentProductForm_updateUnit"
-                      id="unit"
-                      class="rounded-md pl-2 form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-8">
+                      id="size"
+                      :value="currentSize.size"
+                      class="rounded-md pl-2 form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-8"
+                      @input="currentProductForm_updateSize">
                   </div>
 
-                  <label for="first_name" class="block text-sm font-medium leading-5 text-gray-100">
-                    Описание
+                  <label class="mt-2 block text-sm font-medium leading-5 text-gray-100" for="first_name">
+                    Цена
                   </label>
                   <div class="m-2 rounded-md shadow-sm">
-                    <div class="mt-1 sm:mt-0 sm:col-span-2">
-
-
-                      <Editor
-                        :content="$store.state.content"
-                        @update="handleUpdate"
-                        class="bg-white"/>
-
-<!--                      <textarea-->
-<!--                        :value="currentProduct.description"-->
-<!--                        @input="currentProductForm_updateDescription"-->
-<!--                        id="description"-->
-<!--                        rows="3"-->
-<!--                        class="rounded-md pl-2 form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-8">-->
-<!--                      </textarea>-->
-                    </div>
+                    <input
+                      id="price"
+                      :value="currentSize.price"
+                      class="rounded-md pl-2 form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-8"
+                      @input="currentProductForm_updatePrice">
                   </div>
+                </div>
 
+                <label for="first_name" class="block text-sm font-medium leading-5 text-gray-100">
+                  Единица измерения
+                </label>
+                <div class="m-2 rounded-md shadow-sm">
+                  <input
+                    :value="currentProduct.unit"
+                    @input="currentProductForm_updateUnit"
+                    id="unit"
+                    class="rounded-md pl-2 form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-8">
+                </div>
+
+                <label for="first_name" class="block text-sm font-medium leading-5 text-gray-100">
+                  Описание
+                </label>
+                <div class="m-2 rounded-md shadow-sm">
+                  <div class="mt-1 sm:mt-0 sm:col-span-2">
+
+
+                    <Editor
+                      :content="$store.state.content"
+                      @update="handleUpdate"
+                      class="bg-white"/>
+
+                    <!--                      <textarea-->
+                    <!--                        :value="currentProduct.description"-->
+                    <!--                        @input="currentProductForm_updateDescription"-->
+                    <!--                        id="description"-->
+                    <!--                        rows="3"-->
+                    <!--                        class="rounded-md pl-2 form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-8">-->
+                    <!--                      </textarea>-->
+                  </div>
                 </div>
 
               </div>
+
             </div>
+          </div>
         </form>
 
 
@@ -266,7 +258,7 @@
 <script>
 import {mapActions, mapGetters} from 'vuex'
 
-import  Editor  from "../../../../microcomponents/editor";
+import Editor from "../../../../microcomponents/editor";
 import ImageCropper from "../create/ImageCropper";
 
 
@@ -296,8 +288,6 @@ export default {
       handleEditSizePrice: 'data/product/handleEditSizePrice',
     })
   },
-
-
 
 
   computed: {

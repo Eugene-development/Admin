@@ -169,31 +169,31 @@
                               @click="addSize (currentSize)"
                               type="button"
                               class="mt-2 ml-2 inline-flex justify-center w-full rounded-md border border-transparent px-4 py-1.5 bg-teal-900 text-base leading-6 font-medium text-white shadow-sm hover:bg-teal-800 focus:outline-none focus:border-teal-700 focus:shadow-outline-teal transition ease-in-out duration-150 sm:text-sm sm:leading-5">
-                        +
+                        Записать
                       </button>
                     </span>
                   </div>
                 </div>
 
-                <div v-for="sizePrice in sizePrice" :key="sizePrice.id" class="flex">
-                  <div  >
-                    <label for="size" class="block text-sm font-medium leading-5 text-gray-100">
-                      Размер:
-                    </label>
-                    <div class="m-2 rounded-md shadow-sm">
+                <div v-for="(sizePrice, idx) in sizePrice" :key="sizePrice.id" class="flex mt-1">
+                  <div >
+<!--                    <label for="size" class="block text-sm font-medium leading-5 text-gray-100">-->
+<!--                      Размер:-->
+<!--                    </label>-->
+                    <div class="rounded-md shadow-sm">
                       <p class="rounded-md pl-2 text-gray-100 text- block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-8">
-                        {{ sizePrice.size}}
+                        {{idx+1}}. Размер - {{ sizePrice.size}},
                       </p>
 
                     </div>
                   </div>
                   <div class=" ml-4">
-                    <label for="price" class="block text-sm font-medium leading-5 text-gray-100">
-                      Цена:
-                    </label>
-                    <div class="m-2 rounded-md shadow-sm">
-                      <p class="rounded-md pl-2 text-gray-100 block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-8">
-                        {{ sizePrice.price }}
+<!--                    <label for="price" class="block text-sm font-medium leading-5 text-gray-100">-->
+<!--                      Цена:-->
+<!--                    </label>-->
+                    <div class="rounded-md shadow-sm">
+                      <p class="rounded-md text-gray-100 block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-8">
+                        цена - {{ sizePrice.price }}
                       </p>
                     </div>
                   </div>
