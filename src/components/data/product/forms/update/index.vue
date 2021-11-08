@@ -47,7 +47,7 @@
             <div class="mt-6 ">
               <div class="mx-2 sm:col-span-3">
                 <label class="mt-2 block text-sm font-medium leading-5 text-gray-100" for="first_name">
-                  Наименование
+                  Наименование:
                 </label>
                 <div class="m-2 rounded-md shadow-sm">
                   <input
@@ -58,10 +58,10 @@
                 </div>
 
 
-                <label for="first_name" class="block text-sm font-medium leading-5 text-gray-100">
-                  Категория
+                <label for="first_name" class="mt-6 block text-sm font-medium leading-5 text-gray-100">
+                  Категория:
                 </label>
-                <div class="m-2 rounded-md shadow-sm">
+                <div class="m-2 mb-6 rounded-md shadow-sm">
                   <div>
                     <div class="mt-1 relative">
                       <button
@@ -170,8 +170,8 @@
 
 
                 <div v-if="visibleSizePrice">
-                  <label class="mt-2 block text-sm font-medium leading-5 text-gray-100">
-                    Изменить размер
+                  <label class="mt-6 block text-sm font-medium leading-5 text-gray-100">
+                    Измените размер:
                   </label>
                   <div class="m-2 rounded-md shadow-sm">
                     <input
@@ -181,8 +181,8 @@
                       @input="currentProductForm_updateSize">
                   </div>
 
-                  <label class="mt-2 block text-sm font-medium leading-5 text-gray-100" for="first_name">
-                    Цена
+                  <label class="mt-6 block text-sm font-medium leading-5 text-gray-100" for="first_name">
+                    Измените цену:
                   </label>
                   <div class="m-2 rounded-md shadow-sm">
                     <input
@@ -193,8 +193,8 @@
                   </div>
                 </div>
 
-                <label for="first_name" class="block text-sm font-medium leading-5 text-gray-100">
-                  Единица измерения
+                <label class="mt-6 block text-sm font-medium leading-5 text-gray-100">
+                  Единица измерения:
                 </label>
                 <div class="m-2 rounded-md shadow-sm">
                   <input
@@ -204,8 +204,8 @@
                     class="rounded-md pl-2 form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-8">
                 </div>
 
-                <label for="first_name" class="block text-sm font-medium leading-5 text-gray-100">
-                  Описание
+                <label class="mt-6 block text-sm font-medium leading-5 text-gray-100">
+                  Описание:
                 </label>
                 <div class="m-2 rounded-md shadow-sm">
                   <div class="mt-1 sm:mt-0 sm:col-span-2">

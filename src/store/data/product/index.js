@@ -499,14 +499,12 @@ export const actions = {
 
       const {data} = await this.$axios.$get('get-category/' + payload, state.apiCRUD);
       const products = data[0].product;
-
       const chunk = (products, size) =>
         Array.from({length: Math.ceil(products.length / size)}, (v, i) =>
           products.slice(i * size, i * size + size)
         );
       const paginateProduct = chunk(products, state.sizePage)[state.currentPage - 1];
       const numberOfPage = Math.ceil(products.length / state.sizePage);
-      commit('ALL_PRODUCT', products);
       commit('PAGINATE_PRODUCT', paginateProduct);
       commit('NUMBER_OF_PAGE', numberOfPage);
 
@@ -590,22 +588,36 @@ export const actions = {
       // await this.$axios.$get('delete-product/' + state.currentProduct_delete[0].id, state.apiCRUD);
       // const index = await state.allProduct.findIndex(item => item.id === state.currentProduct_delete[0].id);
       // const  data  = await state.allProduct.splice(index, 1);
-      const {data} = await this.$axios.$get('get-all-product', state.apiCRUD);
-
-      const chunk = (data, size) =>
-        Array.from({length: Math.ceil(data.length / size)}, (v, i) =>
-          data.slice(i * size, i * size + size)
-        );
-      const paginateProduct = chunk(data, state.sizePage)[state.currentPage - 1];
-      commit('PAGINATE_PRODUCT', paginateProduct);
-      commit('ALL_PRODUCT', data);
-
+      // const {data} = await this.$axios.$get('get-all-product', state.apiCRUD);
+      //
       // const chunk = (data, size) =>
-      //   Array.from({ length: Math.ceil(data.length / size) }, (v, i) =>
+      //   Array.from({length: Math.ceil(data.length / size)}, (v, i) =>
       //     data.slice(i * size, i * size + size)
       //   );
-      // const paginateProduct = chunk(data, state.sizePage)[0];
-      // commit('SET_PAGINATE_PRODUCT', paginateProduct);
+      // const paginateProduct = chunk(data, state.sizePage)[state.currentPage - 1];
+      // commit('PAGINATE_PRODUCT', paginateProduct);
+      // commit('ALL_PRODUCT', data);
+      //
+      // // const chunk = (data, size) =>
+      // //   Array.from({ length: Math.ceil(data.length / size) }, (v, i) =>
+      // //     data.slice(i * size, i * size + size)
+      // //   );
+      // // const paginateProduct = chunk(data, state.sizePage)[0];
+      // // commit('SET_PAGINATE_PRODUCT', paginateProduct);
+
+
+      const {data} = await this.$axios.$get('get-category/' + payload, state.apiCRUD);
+      const products = data[0].product;
+
+      const chunk = (products, size) =>
+        Array.from({length: Math.ceil(products.length / size)}, (v, i) =>
+          products.slice(i * size, i * size + size)
+        );
+      const paginateProduct = chunk(products, state.sizePage)[state.currentPage - 1];
+      const numberOfPage = Math.ceil(products.length / state.sizePage);
+      commit('ALL_PRODUCT', products);
+      commit('PAGINATE_PRODUCT', paginateProduct);
+      commit('NUMBER_OF_PAGE', numberOfPage);
 
     } catch (e) {
       console.error(e)
