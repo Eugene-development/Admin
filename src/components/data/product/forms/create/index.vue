@@ -303,8 +303,6 @@
                                 type="button">
                           Обрезать
                         </button>
-
-
 <!--                        <button v-if="visibleSendImage"-->
 <!--                                @click="multiFunc"-->
 <!--                                class="mt-6 inline-flex justify-center w-full py-2 px-4 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-teal-900 hover:bg-teal-700 focus:outline-none focus:border-teal-700 focus:shadow-outline-indigo active:bg-green-700 transition duration-150 ease-in-out">-->
@@ -320,7 +318,6 @@
                     </div>
                   </div>
                 </div>
-
 
               </div>
             </div>

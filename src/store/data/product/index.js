@@ -207,7 +207,6 @@ export const actions = {
 
       const category_id = state.currentProduct.category_id;
       const name = state.currentProduct.name;
-      // const price = state.currentProduct.price;
       const unit = state.currentProduct.unit;
       const description = state.currentProduct.description;
 
@@ -267,7 +266,7 @@ export const actions = {
       const chunk = (data, size) =>
         Array.from({length: Math.ceil(data.length / size)}, (v, i) =>
           data.slice(i * size, i * size + size)
-        );
+        );//функция бьёт на чанки
       const paginateProduct = chunk(data, state.sizePage)[state.currentPage - 1];
 
       const numberOfPage = Math.ceil(data.length / state.sizePage);
@@ -362,11 +361,6 @@ export const actions = {
 
     const sizePrice = product.size;
     commit('SIZE_PRICE', sizePrice)
-
-    // const size_id = product.size[0].id;
-    // const size = product.size[0].size;
-    // const price = product.size[0].price.price;
-    // const price_id = product.size[0].price.id;
 
     const currentProduct = {
       id: id,
@@ -497,7 +491,7 @@ export const actions = {
       };
       await this.$axios.$put('update-price', priceObj, state.apiCRUD);
 
-      const {data} = await this.$axios.$get('get-category/' + payload, state.apiCRUD);
+      const {data} = await this.$axios.$get('get-category/' + 160, state.apiCRUD);
       const products = data[0].product;
       const chunk = (products, size) =>
         Array.from({length: Math.ceil(products.length / size)}, (v, i) =>
@@ -526,6 +520,9 @@ export const actions = {
       const currentProduct = [];
       commit('CURRENT_PRODUCT_UPDATE', currentProduct)
 
+      const currentSize = [];
+      commit('CURRENT_SIZE_UPDATE', currentSize)
+
       const currentCategoryFormUpdate = '---';
       commit('CURRENT_CATEGORY_FORM_UPDATE', currentCategoryFormUpdate);
 
@@ -539,13 +536,8 @@ export const actions = {
     const dialogDelete = true;
     const product = await state.allProduct.find(item => item.id === ID);
 
-
-
     const id = product.id;
     const name = product.name;
-    // const size_id = product.size[0].id
-    // const price = product.size[0].price.price;
-    // const price_id = product.size[0].price.id;
     const unit = product.unit;
     const description = product.description;
 
@@ -557,7 +549,6 @@ export const actions = {
     }
 
     const currentSize = product.size
-
 
     // const currentProduct_delete = new Array(product);// TODO ???
     commit('DIALOG_DELETE', dialogDelete);
@@ -606,7 +597,7 @@ export const actions = {
       // // commit('SET_PAGINATE_PRODUCT', paginateProduct);
 
 
-      const {data} = await this.$axios.$get('get-category/' + payload, state.apiCRUD);
+      const {data} = await this.$axios.$get('get-category/' + 160, state.apiCRUD);
       const products = data[0].product;
 
       const chunk = (products, size) =>
@@ -622,8 +613,11 @@ export const actions = {
     } catch (e) {
       console.error(e)
     } finally {
+      const currentSize = [];
+      commit('CURRENT_SIZE_UPDATE', currentSize)//TODO вообще можно одну мутацию сделать без update
+
       const dialogDelete = false;
-      commit('DIALOG_DELETE', dialogDelete)
+      commit('DIALOG_DELETE', dialogDelete);
     }
   },
 
@@ -684,6 +678,13 @@ export const actions = {
 
     const currentProduct = [];
     commit('CURRENT_PRODUCT_CREATE', currentProduct);
+
+    const currentSize = [];
+    commit('CURRENT_SIZE_UPDATE', currentSize)
+
+    const sizePrice = [];
+    commit('SIZE_PRICE', sizePrice)
+
   },
 
   dialogDeleteClose({commit}) {
