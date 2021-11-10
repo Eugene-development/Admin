@@ -487,7 +487,7 @@ export default {
         formData.append('image', blob, this.createProductId);
         this.$axios.$post('https://adminexpo.com:7741/upload-image', formData)
           .then(res => {
-            console.log(res)
+            // console.log(res)
           });
       }, 'image/jpeg');
       this.visibleCropImage = false;

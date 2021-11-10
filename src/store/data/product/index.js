@@ -13,7 +13,7 @@ export const state = () => ({
   visibleDownloadImage: true,
   visibleCropImage: false,
   visibleSendImage: false,
-  visibleSizePrice: false,
+  visibleSizePrice: true,
   // visibleSentImage: false,
 
   sizePage: 20,
