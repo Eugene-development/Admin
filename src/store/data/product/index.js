@@ -351,7 +351,7 @@ export const actions = {
     const dialogUpdate = true;
     commit('DIALOG_UPDATE', dialogUpdate);
 
-    const product = await state.allProduct.find(item => item.id === ID);
+    const product = await state.allProduct.find(item => item.id === ID);//Забирает данные из стэйта
 
     const id = product.id;
     const category_id = product.category_id;
@@ -505,7 +505,7 @@ export const actions = {
 
 
       // const {data} = await this.$axios.$get('get-all-product', state.apiCRUD);
-      // commit('ALL_PRODUCT', data);
+      commit('ALL_PRODUCT', products);
 
       // const chunk = (data, size) =>
       //   Array.from({length: Math.ceil(data.length / size)}, (v, i) =>
