@@ -491,7 +491,7 @@ export const actions = {
       };
       await this.$axios.$put('update-price', priceObj, state.apiCRUD);
 
-      const {data} = await this.$axios.$get('get-category/' + 160, state.apiCRUD);
+      const {data} = await this.$axios.$get('get-category/' + category_id, state.apiCRUD);
       const products = data[0].product;
       const chunk = (products, size) =>
         Array.from({length: Math.ceil(products.length / size)}, (v, i) =>
@@ -523,6 +523,13 @@ export const actions = {
       const currentSize = [];
       commit('CURRENT_SIZE_UPDATE', currentSize)
 
+      const sizePrice = [];
+      commit('SIZE_PRICE', sizePrice)
+
+      const visibleSizePrice = false;
+      commit('VISIBLE_SIZE_PRICE', visibleSizePrice);
+
+
       const currentCategoryFormUpdate = '---';
       commit('CURRENT_CATEGORY_FORM_UPDATE', currentCategoryFormUpdate);
 
@@ -537,12 +544,14 @@ export const actions = {
     const product = await state.allProduct.find(item => item.id === ID);
 
     const id = product.id;
+    const category_id = product.category_id;
     const name = product.name;
     const unit = product.unit;
     const description = product.description;
 
     const currentProduct_delete = {
       id: id,
+      category_id: category_id,
       name: name,
       unit: unit,
       description: description
@@ -560,7 +569,8 @@ export const actions = {
     try {
 
       const product_id = state.currentProduct_delete.id;
-      const currentSize = state.currentSize
+      const currentSize = state.currentSize;
+      const category_id = state.currentProduct_delete.category_id;
 
       // const size_id = state.currentProduct_delete.size_id;
       // const price_id = state.currentProduct_delete.price_id;
@@ -597,7 +607,7 @@ export const actions = {
       // // commit('SET_PAGINATE_PRODUCT', paginateProduct);
 
 
-      const {data} = await this.$axios.$get('get-category/' + 160, state.apiCRUD);
+      const {data} = await this.$axios.$get('get-category/' + category_id, state.apiCRUD);
       const products = data[0].product;
 
       const chunk = (products, size) =>
