@@ -1,4 +1,4 @@
-import {cloneDeep, forEach, concat} from 'lodash';
+import {cloneDeep, forEach, merge, concat} from 'lodash';
 
 export const state = () => ({
   allProduct: [],
@@ -13,7 +13,7 @@ export const state = () => ({
   visibleDownloadImage: true,
   visibleCropImage: false,
   visibleSendImage: false,
-  visibleSizePrice: true,
+  visibleSizePrice: false,
   // visibleSentImage: false,
 
   sizePage: 20,
@@ -219,6 +219,10 @@ export const actions = {
         description: description
       };
       const responseProduct = await this.$axios.$post('add-product', productObj, state.apiCRUD);
+
+      let sizePrice = merge(responseProduct, size)
+      console.log(sizePrice)
+
       commit('CREATE_PRODUCT_ID', responseProduct.id);//для изображений
 
       for(let value of size) {
@@ -351,7 +355,7 @@ export const actions = {
     const dialogUpdate = true;
     commit('DIALOG_UPDATE', dialogUpdate);
 
-    const product = await state.allProduct.find(item => item.id === ID);//Забирает данные из стэйта
+    const product = await state.allProduct.find(item => item.id === ID);//Забирает данные из стэйта ВСЕ ПРДУКТЫ КАТЕГОРИИ
 
     const id = product.id;
     const category_id = product.category_id;
@@ -360,6 +364,7 @@ export const actions = {
     const description = product.description;
 
     const sizePrice = product.size;
+    console.log(product)
     commit('SIZE_PRICE', sizePrice)
 
     const currentProduct = {
