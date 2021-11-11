@@ -13,7 +13,7 @@ export const state = () => ({
   visibleDownloadImage: true,
   visibleCropImage: false,
   visibleSendImage: false,
-  visibleSizePrice: false,
+  visibleSizePrice: true,
   // visibleSentImage: false,
 
   sizePage: 20,
@@ -363,9 +363,8 @@ export const actions = {
     const unit = product.unit;
     const description = product.description;
 
-    // const sizePrice = product.size;
-    // console.log(product)
-    // commit('SIZE_PRICE', sizePrice)
+    const sizePrice = product.size;
+    commit('SIZE_PRICE', sizePrice)
 
     const currentProduct = {
       id: id,
