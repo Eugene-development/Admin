@@ -220,8 +220,8 @@ export const actions = {
       };
       const responseProduct = await this.$axios.$post('add-product', productObj, state.apiCRUD);
 
-      let sizePrice = merge(responseProduct, size)
-      console.log(sizePrice)
+      // let sizePrice = merge(responseProduct, size)
+      // console.log(sizePrice)
 
       commit('CREATE_PRODUCT_ID', responseProduct.id);//для изображений
 
@@ -363,9 +363,9 @@ export const actions = {
     const unit = product.unit;
     const description = product.description;
 
-    const sizePrice = product.size;
-    console.log(product)
-    commit('SIZE_PRICE', sizePrice)
+    // const sizePrice = product.size;
+    // console.log(product)
+    // commit('SIZE_PRICE', sizePrice)
 
     const currentProduct = {
       id: id,
