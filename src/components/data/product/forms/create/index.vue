@@ -332,6 +332,7 @@
                 class="mt-2 inline-flex justify-center w-full rounded-md border border-transparent px-4 py-2 bg-teal-900 text-base leading-6 font-medium text-white shadow-sm hover:bg-teal-800 focus:outline-none focus:border-teal-700 focus:shadow-outline-teal transition ease-in-out duration-150 sm:text-sm sm:leading-5">
                 Отправить и выйти
               </button>
+
               <button v-if="visibleSendImage"
                 @click="multiFunc2"
                 type="button"
