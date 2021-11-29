@@ -431,6 +431,7 @@ export default {
     multiFunc1() {
       this.upload();
       // this.createProduct();
+      this.onFormReset();
       this.dialogCreateClose();
     },
 
@@ -447,6 +448,7 @@ export default {
       }
 
       this.selectedFile = null;
+      this.selectedFileNoCrop = null;
       this.visibleDownloadImage = true;
       this.visibleSendImage = false;
       // this.$refs.form.reset()
@@ -496,7 +498,6 @@ export default {
       }, 'image/*');
       this.visibleCropImage = false;
       this.visibleSendImage = false;
-      // this.visibleSentImage = true;
     },
 
     upload() {
@@ -509,7 +510,6 @@ export default {
           });
       this.visibleCropImage = false;
       this.visibleSendImage = false;
-      // this.visibleSentImage = true;
     },
 
     ...mapActions({
