@@ -340,7 +340,7 @@
               </button>
 
               <button
-                @click="dialogCreateClose"
+                @click="multiFunc3"
                 type="button"
                 class="mt-2 inline-flex justify-center w-full rounded-md border border-transparent px-4 py-2 bg-red-900 text-base leading-6 font-medium text-white shadow-sm hover:bg-red-800 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo transition ease-in-out duration-150 sm:text-sm sm:leading-5">
                 Отменить
@@ -437,6 +437,11 @@ export default {
 
     multiFunc2() {
       this.uploadCrop();
+      this.onFormReset();
+      this.dialogCreateClose();
+    },
+
+    multiFunc3() {
       this.onFormReset();
       this.dialogCreateClose();
     },
