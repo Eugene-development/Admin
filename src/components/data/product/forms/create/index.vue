@@ -327,7 +327,7 @@
         <div  class="my-6">
           <span class="w-full rounded-md shadow-sm">
               <button v-if="!visibleSendImage"
-                @click="multiFunc1"
+                @click="multiFunc2"
                 type="button"
                 class="mt-2 inline-flex justify-center w-full rounded-md border border-transparent px-4 py-2 bg-teal-900 text-base leading-6 font-medium text-white shadow-sm hover:bg-teal-800 focus:outline-none focus:border-teal-700 focus:shadow-outline-teal transition ease-in-out duration-150 sm:text-sm sm:leading-5">
                 Отправить и выйти
@@ -427,10 +427,10 @@ export default {
       this.$store.commit('data/product/SET_CONTENT', data)
     },
 
-    multiFunc1() {
-      this.createProduct();
-      this.dialogCreateClose();
-    },
+    // multiFunc1() {
+    //   this.createProduct();
+    //   this.dialogCreateClose();
+    // },
 
     multiFunc2() {
       this.upload();
@@ -476,20 +476,22 @@ export default {
 
 
     crop() {
-      this.cropImg = this.cropper.replace(this.cropper.getCroppedCanvas().toDataURL('image/jpeg'));
+      this.cropImg = this.cropper.replace(this.cropper.getCroppedCanvas().toDataURL('image/jpg'));
       this.visibleCropImage = false;
       this.visibleSendImage = true;
     },
+
 
     upload() {
       this.cropper.getCroppedCanvas().toBlob((blob) => {
         const formData = new FormData();
         formData.append('image', blob, this.createProductId);
-        this.$axios.$post('https://adminexpo.com:7741/upload-image', formData)
+        this.$axios.$post('http://localhost:7741/upload-image', formData)
+        // this.$axios.$post('https://adminexpo.com:7741/upload-image', formData)
           .then(res => {
             // console.log(res)
           });
-      }, 'image/jpeg');
+      }, 'image/*');
       this.visibleCropImage = false;
       this.visibleSendImage = false;
       // this.visibleSentImage = true;
