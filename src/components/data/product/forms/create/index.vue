@@ -327,7 +327,7 @@
         <div  class="my-6">
           <span class="w-full rounded-md shadow-sm">
               <button v-if="!visibleSendImage"
-                @click="multiFunc2"
+                @click="multiFunc1"
                 type="button"
                 class="mt-2 inline-flex justify-center w-full rounded-md border border-transparent px-4 py-2 bg-teal-900 text-base leading-6 font-medium text-white shadow-sm hover:bg-teal-800 focus:outline-none focus:border-teal-700 focus:shadow-outline-teal transition ease-in-out duration-150 sm:text-sm sm:leading-5">
                 Отправить и выйти
@@ -376,6 +376,7 @@ export default {
   data() {
     return {
       selectedFile: null,
+      selectedFileNoCrop: null,
       cropper: null,
       cropImg: "",
       visibleDownloadImage: true,
@@ -427,13 +428,14 @@ export default {
       this.$store.commit('data/product/SET_CONTENT', data)
     },
 
-    // multiFunc1() {
-    //   this.createProduct();
-    //   this.dialogCreateClose();
-    // },
+    multiFunc1() {
+      this.upload();
+      // this.createProduct();
+      this.dialogCreateClose();
+    },
 
     multiFunc2() {
-      this.upload();
+      this.uploadCrop();
       this.onFormReset();
       this.dialogCreateClose();
     },
@@ -457,6 +459,7 @@ export default {
       reader.onload = event => {
         this.selectedFile = event.target.result;
       };
+      this.selectedFileNoCrop = event.target.files[0]
       this.visibleDownloadImage = false;
       this.visibleCropImage = false;
       // this.visibleSentImage = false;
@@ -481,17 +484,29 @@ export default {
       this.visibleSendImage = true;
     },
 
-
-    upload() {
+    uploadCrop() {
       this.cropper.getCroppedCanvas().toBlob((blob) => {
         const formData = new FormData();
         formData.append('image', blob, this.createProductId);
         this.$axios.$post('http://localhost:7741/upload-image', formData)
-        // this.$axios.$post('https://adminexpo.com:7741/upload-image', formData)
+          // this.$axios.$post('https://adminexpo.com:7741/upload-image', formData)
           .then(res => {
             // console.log(res)
           });
       }, 'image/*');
+      this.visibleCropImage = false;
+      this.visibleSendImage = false;
+      // this.visibleSentImage = true;
+    },
+
+    upload() {
+        const formData = new FormData();
+        formData.append('image', this.selectedFileNoCrop, this.createProductId);
+        this.$axios.$post('http://192.168.0.101:7741/upload-image', formData)
+        // this.$axios.$post('https://adminexpo.com:7741/upload-image', formData)
+          .then(res => {
+            console.log(res)
+          });
       this.visibleCropImage = false;
       this.visibleSendImage = false;
       // this.visibleSentImage = true;
