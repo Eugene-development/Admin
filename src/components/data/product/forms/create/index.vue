@@ -496,8 +496,8 @@ export default {
       this.cropper.getCroppedCanvas().toBlob((blob) => {
         const formData = new FormData();
         formData.append('image', blob, this.createProductId);
-        this.$axios.$post('http://localhost:7741/upload-image', formData)
-          // this.$axios.$post('https://adminexpo.com:7741/upload-image', formData)
+        // this.$axios.$post('http://localhost:7741/upload-image', formData)
+          this.$axios.$post('https://adminexpo.com:7741/upload-image', formData)
           .then(res => {
             // console.log(res)
           });
@@ -509,7 +509,7 @@ export default {
     upload() {
         const formData = new FormData();
         formData.append('image', this.selectedFileNoCrop, this.createProductId);
-        this.$axios.$post('http://192.168.0.101:7741/upload-image', formData)
+      this.$axios.$post('https://adminexpo.com:7741/upload-image', formData)
         // this.$axios.$post('https://adminexpo.com:7741/upload-image', formData)
           .then(res => {
             console.log(res)
