@@ -512,7 +512,7 @@ export default {
       this.$axios.$post('https://adminexpo.com:7741/upload-image', formData)
         // this.$axios.$post('https://adminexpo.com:7741/upload-image', formData)
           .then(res => {
-            console.log(res)
+            // console.log(res)
           });
       this.visibleCropImage = false;
       this.visibleSendImage = false;
