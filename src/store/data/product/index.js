@@ -212,6 +212,17 @@ export const actions = {
 
       const size = state.sizePrice;
 
+      // console.log(size)
+      //
+      // if (!size){
+      //   console.log("Не указан размер");
+      // }
+      //
+      // if (size[0].price === ""){
+      //   console.log("Не указана цена");
+      // }
+
+
       const productObj = {
         category_id: category_id,
         name: name,
@@ -221,7 +232,7 @@ export const actions = {
       const responseProduct = await this.$axios.$post('add-product', productObj, state.apiCRUD);
 
       const createProductId = responseProduct.id
-      console.log(responseProduct.id)
+      // console.log(responseProduct.id)
       // let sizePrice = merge(responseProduct, size)
       // console.log(sizePrice)
 
